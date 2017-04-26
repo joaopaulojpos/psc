@@ -1,5 +1,4 @@
-[RN001] Validar Cadastro do Medicamento
+[RN001]  
 [RN002] Listar Medicamentos
 [RN003] Filtrar Medicamentos
 [RN004] Verificar Se Houve Alteração no Medicamento
-[RN005] Verificar duplicidade na Alteração do Medicamento
