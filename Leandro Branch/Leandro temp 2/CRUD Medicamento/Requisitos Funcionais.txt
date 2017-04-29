@@ -1,4 +1,0 @@
-[RN001]  
-[RN002] Listar Medicamentos
-[RN003] Filtrar Medicamentos
-[RN004] Verificar Se Houve Alteração no Medicamento
