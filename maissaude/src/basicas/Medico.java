@@ -1,10 +1,18 @@
 package basicas;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 @Entity
 @Table(name="medico")
@@ -12,7 +20,8 @@ public class Medico {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	@Column(name="id_medico")
+	private Integer idMedico;
 	
 	@Column(length=100,nullable=false)
 	private String nome;
@@ -20,33 +29,51 @@ public class Medico {
 	@Column(unique=true)
 	private Integer CRM;
 	
+	@OneToMany(mappedBy="medico",fetch=FetchType.LAZY)
+	@Cascade(CascadeType.ALL)
+	private List<Receituario> receituarios;
+	
 	public Medico(){}
 	
-	public Medico(Integer id, String nome, Integer cRM) {
+	public Medico(Integer idMedico, String nome, Integer cRM) {
 		super();
-		this.id = id;
+		this.idMedico = idMedico;
 		this.nome = nome;
 		this.CRM = cRM;
 	}
+	
+	public Integer getIdMedico() {
+		return idMedico;
+	}
 
-	public Integer getId() {
-		return id;
+	public void setIdMedico(Integer idMedico) {
+		this.idMedico = idMedico;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Integer getCRM() {
 		return CRM;
 	}
+
 	public void setCRM(Integer cRM) {
 		CRM = cRM;
 	}
+
+	public List<Receituario> getReceituarios() {
+		return receituarios;
+	}
+
+	public void setReceituarios(List<Receituario> receituarios) {
+		this.receituarios = receituarios;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +81,7 @@ public class Medico {
 		result = prime * result + CRM;
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

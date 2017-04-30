@@ -1,6 +1,11 @@
 package basicas;
 
-public abstract class Usuario {
+/**
+ * 
+ * @author Rhuan
+ *
+ */
+public class Usuario {
 
 	private String login;
 	private String senha;

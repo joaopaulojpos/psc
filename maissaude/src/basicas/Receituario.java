@@ -1,62 +1,97 @@
 package basicas;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+/**
+ * 
+ * @author Rhuan
+ *
+ */
 @Entity
 @Table(name="receituario")
 public class Receituario {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	@Column(name="id_receituario")
+	private Integer idReceituario;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_medico",insertable=true,updatable=true)
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Medico medico;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_paciente",insertable=true,updatable=true)
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Paciente paciente;
 	
-	private ArrayList<Medicamento> medicamento;
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="receituario_medicamento",
+				joinColumns=@JoinColumn(name="id_receituario"),
+				inverseJoinColumns=@JoinColumn(name="id_medicamento"))
+	private List<Medicamento> medicamentos;
 	
-	private Doenca doenca;
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="receituario_doenca",
+				joinColumns=@JoinColumn(name="id_receituario"),
+				inverseJoinColumns=@JoinColumn(name="id_doenca"))
+	private List<Doenca> doencas;
 	
 	private String observacao;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_farmaceutico",insertable=true,updatable=true)
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Farmaceutico farmaceutico;
+
+	private Situacao situacao;
 	
-	private String status;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime data;
+	private Date data;
 	
 	public Receituario(){}
-	
-	public Receituario(Integer id, Medico medico, Paciente paciente, ArrayList<Medicamento> medicamento, Doenca doenca,
-			LocalDateTime data, String observacao,String status,Farmaceutico farmaceutico) {
+
+	public Receituario(Integer idReceituario, Medico medico, Paciente paciente, List<Medicamento> medicamentos,
+			List<Doenca> doencas, String observacao, Farmaceutico farmaceutico, Situacao situacao,
+			Date data) {
 		super();
-		this.id = id;
+		this.idReceituario = idReceituario;
 		this.medico = medico;
 		this.paciente = paciente;
-		this.medicamento = medicamento;
-		this.doenca = doenca;
+		this.medicamentos = medicamentos;
+		this.doencas = doencas;
 		this.observacao = observacao;
 		this.farmaceutico = farmaceutico;
-		this.status = status;
+		this.situacao = situacao;
 		this.data = data;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdReceituario() {
+		return idReceituario;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdReceituario(Integer idReceituario) {
+		this.idReceituario = idReceituario;
 	}
 
 	public Medico getMedico() {
@@ -75,22 +110,22 @@ public class Receituario {
 		this.paciente = paciente;
 	}
 
-	public ArrayList<Medicamento> getMedicamento() {
-		return medicamento;
+	public List<Medicamento> getMedicamentos() {
+		return medicamentos;
 	}
 
-	public void setMedicamento(ArrayList<Medicamento> medicamento) {
-		this.medicamento = medicamento;
+	public void setMedicamentos(List<Medicamento> medicamentos) {
+		this.medicamentos = medicamentos;
 	}
 
-	public Doenca getDoenca() {
-		return doenca;
+	public List<Doenca> getDoencas() {
+		return doencas;
 	}
 
-	public void setDoenca(Doenca doenca) {
-		this.doenca = doenca;
+	public void setDoencas(List<Doenca> doencas) {
+		this.doencas = doencas;
 	}
-	
+
 	public String getObservacao() {
 		return observacao;
 	}
@@ -107,21 +142,20 @@ public class Receituario {
 		this.farmaceutico = farmaceutico;
 	}
 
-	public String getStatus() {
-		return status;
+	public Situacao getSituacao() {
+		return situacao;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
-	public LocalDateTime getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
-	
 	
 }

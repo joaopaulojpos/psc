@@ -1,12 +1,22 @@
 package basicas;
 
+import javax.persistence.Embeddable;
+
+/**
+ * 
+ * @author Rhuan
+ *
+ */
+@Embeddable
 public class Endereco {
 
+	
 	private String rua;
 	private String bairro;
 	private String cidade;
 	private String estado;
 	private String cep;
+	
 	
 	public Endereco(){}
 
