@@ -1,2 +1,0 @@
-tipoTarja: Se um medicamento é tarja preta, vermelha com receita, vermelha sem receita.
-StatusReceita: Gerada pelo médico, despachada pelo atendente, despachada pelo médico.
