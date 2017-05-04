@@ -157,5 +157,12 @@ public class Receituario {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	@Override
+	public String toString() {
+		return "Receituario [idReceituario=" + idReceituario + ", medico=" + medico + ", paciente=" + paciente
+				+ ", medicamentos=" + medicamentos + ", doencas=" + doencas + ", observacao=" + observacao
+				+ ", farmaceutico=" + farmaceutico + ", situacao=" + situacao + ", data=" + data + "]";
+	}
 	
 }

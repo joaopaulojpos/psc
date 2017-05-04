@@ -69,5 +69,12 @@ public class Doenca {
 	public void setGravidade(Gravidade gravidade) {
 		this.gravidade = gravidade;
 	}
+
+	@Override
+	public String toString() {
+		return "Doenca [idDoenca=" + idDoenca + ", descricao=" + descricao + ", causa=" + causa + ", gravidade="
+				+ gravidade + "]";
+	}
+	
 	
 }
