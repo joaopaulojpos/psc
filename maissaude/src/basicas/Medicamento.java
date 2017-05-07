@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * 
@@ -18,75 +22,64 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="medicamento")
+@Table(name="Medicamento")
 public class Medicamento {
 
 	@Id
 	@GeneratedValue
 	@Column(name="id_medicamento")
-	private Integer id;
-	
-	//essa é a numeracao do medicamento no Ministerio da Saude
-	private Integer registroMS;
-	
+	private Integer idMedicamento;
+		
 	@Column(length=200)
-	private String descricao;
+	private String nome;	
 	
-	private String tipo;
+	@Column(name="isControlado")
+	private boolean isControlado;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="receituario_medicamento",
+	@JoinTable(name="receita_medicamento",
 				joinColumns=@JoinColumn(name="id_medicamento"),
-				inverseJoinColumns=@JoinColumn(name="id_receituario"))
-	private List<Receituario> receituarios;
+				inverseJoinColumns=@JoinColumn(name="id_receita"))
+	private List<Receita> listaReceitas;
 	
-	public Medicamento(){}
+	
+	public String getNome() {
+		return nome;
+	}
 
-	public Integer getId() {
-		return id;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public boolean getIsControlado() {
+		return isControlado;
+	}
+
+	public void setIsControlado(boolean isControlado) {
+		this.isControlado = isControlado;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
-	}
+		this.idMedicamento = id;
+	}	
 
-	public Integer getRegistroMS() {
-		return registroMS;
+	public Integer getId() {
+		return idMedicamento;
 	}
-
-	public void setRegistroMS(Integer registroMS) {
-		this.registroMS = registroMS;
+	
+	public Medicamento(){}
+	
+	public Medicamento(Integer id, String nome, boolean isControlado){		
+		setId(id);
+		setNome(nome);
+		setIsControlado(isControlado);		
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public List<Receituario> getReceituarios() {
-		return receituarios;
-	}
-
-	public void setReceituarios(List<Receituario> receituarios) {
-		this.receituarios = receituarios;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((registroMS == null) ? 0 : registroMS.hashCode());
+		result = prime * result + ((idMedicamento == null) ? 0 : idMedicamento.hashCode());
 		return result;
 	}
 
@@ -99,10 +92,10 @@ public class Medicamento {
 		if (getClass() != obj.getClass())
 			return false;
 		Medicamento other = (Medicamento) obj;
-		if (registroMS == null) {
-			if (other.registroMS != null)
+		if (idMedicamento == null) {
+			if (other.idMedicamento != null)
 				return false;
-		} else if (!registroMS.equals(other.registroMS))
+		} else if (!idMedicamento.equals(other.idMedicamento))
 			return false;
 		return true;
 	}

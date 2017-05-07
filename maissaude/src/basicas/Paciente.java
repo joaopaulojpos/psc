@@ -1,13 +1,10 @@
 package basicas;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,104 +17,32 @@ import org.hibernate.annotations.CascadeType;
  *
  */
 @Entity
-@Table(name="paciente")
-public class Paciente {
+@Table(name="Paciente")
+public class Paciente extends Pessoa{
 
-	@Id
-	@GeneratedValue
-	@Column(name="id_paciente")
-	private Integer idPaciente;
-	
 	//este campo possue 15 caracteres --> xxx xxxx xxxx xxxx
-	@Column(name="id_sus", unique=true)
-	private Integer idSUS;
+	//Cartão Nacional de Saúde
+	@Column(name="cns", unique=true)
+	private Long cns;
 	
-	private String nome;
-	
-	private Character sexo;
-	
-	@Column(name="data_nasc")
-	private Date dataNasc;
-	
-	private Endereco endereco;
-	
-	@OneToMany(mappedBy="paciente",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receituario> receituarios;
+	private List<Receita> listaReceitas;		
 	
-	public Paciente(){}
-	
-	public Paciente(Integer id, Integer idSUS, String nome, Character sexo, Date dataNasc, Endereco endereco) {
+	public Paciente(){
 		super();
-		this.idPaciente = id;
-		this.idSUS = idSUS;
-		this.nome = nome;
-		this.sexo = sexo;
-		this.dataNasc = dataNasc;
-		this.endereco = endereco;
 	}
-
-	public Integer getIdPaciente() {
-		return idPaciente;
+	
+	public Paciente(Long cns) {
+		super();
+		this.cns = cns;
 	}
-
-	public void setIdPaciente(Integer idPaciente) {
-		this.idPaciente = idPaciente;
-	}
-
-	public Integer getIdSUS() {
-		return idSUS;
-	}
-
-	public void setIdSUS(Integer idSUS) {
-		this.idSUS = idSUS;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Character getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(Character sexo) {
-		this.sexo = sexo;
-	}
-
-	public Date getDataNasc() {
-		return dataNasc;
-	}
-
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Receituario> getReceituarios() {
-		return receituarios;
-	}
-
-	public void setReceituarios(List<Receituario> receituarios) {
-		this.receituarios = receituarios;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idSUS == null) ? 0 : idSUS.hashCode());
+		result = prime * result + ((cns == null) ? 0 : cns.hashCode());
 		return result;
 	}
 
@@ -130,12 +55,11 @@ public class Paciente {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
-		if (idSUS == null) {
-			if (other.idSUS != null)
+		if (cns == null) {
+			if (other.cns != null)
 				return false;
-		} else if (!idSUS.equals(other.idSUS))
+		} else if (!cns.equals(other.cns))
 			return false;
 		return true;
-	}
-	
+	}	
 }

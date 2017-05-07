@@ -24,9 +24,9 @@ import org.hibernate.annotations.FetchMode;
  * @author Rhuan
  *
  */
-@Entity
-@Table(name="receituario")
-public class Receituario {
+//@Entity
+//@Table(name="receituario")
+public class ReceitaOLD {/*
 
 	@Id
 	@GeneratedValue
@@ -69,9 +69,9 @@ public class Receituario {
 	
 	private Date data;
 	
-	public Receituario(){}
+	public ReceituarioOLD(){}
 
-	public Receituario(Integer idReceituario, Medico medico, Paciente paciente, List<Medicamento> medicamentos,
+	public ReceituarioOLD(Integer idReceituario, Medico medico, Paciente paciente, List<Medicamento> medicamentos,
 			List<Doenca> doencas, String observacao, Farmaceutico farmaceutico, Situacao situacao,
 			Date data) {
 		super();
@@ -164,5 +164,5 @@ public class Receituario {
 				+ ", medicamentos=" + medicamentos + ", doencas=" + doencas + ", observacao=" + observacao
 				+ ", farmaceutico=" + farmaceutico + ", situacao=" + situacao + ", data=" + data + "]";
 	}
-	
+	*/
 }

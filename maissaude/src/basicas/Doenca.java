@@ -1,10 +1,17 @@
 package basicas;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * 
@@ -12,7 +19,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="doenca")
+@Table(name="Doenca")
 public class Doenca {
 
 	@Id
@@ -21,60 +28,45 @@ public class Doenca {
 	private Integer idDoenca;
 	
 	@Column(length=200,nullable=false)
-	private String descricao;
+	private String nome;	
 	
-	@Column(length=100,nullable=true)
-	private String causa;
+	//Um código que toda doença tem
+	@Column
+	private Long cnd;
 	
-	private Gravidade gravidade;
+	@OneToMany(mappedBy="doenca", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<Receita> listaReceitas;	
 	
-	public Doenca(){}
-
-	public Doenca(Integer idDoenca, String descricao, String causa, Gravidade gravidade) {
-		super();
-		this.idDoenca = idDoenca;
-		this.descricao = descricao;
-		this.causa = causa;
-		this.gravidade = gravidade;
-	}
-
-	public Integer getIdDoenca() {
+	public Integer getId() {
 		return idDoenca;
 	}
 
-	public void setIdDoenca(Integer idDoenca) {
-		this.idDoenca = idDoenca;
+	public void setId(Integer id) {
+		this.idDoenca = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getCausa() {
-		return causa;
+	public Long getCnd() {
+		return cnd;
 	}
 
-	public void setCausa(String causa) {
-		this.causa = causa;
+	public void setCnd(Long cnd) {
+		this.cnd = cnd;
 	}
 
-	public Gravidade getGravidade() {
-		return gravidade;
-	}
+	public Doenca(){}
 
-	public void setGravidade(Gravidade gravidade) {
-		this.gravidade = gravidade;
+	public Doenca(Integer id, String nome, Long cnd) {		
+		this.idDoenca = id;
+		this.nome = nome;
+		this.cnd = cnd;
 	}
-
-	@Override
-	public String toString() {
-		return "Doenca [idDoenca=" + idDoenca + ", descricao=" + descricao + ", causa=" + causa + ", gravidade="
-				+ gravidade + "]";
-	}
-	
-	
 }
