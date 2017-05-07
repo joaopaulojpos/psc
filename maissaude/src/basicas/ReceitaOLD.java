@@ -24,9 +24,9 @@ import org.hibernate.annotations.FetchMode;
  * @author Rhuan
  *
  */
-@Entity
-@Table(name="receituario")
-public class ReceituarioOLD {
+//@Entity
+//@Table(name="receituario")
+public class ReceitaOLD {/*
 
 	@Id
 	@GeneratedValue
@@ -164,5 +164,5 @@ public class ReceituarioOLD {
 				+ ", medicamentos=" + medicamentos + ", doencas=" + doencas + ", observacao=" + observacao
 				+ ", farmaceutico=" + farmaceutico + ", situacao=" + situacao + ", data=" + data + "]";
 	}
-	
+	*/
 }

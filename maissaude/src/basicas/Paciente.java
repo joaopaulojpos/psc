@@ -1,13 +1,10 @@
 package basicas;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,22 +16,22 @@ import org.hibernate.annotations.CascadeType;
  * @author Rhuan
  *
  */
-//@Entity
-//@Table(name="paciente")
-public class Paciente {
+@Entity
+@Table(name="Paciente")
+public class Paciente extends Pessoa{
 
-
-	
 	//este campo possue 15 caracteres --> xxx xxxx xxxx xxxx
 	//Cartão Nacional de Saúde
 	@Column(name="cns", unique=true)
 	private Long cns;
-		
-//	@OneToMany(mappedBy="paciente",fetch=FetchType.LAZY)
-//	@Cascade(CascadeType.ALL)
-//	private List<Receituario> receituarios;
 	
-	public Paciente(){}
+	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<Receita> listaReceitas;		
+	
+	public Paciente(){
+		super();
+	}
 	
 	public Paciente(Long cns) {
 		super();

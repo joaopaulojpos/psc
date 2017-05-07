@@ -14,16 +14,16 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 
-//@Entity
-//@Table(name="medico")
-public class Medico {	
+@Entity
+@Table(name="Medico")
+public class Medico extends Usuario{	
 	
 	@Column(unique=true)
 	private Long crm;
 	
-//	@OneToMany(mappedBy="medico",fetch=FetchType.LAZY)
-//	@Cascade(CascadeType.ALL)
-//	private List<Receituario> receituarios;
+	@OneToMany(mappedBy="medico", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<Receita> listaReceitas;	
 	
 	public Long getCrm() {
 		return crm;
@@ -33,7 +33,9 @@ public class Medico {
 		this.crm = crm;
 	}
 
-	public Medico(){}
+	public Medico(){
+		super();
+	}
 	
 	public Medico(Long crm) {
 		super();		

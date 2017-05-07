@@ -9,9 +9,9 @@ import basicas.Doenca;
 import dao.DoencaDAO;
 
 @SuppressWarnings("deprecation")
-public class TestaHibernate {
+public class TestaRemoverDoenca {
 	public static void main(String args[]){
-				
+/*
 		@SuppressWarnings("deprecation")
 		public static void main(String[] args) {
 			// Obtendo o gerenciador de entidades
@@ -49,5 +49,5 @@ public class TestaHibernate {
 
 
 		}
-	}
+	*/}
 }

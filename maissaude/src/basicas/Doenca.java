@@ -1,10 +1,17 @@
 package basicas;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * 
@@ -12,13 +19,13 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="doenca")
+@Table(name="Doenca")
 public class Doenca {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
-	private Integer id;
+	@Column(name="id_doenca")
+	private Integer idDoenca;
 	
 	@Column(length=200,nullable=false)
 	private String nome;	
@@ -27,12 +34,16 @@ public class Doenca {
 	@Column
 	private Long cnd;
 	
+	@OneToMany(mappedBy="doenca", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<Receita> listaReceitas;	
+	
 	public Integer getId() {
-		return id;
+		return idDoenca;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.idDoenca = id;
 	}
 
 	public String getNome() {
@@ -53,9 +64,8 @@ public class Doenca {
 
 	public Doenca(){}
 
-	public Doenca(Integer id, String nome, Long cnd) {
-		super();
-		this.id = id;
+	public Doenca(Integer id, String nome, Long cnd) {		
+		this.idDoenca = id;
 		this.nome = nome;
 		this.cnd = cnd;
 	}

@@ -10,21 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * 
  * @author Rhuan
  *
  */
-//@Entity
-//@Table(name="medicamento")
+@Entity
+@Table(name="Medicamento")
 public class Medicamento {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
-	private Integer id;
+	@Column(name="id_medicamento")
+	private Integer idMedicamento;
 		
 	@Column(length=200)
 	private String nome;	
@@ -32,11 +36,12 @@ public class Medicamento {
 	@Column(name="isControlado")
 	private boolean isControlado;
 	
-//	@ManyToMany(fetch=FetchType.LAZY)
-//	@JoinTable(name="receituario_medicamento",
-//				joinColumns=@JoinColumn(name="id_medicamento"),
-//				inverseJoinColumns=@JoinColumn(name="id_receituario"))
-//	private List<Receituario> receituarios;
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="receita_medicamento",
+				joinColumns=@JoinColumn(name="id_medicamento"),
+				inverseJoinColumns=@JoinColumn(name="id_receita"))
+	private List<Receita> listaReceitas;
+	
 	
 	public String getNome() {
 		return nome;
@@ -46,29 +51,35 @@ public class Medicamento {
 		this.nome = nome;
 	}
 
-	public boolean isControlado() {
+	public boolean getIsControlado() {
 		return isControlado;
 	}
 
-	public void setControlado(boolean isControlado) {
+	public void setIsControlado(boolean isControlado) {
 		this.isControlado = isControlado;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Medicamento(){}
+		this.idMedicamento = id;
+	}	
 
 	public Integer getId() {
-		return id;
+		return idMedicamento;
+	}
+	
+	public Medicamento(){}
+	
+	public Medicamento(Integer id, String nome, boolean isControlado){		
+		setId(id);
+		setNome(nome);
+		setIsControlado(isControlado);		
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idMedicamento == null) ? 0 : idMedicamento.hashCode());
 		return result;
 	}
 
@@ -81,10 +92,10 @@ public class Medicamento {
 		if (getClass() != obj.getClass())
 			return false;
 		Medicamento other = (Medicamento) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idMedicamento == null) {
+			if (other.idMedicamento != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idMedicamento.equals(other.idMedicamento))
 			return false;
 		return true;
 	}
