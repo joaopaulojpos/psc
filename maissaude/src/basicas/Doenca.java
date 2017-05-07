@@ -17,64 +17,46 @@ public class Doenca {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id_doenca")
-	private Integer idDoenca;
+	@Column(name="id")
+	private Integer id;
 	
 	@Column(length=200,nullable=false)
-	private String descricao;
+	private String nome;	
 	
-	@Column(length=100,nullable=true)
-	private String causa;
+	//Um código que toda doença tem
+	@Column
+	private Long cnd;
 	
-	private Gravidade gravidade;
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Long getCnd() {
+		return cnd;
+	}
+
+	public void setCnd(Long cnd) {
+		this.cnd = cnd;
+	}
+
 	public Doenca(){}
 
-	public Doenca(Integer idDoenca, String descricao, String causa, Gravidade gravidade) {
+	public Doenca(Integer id, String nome, Long cnd) {
 		super();
-		this.idDoenca = idDoenca;
-		this.descricao = descricao;
-		this.causa = causa;
-		this.gravidade = gravidade;
+		this.id = id;
+		this.nome = nome;
+		this.cnd = cnd;
 	}
-
-	public Integer getIdDoenca() {
-		return idDoenca;
-	}
-
-	public void setIdDoenca(Integer idDoenca) {
-		this.idDoenca = idDoenca;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getCausa() {
-		return causa;
-	}
-
-	public void setCausa(String causa) {
-		this.causa = causa;
-	}
-
-	public Gravidade getGravidade() {
-		return gravidade;
-	}
-
-	public void setGravidade(Gravidade gravidade) {
-		this.gravidade = gravidade;
-	}
-
-	@Override
-	public String toString() {
-		return "Doenca [idDoenca=" + idDoenca + ", descricao=" + descricao + ", causa=" + causa + ", gravidade="
-				+ gravidade + "]";
-	}
-	
-	
 }

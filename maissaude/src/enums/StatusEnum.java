@@ -1,0 +1,5 @@
+package enums;
+
+public enum StatusEnum {
+	GERADA_PELO_MEDICO, DESPACHADA_PELO_ATENDENTE, DESPACHADA_PELO_MEDICO;
+}

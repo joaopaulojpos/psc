@@ -26,7 +26,7 @@ import org.hibernate.annotations.FetchMode;
  */
 @Entity
 @Table(name="receituario")
-public class Receituario {
+public class ReceituarioOLD {
 
 	@Id
 	@GeneratedValue
@@ -69,9 +69,9 @@ public class Receituario {
 	
 	private Date data;
 	
-	public Receituario(){}
+	public ReceituarioOLD(){}
 
-	public Receituario(Integer idReceituario, Medico medico, Paciente paciente, List<Medicamento> medicamentos,
+	public ReceituarioOLD(Integer idReceituario, Medico medico, Paciente paciente, List<Medicamento> medicamentos,
 			List<Doenca> doencas, String observacao, Farmaceutico farmaceutico, Situacao situacao,
 			Date data) {
 		super();

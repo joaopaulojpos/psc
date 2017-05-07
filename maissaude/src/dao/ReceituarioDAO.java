@@ -1,10 +1,10 @@
-package basicas;
+package dao;
 
 import javax.persistence.EntityManagerFactory;
 
-import dao.DAOGenerico;
+import basicas.ReceituarioOLD;
 
-public class ReceituarioDAO extends DAOGenerico<Receituario>{
+public class ReceituarioDAO extends DAOGenerico<ReceituarioOLD>{
 
 	public ReceituarioDAO(EntityManagerFactory emf) {
 		super(emf);

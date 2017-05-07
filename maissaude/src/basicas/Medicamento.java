@@ -17,76 +17,58 @@ import javax.persistence.Table;
  * @author Rhuan
  *
  */
-@Entity
-@Table(name="medicamento")
+//@Entity
+//@Table(name="medicamento")
 public class Medicamento {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id_medicamento")
+	@Column(name="id")
 	private Integer id;
-	
-	//essa é a numeracao do medicamento no Ministerio da Saude
-	private Integer registroMS;
-	
+		
 	@Column(length=200)
-	private String descricao;
+	private String nome;	
 	
-	private String tipo;
+	@Column(name="isControlado")
+	private boolean isControlado;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="receituario_medicamento",
-				joinColumns=@JoinColumn(name="id_medicamento"),
-				inverseJoinColumns=@JoinColumn(name="id_receituario"))
-	private List<Receituario> receituarios;
+//	@ManyToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="receituario_medicamento",
+//				joinColumns=@JoinColumn(name="id_medicamento"),
+//				inverseJoinColumns=@JoinColumn(name="id_receituario"))
+//	private List<Receituario> receituarios;
 	
-	public Medicamento(){}
+	public String getNome() {
+		return nome;
+	}
 
-	public Integer getId() {
-		return id;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public boolean isControlado() {
+		return isControlado;
+	}
+
+	public void setControlado(boolean isControlado) {
+		this.isControlado = isControlado;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getRegistroMS() {
-		return registroMS;
-	}
+	public Medicamento(){}
 
-	public void setRegistroMS(Integer registroMS) {
-		this.registroMS = registroMS;
+	public Integer getId() {
+		return id;
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public List<Receituario> getReceituarios() {
-		return receituarios;
-	}
-
-	public void setReceituarios(List<Receituario> receituarios) {
-		this.receituarios = receituarios;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((registroMS == null) ? 0 : registroMS.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -99,10 +81,10 @@ public class Medicamento {
 		if (getClass() != obj.getClass())
 			return false;
 		Medicamento other = (Medicamento) obj;
-		if (registroMS == null) {
-			if (other.registroMS != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!registroMS.equals(other.registroMS))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

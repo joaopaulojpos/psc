@@ -18,65 +18,36 @@ import org.hibernate.annotations.CascadeType;
  * @author Rhuan
  *
  */
-@Entity
-@Table(name="farmaceutico")
-public class Farmaceutico {
+//@Entity
+//@Table(name="farmaceutico")
+public class Farmaceutico extends Usuario{
+	
+	@Column(name="crf",unique=true)
+	private Long crf;
+	
+	
+public Long getCrf() {
+		return crf;
+	}
 
-	@Id
-	@GeneratedValue
-	@Column(name="id_farmaceutico")
-	private Integer idFarmaceutico;
-	
-	@Column(name="registro_MS")
-	//numero que está registrado no Ministerio da saude.
-	private String registroMS;
-	
-	@Column(length=200)
-	private String nome;
-	
-	@OneToMany(mappedBy="farmaceutico",fetch=FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
-	private List<Receituario> receituarios;
-	
+
+	public void setCrf(Long crf) {
+		this.crf = crf;
+	}
+
+
+	//	@OneToMany(mappedBy="farmaceutico",fetch=FetchType.LAZY)
+//	@Cascade(CascadeType.ALL)
+//	private List<Receituario> receituarios;
+//	
 	public Farmaceutico(){}
 
-	public Integer getIdFarmaceutico() {
-		return idFarmaceutico;
-	}
-
-	public void setIdFarmaceutico(Integer idFarmaceutico) {
-		this.idFarmaceutico = idFarmaceutico;
-	}
-
-	public String getRegistroMS() {
-		return registroMS;
-	}
-
-	public void setRegistroMS(String registroMS) {
-		this.registroMS = registroMS;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<Receituario> getReceituarios() {
-		return receituarios;
-	}
-
-	public void setReceituarios(List<Receituario> receituarios) {
-		this.receituarios = receituarios;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((registroMS == null) ? 0 : registroMS.hashCode());
+		result = prime * result + ((crf == null) ? 0 : crf.hashCode());
 		return result;
 	}
 
@@ -89,10 +60,10 @@ public class Farmaceutico {
 		if (getClass() != obj.getClass())
 			return false;
 		Farmaceutico other = (Farmaceutico) obj;
-		if (registroMS == null) {
-			if (other.registroMS != null)
+		if (crf == null) {
+			if (other.crf != null)
 				return false;
-		} else if (!registroMS.equals(other.registroMS))
+		} else if (!crf.equals(other.crf))
 			return false;
 		return true;
 	}

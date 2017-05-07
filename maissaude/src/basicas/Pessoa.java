@@ -4,16 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
-public class Usuario extends Pessoa{
+public class Pessoa {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="login")
-	private String login;
+	@Column(name="nome", length=50)
+	private String nome;
 	
-	@Column(name="senha")
-	private String senha;
+	@Column(name="cpf", length=11)
+	private Long cpf;
+	
+	@Column(name="rg", length=15)
+	private Long rg;
 }
