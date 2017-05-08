@@ -30,7 +30,7 @@ public class Medicamento {
 	@Column(name="id_medicamento")
 	private Integer idMedicamento;
 		
-	@Column(length=200)
+	@Column(length=200,unique=true,nullable=false)
 	private String nome;	
 	
 	@Column(name="isControlado")
@@ -51,11 +51,12 @@ public class Medicamento {
 		this.nome = nome;
 	}
 
-	public boolean getIsControlado() {
+	
+	public boolean isControlado() {
 		return isControlado;
 	}
 
-	public void setIsControlado(boolean isControlado) {
+	public void setControlado(boolean isControlado) {
 		this.isControlado = isControlado;
 	}
 
@@ -72,7 +73,7 @@ public class Medicamento {
 	public Medicamento(Integer id, String nome, boolean isControlado){		
 		setId(id);
 		setNome(nome);
-		setIsControlado(isControlado);		
+		setControlado(isControlado);		
 	}
 	
 	@Override

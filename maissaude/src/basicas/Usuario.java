@@ -14,10 +14,10 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario extends Pessoa{	
 	
-	@Column(name="login")
+	@Column(name="login", nullable=false)
 	private String login;
 	
-	@Column(name="senha")
+	@Column(name="senha", nullable=false)
 	private String senha;
 	
 	@ManyToOne

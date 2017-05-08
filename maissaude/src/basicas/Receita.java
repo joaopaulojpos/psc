@@ -24,7 +24,7 @@ public class Receita {
 	@Column(name="id_receita")
 	private Integer idReceita;
 	
-	@Column(name="data_geracao")
+	@Column(name="data_geracao", nullable=false)
 	private Calendar dataGeracao;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -34,23 +34,23 @@ public class Receita {
 	private List<Medicamento> listaMedicamentos;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Medico")
+	@JoinColumn(name="id_Medico", nullable=false)
 	private Medico medico;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Paciente")
+	@JoinColumn(name="id_Paciente", nullable=false)
 	private Paciente paciente;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Doenca")
+	@JoinColumn(name="id_Doenca", nullable=false)
 	private Doenca doenca;
 	
 	@ManyToOne
-	@JoinColumn(name="id_status_receita")
+	@JoinColumn(name="id_status_receita", nullable=false)
 	private StatusReceita statusReceita;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Atendente")
+	@JoinColumn(name="id_Atendente", nullable=false)
 	private Atendente atendente;
 
 	public Integer getId() {

@@ -4,9 +4,9 @@ import javax.persistence.EntityManagerFactory;
 
 import basicas.Medico;
 
-public class MedicoDAO extends DAOGenerico<Medico>{
+public class DAOMedico extends DAOGenerico<Medico>{
 
-	public MedicoDAO(EntityManagerFactory emf) {
+	public DAOMedico(EntityManagerFactory emf) {
 		super(emf);
 		// TODO Auto-generated constructor stub
 	}

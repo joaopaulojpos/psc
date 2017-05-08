@@ -32,6 +32,8 @@ public class Atendente extends Usuario{
 		this.crf = crf;
 	}
 
+	
+
 	public boolean isFarmaceutico() {
 		return isFarmaceutico;
 	}

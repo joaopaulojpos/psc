@@ -27,11 +27,11 @@ public class Doenca {
 	@Column(name="id_doenca")
 	private Integer idDoenca;
 	
-	@Column(length=200,nullable=false)
+	@Column(length=200,unique=true,nullable=false)
 	private String nome;	
 	
 	//Um código que toda doença tem
-	@Column
+	@Column(name="cnd", unique=true,nullable=false)
 	private Long cnd;
 	
 	@OneToMany(mappedBy="doenca", fetch=FetchType.LAZY)	
