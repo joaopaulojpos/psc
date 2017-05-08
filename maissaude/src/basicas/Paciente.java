@@ -22,7 +22,7 @@ public class Paciente extends Pessoa{
 
 	//este campo possue 15 caracteres --> xxx xxxx xxxx xxxx
 	//Cartão Nacional de Saúde
-	@Column(name="cns", unique=true)
+	@Column(name="cns", unique=true, nullable=false)
 	private Long cns;
 	
 	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY)	

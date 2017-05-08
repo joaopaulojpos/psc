@@ -16,13 +16,13 @@ public abstract class Pessoa {
 	@Column(name="id_pessoa")
 	private Integer idPessoa;
 	
-	@Column(name="nome", length=50)
+	@Column(name="nome", nullable=false, length=50)
 	private String nome;
 	
-	@Column(name="cpf", length=11)
+	@Column(name="cpf", nullable=false, length=11)
 	private Long cpf;
 	
-	@Column(name="rg", length=15)
+	@Column(name="rg", nullable=false, length=15)
 	private Long rg;
 	
 	public Integer getId() {

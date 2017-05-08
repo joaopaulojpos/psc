@@ -6,11 +6,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import basicas.Doenca;
-import dao.DoencaDAO;
+import dao.DAODoenca;
 
 @SuppressWarnings("deprecation")
-public class TestaRemoverDoenca {
-	public static void main(String args[]){
+public class TestaDAOOld {
+	
 /*
 		@SuppressWarnings("deprecation")
 		public static void main(String[] args) {
@@ -49,5 +49,5 @@ public class TestaRemoverDoenca {
 
 
 		}
-	*/}
+	*/
 }

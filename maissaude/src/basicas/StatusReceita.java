@@ -26,10 +26,10 @@ public class StatusReceita {
 	@OneToMany(mappedBy="statusReceita")	
 	private List<Usuario> listaUsuarioAlteracoes;
 	
-	@Column(name="data_alteracao")
+	@Column(name="data_alteracao", nullable=false)
 	private Calendar dataAlteracao;
 	
-	@Column(name="status")
+	@Column(name="status", nullable=false)
 	private Enum status;	
 	
 	@OneToMany(mappedBy="statusReceita", fetch=FetchType.LAZY)	

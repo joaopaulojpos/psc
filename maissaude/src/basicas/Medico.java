@@ -18,7 +18,7 @@ import org.hibernate.annotations.CascadeType;
 @Table(name="Medico")
 public class Medico extends Usuario{	
 	
-	@Column(unique=true)
+	@Column(unique=true, nullable=false)
 	private Long crm;
 	
 	@OneToMany(mappedBy="medico", fetch=FetchType.LAZY)	
