@@ -10,7 +10,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Pessoa {
+public abstract class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="id_pessoa")
