@@ -1,14 +1,11 @@
 package basicas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import dao.DoencaDAO;
+import dao.MedicoDAO;
 
 public class Programa {
 
@@ -40,8 +37,8 @@ public class Programa {
 		d.setDescricao("Qualquer coisa");
 		d.setCausa("");
 		d.setGravidade(Gravidade.ALTISSIMA);
-		DoencaDAO dao = new DoencaDAO(emf);
-		dao.remover(d);
+		MedicoDAO dao = new MedicoDAO(emf);
+		javax.swing.JOptionPane.showMessageDialog(null,dao.medicoPorCrm(123455).toString());
 		
 		// Fechando o gerenciador.
 		em.close(); 

@@ -95,6 +95,12 @@ public class Medico {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Medico [idMedico=" + idMedico + ", nome=" + nome + ", CRM=" + CRM + ", receituarios=" + receituarios
+				+ "]";
+	}
 	
 	
 }

@@ -1,8 +1,8 @@
-package basicas;
+package dao;
 
 import javax.persistence.EntityManagerFactory;
 
-import dao.DAOGenerico;
+import basicas.Receituario;
 
 public class ReceituarioDAO extends DAOGenerico<Receituario>{
 

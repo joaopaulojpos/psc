@@ -2,13 +2,13 @@ package dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceException;
+
+import util.PersistenciaException;
 
 
 public abstract class DAOGenerico<Entity> {
@@ -32,7 +32,7 @@ public abstract class DAOGenerico<Entity> {
 	 *            a ser realizado o merge
 	 * @return objeto que foi executado o merge
 	 */
-	public Entity editar(Entity objeto) {
+	public void editar(Entity objeto) throws PersistenciaException{
 		
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		
@@ -44,16 +44,16 @@ public abstract class DAOGenerico<Entity> {
 		
 		tx.commit();
 		
-		} catch (PersistenceException e) {
+		} catch (RuntimeException e) {
 		tx.rollback();      
+		throw new PersistenciaException();
 		}
 
 		em.close();
 		
-		return objeto;
 	}
 	@SuppressWarnings("unchecked")
-	public final List<Entity> listar() {
+	public final List<Entity> listar() throws PersistenciaException{
 		List<Entity> instance = null;
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		try {
@@ -61,6 +61,7 @@ public abstract class DAOGenerico<Entity> {
 					"from " + getPersistentClass().getName()).getResultList());
 		} catch (RuntimeException re) {
 			re.printStackTrace();
+			throw new PersistenciaException();
 		}
 		em.close();
 		return instance;
@@ -72,17 +73,19 @@ public abstract class DAOGenerico<Entity> {
 	 * 
 	 * @param objeto a ser salvo
 	 */
-	public void inserir(Entity objeto) {
+	public void inserir(Entity objeto) throws PersistenciaException{
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		EntityTransaction tx = em.getTransaction();		
 		try {
 			tx.begin();
 			em.persist(objeto);
 			tx.commit();
-			em.close();
-		} catch (PersistenceException e) {
+			
+		} catch (RuntimeException re) {
 			tx.rollback();
+			throw new PersistenciaException();
 		}
+		em.close();
 	}
 
 	/**
@@ -91,9 +94,10 @@ public abstract class DAOGenerico<Entity> {
 	 * @param objeto
 	 *            a ser removido
 	 */
-	public final void remover(Entity objeto) {
+	public final void remover(Entity objeto) throws PersistenciaException{
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
+		try{
 		tx.begin();
 
 		// Este merge foi incluido para permitir a exclusao de objetos no estado Detached
@@ -102,7 +106,10 @@ public abstract class DAOGenerico<Entity> {
 		em.remove(objeto);
 		
 		tx.commit();
-		
+		} catch (RuntimeException re) {
+			tx.rollback();
+			throw new PersistenciaException();
+		}
 		em.close();
 	}
 
@@ -115,31 +122,17 @@ public abstract class DAOGenerico<Entity> {
 	 *            identificador
 	 * @return Objeto do tipo T
 	 */
-	public final Entity searchByKey(Serializable chave) {
+	public final Entity searchByKey(Serializable chave) throws PersistenciaException{
 		Entity instance = null;
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		try {
 			instance = (Entity) em.find(getPersistentClass(), chave);
 		} catch (RuntimeException re) {
 			re.printStackTrace();
+			throw new PersistenciaException();
 		}
 		em.close();
 		return instance;
-	}
-
-	/**
-	 * Atualiza o objeto que se 
-	 * 
-	 * 
-	 * encontra em mem�ria.
-	 * 
-	 * @param object
-	 *            objeto a ser atualizado
-	 */
-	public final void refresh(Entity object) {
-		EntityManager em = this.entityManagerFactory.createEntityManager();
-		em.refresh(object);
-		em.close();
 	}
 	
 	/**
