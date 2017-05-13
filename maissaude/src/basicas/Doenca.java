@@ -28,7 +28,10 @@ public class Doenca {
 	private Integer idDoenca;
 	
 	@Column(length=200,unique=true,nullable=false)
-	private String nome;	
+	private String nome;
+	
+	@Column
+	private Gravidade gravidade;
 	
 	//Um código que toda doença tem
 	@Column(name="cnd", unique=true,nullable=false)
@@ -52,6 +55,14 @@ public class Doenca {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Enum getGravidade() {
+		return gravidade;
+	}
+
+	public void setGravidade(Enum gravidade) {
+		this.gravidade = gravidade;
 	}
 
 	public Long getCnd() {
