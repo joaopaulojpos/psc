@@ -57,11 +57,11 @@ public class Doenca {
 		this.nome = nome;
 	}
 
-	public Enum getGravidade() {
+	public Gravidade getGravidade() {
 		return gravidade;
 	}
 
-	public void setGravidade(Enum gravidade) {
+	public void setGravidade(Gravidade gravidade) {
 		this.gravidade = gravidade;
 	}
 
