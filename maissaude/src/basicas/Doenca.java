@@ -31,7 +31,7 @@ public class Doenca {
 	private String nome;
 	
 	@Column
-	private Gravidade gravidade;
+	private EnumGravidade gravidade;
 	
 	//Um código que toda doença tem
 	@Column(name="cnd", unique=true,nullable=false)
@@ -57,11 +57,11 @@ public class Doenca {
 		this.nome = nome;
 	}
 
-	public Gravidade getGravidade() {
+	public EnumGravidade getGravidade() {
 		return gravidade;
 	}
 
-	public void setGravidade(Gravidade gravidade) {
+	public void setGravidade(EnumGravidade gravidade) {
 		this.gravidade = gravidade;
 	}
 
