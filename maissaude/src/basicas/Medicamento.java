@@ -24,7 +24,7 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name="Medicamento")
 public class Medicamento {
-
+//wer
 	@Id
 	@GeneratedValue
 	@Column(name="id_medicamento")
@@ -41,8 +41,15 @@ public class Medicamento {
 				joinColumns=@JoinColumn(name="id_medicamento"),
 				inverseJoinColumns=@JoinColumn(name="id_receita"))
 	private List<Receita> listaReceitas;
-	
-	
+
+	public Integer getIdMedicamento() {
+		return idMedicamento;
+	}
+
+	public void setIdMedicamento(Integer idMedicamento) {
+		this.idMedicamento = idMedicamento;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -51,7 +58,6 @@ public class Medicamento {
 		this.nome = nome;
 	}
 
-	
 	public boolean isControlado() {
 		return isControlado;
 	}
@@ -60,45 +66,24 @@ public class Medicamento {
 		this.isControlado = isControlado;
 	}
 
-	public void setId(Integer id) {
-		this.idMedicamento = id;
+	public List<Receita> getListaReceitas() {
+		return listaReceitas;
+	}
+
+	public void setListaReceitas(List<Receita> listaReceitas) {
+		this.listaReceitas = listaReceitas;
+	}
+
+	public Medicamento() {
+		super();
+	}
+
+	public Medicamento(Integer idMedicamento, String nome, boolean isControlado, List<Receita> listaReceitas) {
+		super();
+		this.idMedicamento = idMedicamento;
+		this.nome = nome;
+		this.isControlado = isControlado;
+		this.listaReceitas = listaReceitas;
 	}	
-
-	public Integer getId() {
-		return idMedicamento;
-	}
-	
-	public Medicamento(){}
-	
-	public Medicamento(Integer id, String nome, boolean isControlado){		
-		setId(id);
-		setNome(nome);
-		setControlado(isControlado);		
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idMedicamento == null) ? 0 : idMedicamento.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Medicamento other = (Medicamento) obj;
-		if (idMedicamento == null) {
-			if (other.idMedicamento != null)
-				return false;
-		} else if (!idMedicamento.equals(other.idMedicamento))
-			return false;
-		return true;
-	}
 	
 }
