@@ -25,38 +25,6 @@ public abstract class Pessoa {
 	@Column(name="rg", nullable=false, length=15)
 	private Long rg;
 	
-	public Integer getId() {
-		return idPessoa;
-	}
-
-	public void setId(Integer id) {
-		this.idPessoa = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public Long getRg() {
-		return rg;
-	}
-
-	public void setRg(Long rg) {
-		this.rg = rg;
-	}
-
 	public Pessoa(){
 		
 	}
@@ -67,4 +35,6 @@ public abstract class Pessoa {
 		setCpf(cpf);
 		setRg(rg);		
 	}
+	
+	
 }

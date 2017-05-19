@@ -14,7 +14,7 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name="Atendente")
 public class Atendente extends Usuario{
-	@Column(name="crf",unique=true)
+	@Column(name="crf",unique=true, nullable=true)
 	private Long crf;
 	
 	@Column(name="isFarmaceutico")
@@ -22,8 +22,8 @@ public class Atendente extends Usuario{
 	
 	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;	
-	
+	private List<Receita> listaReceitas;		
+
 	public Long getCrf() {
 		return crf;
 	}
@@ -31,8 +31,6 @@ public class Atendente extends Usuario{
 	public void setCrf(Long crf) {
 		this.crf = crf;
 	}
-
-	
 
 	public boolean isFarmaceutico() {
 		return isFarmaceutico;
@@ -51,10 +49,16 @@ public class Atendente extends Usuario{
 	}
 
 	public Atendente(){
-		super();
-		setCrf(crf);
+		
 	}
 	
+	public Atendente(Long crf, boolean isFarmaceutico, List<Receita> listaReceitas) {
+		super();
+		this.crf = crf;
+		this.isFarmaceutico = isFarmaceutico;
+		this.listaReceitas = listaReceitas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,4 +83,5 @@ public class Atendente extends Usuario{
 			return false;
 		return true;
 	}
+	
 }

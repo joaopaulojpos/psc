@@ -30,7 +30,7 @@ public class Doenca {
 	@Column(length=200,unique=true,nullable=false)
 	private String nome;
 	
-	@Column
+	@Column(name="gravidade")
 	private EnumGravidade gravidade;
 	
 	//Um código que toda doença tem
@@ -39,14 +39,14 @@ public class Doenca {
 	
 	@OneToMany(mappedBy="doenca", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;	
-	
-	public Integer getId() {
+	private List<Receita> listaReceitas;
+
+	public Integer getIdDoenca() {
 		return idDoenca;
 	}
 
-	public void setId(Integer id) {
-		this.idDoenca = id;
+	public void setIdDoenca(Integer idDoenca) {
+		this.idDoenca = idDoenca;
 	}
 
 	public String getNome() {
@@ -73,11 +73,46 @@ public class Doenca {
 		this.cnd = cnd;
 	}
 
-	public Doenca(){}
-
-	public Doenca(Integer id, String nome, Long cnd) {		
-		this.idDoenca = id;
-		this.nome = nome;
-		this.cnd = cnd;
+	public List<Receita> getListaReceitas() {
+		return listaReceitas;
 	}
+
+	public void setListaReceitas(List<Receita> listaReceitas) {
+		this.listaReceitas = listaReceitas;
+	}
+
+	public Doenca(Integer idDoenca, String nome, EnumGravidade gravidade, Long cnd, List<Receita> listaReceitas) {
+		super();
+		this.idDoenca = idDoenca;
+		this.nome = nome;
+		this.gravidade = gravidade;
+		this.cnd = cnd;
+		this.listaReceitas = listaReceitas;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cnd == null) ? 0 : cnd.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Doenca other = (Doenca) obj;
+		if (cnd == null) {
+			if (other.cnd != null)
+				return false;
+		} else if (!cnd.equals(other.cnd))
+			return false;
+		return true;
+	}	
+	
 }

@@ -27,6 +27,9 @@ public class Receita {
 	@Column(name="data_geracao", nullable=false)
 	private Calendar dataGeracao;
 	
+	@Column(name="prazo", nullable=false)
+	private Calendar prazo;
+	
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="receita_medicamento",
 				joinColumns=@JoinColumn(name="id_receita"),
@@ -53,12 +56,13 @@ public class Receita {
 	@JoinColumn(name="id_Atendente", nullable=false)
 	private Atendente atendente;
 
-	public Integer getId() {
+		
+	public Integer getIdReceita() {
 		return idReceita;
 	}
 
-	public void setId(Integer id) {
-		this.idReceita = id;
+	public void setIdReceita(Integer idReceita) {
+		this.idReceita = idReceita;
 	}
 
 	public Calendar getDataGeracao() {
@@ -67,6 +71,14 @@ public class Receita {
 
 	public void setDataGeracao(Calendar dataGeracao) {
 		this.dataGeracao = dataGeracao;
+	}
+
+	public Calendar getPrazo() {
+		return prazo;
+	}
+
+	public void setPrazo(Calendar prazo) {
+		this.prazo = prazo;
 	}
 
 	public List<Medicamento> getListaMedicamentos() {
@@ -116,7 +128,7 @@ public class Receita {
 	public void setAtendente(Atendente atendente) {
 		this.atendente = atendente;
 	}
-	
+
 	public Receita(){}
 	
 	public Receita(Atendente atendente, Calendar dataGeracao, Doenca doenca, List<Medicamento> listaMedicamentos, Medico medico, Paciente paciente, StatusReceita statusReceita){
@@ -127,6 +139,6 @@ public class Receita {
 		setMedico(medico);
 		setPaciente(paciente);
 		setStatusReceita(statusReceita);		
-	}
+	}	
 	
 }

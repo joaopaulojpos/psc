@@ -23,17 +23,25 @@ public class Paciente extends Pessoa{
 	//este campo possue 15 caracteres --> xxx xxxx xxxx xxxx
 	//Cartão Nacional de Saúde
 	@Column(name="cns", unique=true, nullable=false)
-	private Long cns;
+	private String cns;
 	
 	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
 	private List<Receita> listaReceitas;		
 	
+	public String getCns() {
+		return cns;
+	}
+
+	public void setCns(String cns) {
+		this.cns = cns;
+	}
+
 	public Paciente(){
 		super();
 	}
 	
-	public Paciente(Long cns) {
+	public Paciente(String cns) {
 		super();
 		this.cns = cns;
 	}
