@@ -20,7 +20,7 @@ public abstract class Pessoa {
 	private String nome;
 	
 	@Column(name="cpf", nullable=false, length=11)
-	private Long cpf;
+	private String cpf;
 	
 	@Column(name="rg", nullable=false, length=15)
 	private Long rg;
@@ -41,11 +41,11 @@ public abstract class Pessoa {
 		this.nome = nome;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -61,7 +61,7 @@ public abstract class Pessoa {
 		
 	}
 	
-	public Pessoa(Integer id, String nome, Long cpf, Long rg){
+	public Pessoa(Integer id, String nome, String cpf, Long rg){
 		setId(id);
 		setNome(nome);
 		setCpf(cpf);
