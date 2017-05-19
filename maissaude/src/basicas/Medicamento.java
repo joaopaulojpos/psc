@@ -24,7 +24,7 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 @Table(name="Medicamento")
 public class Medicamento {
-//wer
+
 	@Id
 	@GeneratedValue
 	@Column(name="id_medicamento")
@@ -84,6 +84,30 @@ public class Medicamento {
 		this.nome = nome;
 		this.isControlado = isControlado;
 		this.listaReceitas = listaReceitas;
-	}	
-	
-}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idMedicamento == null) ? 0 : idMedicamento.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medicamento other = (Medicamento) obj;
+		if (idMedicamento == null) {
+			if (other.idMedicamento != null)
+				return false;
+		} else if (!idMedicamento.equals(other.idMedicamento))
+			return false;
+		return true;
+	}
+	}

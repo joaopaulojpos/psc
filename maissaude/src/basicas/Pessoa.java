@@ -19,22 +19,79 @@ public abstract class Pessoa {
 	@Column(name="nome", nullable=false, length=50)
 	private String nome;
 	
-	@Column(name="cpf", nullable=false, length=11)
+	@Column(name="cpf", unique=true, nullable=false, length=11)
 	private String cpf;
 	
 	@Column(name="rg", nullable=false, length=15)
-	private Long rg;
-	
-	public Pessoa(){
-		
+	private String rg;
+
+	public Integer getIdPessoa() {
+		return idPessoa;
+	}
+
+	public void setIdPessoa(Integer idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
 	}
 	
-	public Pessoa(Integer id, String nome, String cpf, Long rg){
-		setId(id);
-		setNome(nome);
-		setCpf(cpf);
-		setRg(rg);		
+	public void setRg(String rg) {
+		this.rg = rg;
+	}	
+
+	public Pessoa() {
+		super();
+	}
+
+	public Pessoa(Integer idPessoa, String nome, String cpf, String rg) {
+		super();
+		this.idPessoa = idPessoa;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		return true;
+	}
 	
 }

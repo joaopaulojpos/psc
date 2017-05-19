@@ -15,20 +15,20 @@ import org.hibernate.annotations.CascadeType;
 @Table(name="Atendente")
 public class Atendente extends Usuario{
 	@Column(name="crf",unique=true, nullable=true)
-	private Long crf;
+	private String crf;
 	
-	@Column(name="isFarmaceutico")
+	@Column(name="isFarmaceutico", nullable=false)
 	private boolean isFarmaceutico;	
 	
 	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
 	private List<Receita> listaReceitas;		
 
-	public Long getCrf() {
+	public String getCrf() {
 		return crf;
 	}
 
-	public void setCrf(Long crf) {
+	public void setCrf(String crf) {
 		this.crf = crf;
 	}
 
@@ -48,11 +48,13 @@ public class Atendente extends Usuario{
 		this.listaReceitas = listaReceitas;
 	}
 
-	public Atendente(){
-		
-	}
+
 	
-	public Atendente(Long crf, boolean isFarmaceutico, List<Receita> listaReceitas) {
+	public Atendente() {
+		super();
+	}
+
+	public Atendente(String crf, boolean isFarmaceutico, List<Receita> listaReceitas) {
 		super();
 		this.crf = crf;
 		this.isFarmaceutico = isFarmaceutico;

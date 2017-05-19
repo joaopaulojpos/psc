@@ -30,12 +30,12 @@ public class Doenca {
 	@Column(length=200,unique=true,nullable=false)
 	private String nome;
 	
-	@Column(name="gravidade")
+	@Column(name="gravidade", nullable=false)
 	private EnumGravidade gravidade;
 	
 	//Um código que toda doença tem
 	@Column(name="cnd", unique=true,nullable=false)
-	private Long cnd;
+	private String cnd;
 	
 	@OneToMany(mappedBy="doenca", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
@@ -65,11 +65,11 @@ public class Doenca {
 		this.gravidade = gravidade;
 	}
 
-	public Long getCnd() {
+	public String getCnd() {
 		return cnd;
 	}
 
-	public void setCnd(Long cnd) {
+	public void setCnd(String cnd) {
 		this.cnd = cnd;
 	}
 
@@ -81,7 +81,11 @@ public class Doenca {
 		this.listaReceitas = listaReceitas;
 	}
 
-	public Doenca(Integer idDoenca, String nome, EnumGravidade gravidade, Long cnd, List<Receita> listaReceitas) {
+	public Doenca() {
+		super();
+	}
+
+	public Doenca(Integer idDoenca, String nome, EnumGravidade gravidade, String cnd, List<Receita> listaReceitas) {
 		super();
 		this.idDoenca = idDoenca;
 		this.nome = nome;

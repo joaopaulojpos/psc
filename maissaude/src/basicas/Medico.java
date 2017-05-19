@@ -19,37 +19,46 @@ import org.hibernate.annotations.CascadeType;
 public class Medico extends Usuario{	
 	
 	@Column(unique=true, nullable=false)
-	private Long crm;
+	private String crm;
 	
 	@OneToMany(mappedBy="medico", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;	
-	
-	public Long getCrm() {
+	private List<Receita> listaReceitas;
+
+	public String getCrm() {
 		return crm;
 	}
 
-	public void setCrm(Long crm) {
+	public void setCrm(String crm) {
 		this.crm = crm;
 	}
 
-	public Medico(){
+	public List<Receita> getListaReceitas() {
+		return listaReceitas;
+	}
+
+	public void setListaReceitas(List<Receita> listaReceitas) {
+		this.listaReceitas = listaReceitas;
+	}
+
+	public Medico() {
 		super();
 	}
-	
-	public Medico(Long crm) {
-		super();		
+
+	public Medico(String crm, List<Receita> listaReceitas) {
+		super();
 		this.crm = crm;
+		this.listaReceitas = listaReceitas;
 	}
-		
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + crm.intValue();
+		result = prime * result + ((crm == null) ? 0 : crm.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -59,10 +68,15 @@ public class Medico extends Usuario{
 		if (getClass() != obj.getClass())
 			return false;
 		Medico other = (Medico) obj;
-		if (crm != other.crm)
+		if (crm == null) {
+			if (other.crm != null)
+				return false;
+		} else if (!crm.equals(other.crm))
 			return false;
 		return true;
-	}
+	}	
+	
+
 	
 	
 }

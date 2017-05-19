@@ -27,8 +27,8 @@ public class Paciente extends Pessoa{
 	
 	@OneToMany(mappedBy="paciente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;		
-	
+	private List<Receita> listaReceitas;
+
 	public String getCns() {
 		return cns;
 	}
@@ -37,15 +37,24 @@ public class Paciente extends Pessoa{
 		this.cns = cns;
 	}
 
-	public Paciente(){
+	public List<Receita> getListaReceitas() {
+		return listaReceitas;
+	}
+
+	public void setListaReceitas(List<Receita> listaReceitas) {
+		this.listaReceitas = listaReceitas;
+	}
+
+	public Paciente() {
 		super();
 	}
-	
-	public Paciente(String cns) {
+
+	public Paciente(String cns, List<Receita> listaReceitas) {
 		super();
 		this.cns = cns;
+		this.listaReceitas = listaReceitas;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,5 +78,6 @@ public class Paciente extends Pessoa{
 		} else if (!cns.equals(other.cns))
 			return false;
 		return true;
-	}	
+	}		
+
 }

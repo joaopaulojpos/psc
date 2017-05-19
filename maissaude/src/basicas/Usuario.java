@@ -21,8 +21,10 @@ public abstract class Usuario extends Pessoa{
 	private String senha;
 	
 	@ManyToOne
-	@JoinColumn(name="id_status_receita")
+	@JoinColumn(name="id_status_receita", nullable=false)
 	private StatusReceita statusReceita;
+
+	
 
 	public String getLogin() {
 		return login;
@@ -48,13 +50,39 @@ public abstract class Usuario extends Pessoa{
 		this.statusReceita = statusReceita;
 	}
 
-	public Usuario(){
+	public Usuario() {
 		super();
 	}
+
+	public Usuario(String login, String senha, StatusReceita statusReceita) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.statusReceita = statusReceita;
+	}
 	
-	public Usuario(Integer id, String login, String senha){
-		setId(id);
-		setLogin(login);
-		setSenha(senha);		
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		return true;
 	}
 }

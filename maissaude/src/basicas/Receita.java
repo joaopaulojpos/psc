@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -56,7 +54,6 @@ public class Receita {
 	@JoinColumn(name="id_Atendente", nullable=false)
 	private Atendente atendente;
 
-		
 	public Integer getIdReceita() {
 		return idReceita;
 	}
@@ -129,16 +126,46 @@ public class Receita {
 		this.atendente = atendente;
 	}
 
-	public Receita(){}
-	
-	public Receita(Atendente atendente, Calendar dataGeracao, Doenca doenca, List<Medicamento> listaMedicamentos, Medico medico, Paciente paciente, StatusReceita statusReceita){
-		setAtendente(atendente);
-		setDataGeracao(dataGeracao);
-		setDoenca(doenca);		
-		setListaMedicamentos(listaMedicamentos);
-		setMedico(medico);
-		setPaciente(paciente);
-		setStatusReceita(statusReceita);		
-	}	
-	
+	public Receita() {
+		super();
+	}
+
+	public Receita(Integer idReceita, Calendar dataGeracao, Calendar prazo, List<Medicamento> listaMedicamentos,
+			Medico medico, Paciente paciente, Doenca doenca, StatusReceita statusReceita, Atendente atendente) {
+		super();
+		this.idReceita = idReceita;
+		this.dataGeracao = dataGeracao;
+		this.prazo = prazo;
+		this.listaMedicamentos = listaMedicamentos;
+		this.medico = medico;
+		this.paciente = paciente;
+		this.doenca = doenca;
+		this.statusReceita = statusReceita;
+		this.atendente = atendente;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idReceita == null) ? 0 : idReceita.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Receita other = (Receita) obj;
+		if (idReceita == null) {
+			if (other.idReceita != null)
+				return false;
+		} else if (!idReceita.equals(other.idReceita))
+			return false;
+		return true;
+	}			
 }
