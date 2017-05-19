@@ -34,14 +34,14 @@ public class StatusReceita {
 	
 	@OneToMany(mappedBy="statusReceita", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;	
-	
-	public Integer getId() {
+	private List<Receita> listaReceitas;
+
+	public Integer getIdStatusReceita() {
 		return idStatusReceita;
 	}
 
-	public void setId(Integer id) {
-		this.idStatusReceita = id;
+	public void setIdStatusReceita(Integer idStatusReceita) {
+		this.idStatusReceita = idStatusReceita;
 	}
 
 	public List<Usuario> getListaUsuarioAlteracoes() {
@@ -76,12 +76,42 @@ public class StatusReceita {
 		this.listaReceitas = listaReceitas;
 	}
 
-	public StatusReceita(){}
-	
-	public StatusReceita(Integer id, List<Usuario> listaUsuarioAlteracoes, Calendar dataAlteracao, Enum status){
-		this.idStatusReceita = id;
+	public StatusReceita() {
+		super();
+	}
+
+	public StatusReceita(Integer idStatusReceita, List<Usuario> listaUsuarioAlteracoes, Calendar dataAlteracao,
+			Enum status, List<Receita> listaReceitas) {
+		super();
+		this.idStatusReceita = idStatusReceita;
 		this.listaUsuarioAlteracoes = listaUsuarioAlteracoes;
 		this.dataAlteracao = dataAlteracao;
 		this.status = status;
+		this.listaReceitas = listaReceitas;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idStatusReceita == null) ? 0 : idStatusReceita.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StatusReceita other = (StatusReceita) obj;
+		if (idStatusReceita == null) {
+			if (other.idStatusReceita != null)
+				return false;
+		} else if (!idStatusReceita.equals(other.idStatusReceita))
+			return false;
+		return true;
+	}	
 }
