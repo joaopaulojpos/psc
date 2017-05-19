@@ -2,9 +2,9 @@ package dao;
 
 import javax.persistence.EntityManagerFactory;
 
-import basicas.Doenca;
+import basicas.Ministerio;
 
-public class DAOMinisterio extends DAOGenerico<Doenca>{
+public class DAOMinisterio extends DAOGenerico<Ministerio>{
 
 	public DAOMinisterio(EntityManagerFactory emf) {
 		super(emf);

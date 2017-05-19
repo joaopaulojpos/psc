@@ -2,9 +2,9 @@ package dao;
 
 import javax.persistence.EntityManagerFactory;
 
-import basicas.ReceitaOLD;
+import basicas.Receita;
 
-public class DAOReceita extends DAOGenerico<ReceitaOLD>{
+public class DAOReceita extends DAOGenerico<Receita>{
 
 	public DAOReceita(EntityManagerFactory emf) {
 		super(emf);

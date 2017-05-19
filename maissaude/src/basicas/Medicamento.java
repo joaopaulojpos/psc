@@ -41,8 +41,15 @@ public class Medicamento {
 				joinColumns=@JoinColumn(name="id_medicamento"),
 				inverseJoinColumns=@JoinColumn(name="id_receita"))
 	private List<Receita> listaReceitas;
-	
-	
+
+	public Integer getIdMedicamento() {
+		return idMedicamento;
+	}
+
+	public void setIdMedicamento(Integer idMedicamento) {
+		this.idMedicamento = idMedicamento;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -51,7 +58,6 @@ public class Medicamento {
 		this.nome = nome;
 	}
 
-	
 	public boolean isControlado() {
 		return isControlado;
 	}
@@ -60,22 +66,26 @@ public class Medicamento {
 		this.isControlado = isControlado;
 	}
 
-	public void setId(Integer id) {
-		this.idMedicamento = id;
-	}	
+	public List<Receita> getListaReceitas() {
+		return listaReceitas;
+	}
 
-	public Integer getId() {
-		return idMedicamento;
+	public void setListaReceitas(List<Receita> listaReceitas) {
+		this.listaReceitas = listaReceitas;
 	}
-	
-	public Medicamento(){}
-	
-	public Medicamento(Integer id, String nome, boolean isControlado){		
-		setId(id);
-		setNome(nome);
-		setControlado(isControlado);		
+
+	public Medicamento() {
+		super();
 	}
-	
+
+	public Medicamento(Integer idMedicamento, String nome, boolean isControlado, List<Receita> listaReceitas) {
+		super();
+		this.idMedicamento = idMedicamento;
+		this.nome = nome;
+		this.isControlado = isControlado;
+		this.listaReceitas = listaReceitas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,5 +110,4 @@ public class Medicamento {
 			return false;
 		return true;
 	}
-	
-}
+	}
