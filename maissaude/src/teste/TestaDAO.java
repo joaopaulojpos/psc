@@ -109,8 +109,8 @@ public class TestaDAO {
 		//Persistindo
 //		
 		
-		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
-		daoMedicamento.inserir(medicamento);
+//		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
+//		daoMedicamento.inserir(medicamento);
 		
 //		DAOPaciente daoPaciente = new DAOPaciente(emf);
 //		daoPaciente.inserir(paciente);
