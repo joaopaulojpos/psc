@@ -56,7 +56,7 @@ public class TestaDAO {
 		statusReceita.setDataAlteracao(GregorianCalendar.getInstance());
 //		statusReceita.setListaReceitas(listaReceitas);
 //		statusReceita.setListaUsuarioAlteracoes(listaUsuarioAlteracoes);
-		statusReceita.setStatus(EnumStatus.DESPACHADA_PELO_ATENDENTE);
+		statusReceita.setStatus(EnumStatus.DESPACHADA_PELO_ATENDENTE.toString());
 		
 		Atendente atendente = new Atendente();
 		atendente.setCpf("22222222222");
@@ -83,7 +83,7 @@ public class TestaDAO {
 		Doenca doenca = new Doenca();
 		doenca.setNome("Febre");
 		doenca.setCnd("1");		
-		doenca.setGravidade(EnumGravidade.BAIXA);
+		doenca.setGravidade(EnumGravidade.BAIXA.toString());
 //		doenca.setListaReceitas(listaReceitas);
 		
 		Receita receita = new Receita();
@@ -109,12 +109,12 @@ public class TestaDAO {
 		//Persistindo
 //		
 		
-//		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
-//		daoMedicamento.inserir(medicamento);
+		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
+		daoMedicamento.inserir(medicamento);
 		
 //		DAOPaciente daoPaciente = new DAOPaciente(emf);
 //		daoPaciente.inserir(paciente);
-		
+//		
 //		DAOStatusReceita daoStatusReceita = new DAOStatusReceita(emf);		
 //		daoStatusReceita.inserir(statusReceita);
 		

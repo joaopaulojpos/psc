@@ -30,7 +30,7 @@ public class StatusReceita {
 	private Calendar dataAlteracao;
 	
 	@Column(name="status", nullable=false)
-	private Enum status;	
+	private String status;	
 	
 	@OneToMany(mappedBy="statusReceita", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
@@ -60,11 +60,11 @@ public class StatusReceita {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	public Enum getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Enum status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -81,7 +81,7 @@ public class StatusReceita {
 	}
 
 	public StatusReceita(Integer idStatusReceita, List<Usuario> listaUsuarioAlteracoes, Calendar dataAlteracao,
-			Enum status, List<Receita> listaReceitas) {
+			String status, List<Receita> listaReceitas) {
 		super();
 		this.idStatusReceita = idStatusReceita;
 		this.listaUsuarioAlteracoes = listaUsuarioAlteracoes;

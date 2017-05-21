@@ -31,7 +31,7 @@ public class Doenca {
 	private String nome;
 	
 	@Column(name="gravidade", nullable=false)
-	private EnumGravidade gravidade;
+	private String gravidade;
 	
 	//Um código que toda doença tem
 	@Column(name="cnd", unique=true,nullable=false)
@@ -57,11 +57,11 @@ public class Doenca {
 		this.nome = nome;
 	}
 
-	public EnumGravidade getGravidade() {
+	public String getGravidade() {
 		return gravidade;
 	}
 
-	public void setGravidade(EnumGravidade gravidade) {
+	public void setGravidade(String gravidade) {
 		this.gravidade = gravidade;
 	}
 
@@ -85,7 +85,7 @@ public class Doenca {
 		super();
 	}
 
-	public Doenca(Integer idDoenca, String nome, EnumGravidade gravidade, String cnd, List<Receita> listaReceitas) {
+	public Doenca(Integer idDoenca, String nome, String gravidade, String cnd, List<Receita> listaReceitas) {
 		super();
 		this.idDoenca = idDoenca;
 		this.nome = nome;
