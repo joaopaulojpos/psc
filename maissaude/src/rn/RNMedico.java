@@ -51,7 +51,7 @@ public class RNMedico {
 	}
 	
 	private void editarMedico(Medico medico) throws ValidacaoException{
-		VALIDA.checkId(medico.getId());
+		VALIDA.checkId(medico.getIdPessoa());
 		dao.getDAOMedico().editar(medico);
 	}
 	
