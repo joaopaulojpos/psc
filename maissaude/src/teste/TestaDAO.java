@@ -92,7 +92,7 @@ public class TestaDAO {
 		receita.setDataGeracao(GregorianCalendar.getInstance());
 		receita.setDoenca(doenca);
 //		receita.setListaMedicamentos(listaMedicamentos);
-		receita.setMedico(medico);
+		receita.setMedico(medico);//
 		receita.setPaciente(paciente);				
 		receita.setPrazo(GregorianCalendar.getInstance());
 		receita.setStatusReceita(statusReceita);						
