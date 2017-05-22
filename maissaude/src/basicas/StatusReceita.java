@@ -5,14 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 //Pra auditoria
 @Entity
@@ -22,9 +21,10 @@ public class StatusReceita {
 	@GeneratedValue
 	@Column(name="id_status_receita")
 	private Integer idStatusReceita;
-	
-	@OneToMany(mappedBy="statusReceita")	
-	private List<Usuario> listaUsuarioAlteracoes;
+		
+	@OneToOne
+	@JoinColumn(name="id_Pessoa")
+	private Usuario usuarioQueAlterou;
 	
 	@Column(name="data_alteracao", nullable=false)
 	private Calendar dataAlteracao;
@@ -32,9 +32,9 @@ public class StatusReceita {
 	@Column(name="status", nullable=false)
 	private String status;	
 	
-	@OneToMany(mappedBy="statusReceita", fetch=FetchType.LAZY)	
-	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;
+	@ManyToOne
+	@JoinColumn(name="id_receita", nullable=false)
+	private Receita receita;
 
 	public Integer getIdStatusReceita() {
 		return idStatusReceita;
@@ -44,12 +44,12 @@ public class StatusReceita {
 		this.idStatusReceita = idStatusReceita;
 	}
 
-	public List<Usuario> getListaUsuarioAlteracoes() {
-		return listaUsuarioAlteracoes;
+	public Usuario getListaUsuarioAlteracoes() {
+		return usuarioQueAlterou;
 	}
 
-	public void setListaUsuarioAlteracoes(List<Usuario> listaUsuarioAlteracoes) {
-		this.listaUsuarioAlteracoes = listaUsuarioAlteracoes;
+	public void setListaUsuarioAlteracoes(Usuario usuarioQueAlterou) {
+		this.usuarioQueAlterou = usuarioQueAlterou;
 	}
 
 	public Calendar getDataAlteracao() {
@@ -68,26 +68,26 @@ public class StatusReceita {
 		this.status = status;
 	}
 
-	public List<Receita> getListaReceitas() {
-		return listaReceitas;
+	public Receita getListaReceitas() {
+		return receita;
 	}
 
-	public void setListaReceitas(List<Receita> listaReceitas) {
-		this.listaReceitas = listaReceitas;
+	public void setListaReceitas(Receita receita) {
+		this.receita = receita;
 	}
 
 	public StatusReceita() {
 		super();
 	}
 
-	public StatusReceita(Integer idStatusReceita, List<Usuario> listaUsuarioAlteracoes, Calendar dataAlteracao,
-			String status, List<Receita> listaReceitas) {
+	public StatusReceita(Integer idStatusReceita, Usuario usuarioQueAlterou, Calendar dataAlteracao,
+			String status, Receita receita) {
 		super();
 		this.idStatusReceita = idStatusReceita;
-		this.listaUsuarioAlteracoes = listaUsuarioAlteracoes;
+		this.usuarioQueAlterou = usuarioQueAlterou;
 		this.dataAlteracao = dataAlteracao;
 		this.status = status;
-		this.listaReceitas = listaReceitas;
+		this.receita = receita;
 	}
 
 	@Override

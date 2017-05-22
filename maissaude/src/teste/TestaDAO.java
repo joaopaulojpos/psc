@@ -1,6 +1,8 @@
 package teste;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,18 +15,18 @@ import basicas.EnumGravidade;
 import basicas.EnumStatus;
 import basicas.Medicamento;
 import basicas.Medico;
-import basicas.Ministerio;
 import basicas.Paciente;
 import basicas.Receita;
 import basicas.StatusReceita;
+import basicas.Usuario;
 import dao.DAOAtendente;
 import dao.DAODoenca;
 import dao.DAOMedicamento;
 import dao.DAOMedico;
-import dao.DAOMinisterio;
 import dao.DAOPaciente;
 import dao.DAOReceita;
 import dao.DAOStatusReceita;
+import dao.DAOUsuario;
 
 @SuppressWarnings("deprecation")
 public class TestaDAO {
@@ -42,7 +44,7 @@ public class TestaDAO {
 		
 		Medicamento medicamento = new Medicamento();
 		medicamento.setControlado(false);
-		medicamento.setNome("Tylenol");
+		medicamento.setNome("Tylenol");		
 //		medicamento.setListaReceitas(listaReceitas);
 		
 		Paciente paciente = new Paciente();
@@ -66,8 +68,7 @@ public class TestaDAO {
 		atendente.setLogin("pedro_silva");
 		atendente.setNome("Pedro Silva");
 		atendente.setRg("22222222");
-		atendente.setSenha("pedrosilva");
-		atendente.setStatusReceita(statusReceita);
+		atendente.setSenha("pedrosilva");		
 		
 		Medico medico = new Medico();
 		medico.setCpf("33333333");
@@ -76,8 +77,7 @@ public class TestaDAO {
 		medico.setLogin("pablo_neruda");
 		medico.setNome("Pablo Neruda");
 		medico.setRg("3333333");
-		medico.setSenha("pabloneruda");
-		medico.setStatusReceita(statusReceita);
+		medico.setSenha("pabloneruda");		
 		
 		
 		Doenca doenca = new Doenca();
@@ -95,52 +95,47 @@ public class TestaDAO {
 		receita.setMedico(medico);//
 		receita.setPaciente(paciente);				
 		receita.setPrazo(GregorianCalendar.getInstance());
-		receita.setStatusReceita(statusReceita);						
+		List<StatusReceita> listaStatusReceita = new ArrayList<StatusReceita>();
+		listaStatusReceita.add(statusReceita);
+		receita.setStatusReceita(listaStatusReceita);						
 		
-		Ministerio ministerio = new Ministerio();
+		Usuario ministerio = new Usuario();
 		ministerio.setCpf("4444444");
 		ministerio.setLogin("galvao_bueno");
 		ministerio.setNome("Galvao Bueno");
 		ministerio.setRg("444444");
-		ministerio.setSenha("44444");
-		ministerio.setStatusReceita(statusReceita);
+		ministerio.setSenha("44444");		
 		
 		
 		//Persistindo
-//		
-		
-//		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
-//		daoMedicamento.inserir(medicamento);
-		
-//		DAOPaciente daoPaciente = new DAOPaciente(emf);
-//		daoPaciente.inserir(paciente);
-//		
-//		DAOStatusReceita daoStatusReceita = new DAOStatusReceita(emf);		
-//		daoStatusReceita.inserir(statusReceita);
-		
-//		DAOAtendente daoAtendente = new DAOAtendente(emf);
-//		daoAtendente.inserir(atendente);
+	
 
-//		DAOMedico daoMedico = new DAOMedico(emf);
-//		daoMedico.inserir(medico);
+		DAOStatusReceita daoStatusReceita = new DAOStatusReceita(emf);		
+		daoStatusReceita.inserir(statusReceita);
 		
-//		DAOMinisterio daoMinisterio = new DAOMinisterio(emf);
-//		daoMinisterio.inserir(ministerio);
+		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
+		daoMedicamento.inserir(medicamento);
+	
+		DAOPaciente daoPaciente = new DAOPaciente(emf);
+		daoPaciente.inserir(paciente);
+	
+
+	
+		DAOAtendente daoAtendente = new DAOAtendente(emf);
+		daoAtendente.inserir(atendente);
+
+		DAOMedico daoMedico = new DAOMedico(emf);
+		daoMedico.inserir(medico);
 		
-//		DAODoenca daoDoenca = new DAODoenca(emf);		
-//		daoDoenca.inserir(doenca);
+		DAOUsuario daoMinisterio = new DAOUsuario(emf);
+		daoMinisterio.inserir(ministerio);
 		
-//		DAOReceita daoReceita = new DAOReceita(emf);
-//		daoReceita.inserir(receita);
-//		
-
-//		
-
-//		
-
-//		
-
-//		
+		DAODoenca daoDoenca = new DAODoenca(emf);		
+		daoDoenca.inserir(doenca);
+		
+		DAOReceita daoReceita = new DAOReceita(emf);
+		daoReceita.inserir(receita);
+	
 
 		
 		

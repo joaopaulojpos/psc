@@ -12,7 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="Receita")
@@ -46,9 +50,9 @@ public class Receita {
 	@JoinColumn(name="id_Doenca", nullable=false)
 	private Doenca doenca;
 	
-	@ManyToOne
-	@JoinColumn(name="id_status_receita", nullable=false)
-	private StatusReceita statusReceita;
+	@OneToMany(mappedBy="receita", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<StatusReceita> listaStatusReceita;
 	
 	@ManyToOne
 	@JoinColumn(name="id_Atendente", nullable=false)
@@ -110,12 +114,12 @@ public class Receita {
 		this.doenca = doenca;
 	}
 
-	public StatusReceita getStatusReceita() {
-		return statusReceita;
+	public List<StatusReceita> getStatusReceita() {
+		return listaStatusReceita;
 	}
 
-	public void setStatusReceita(StatusReceita statusReceita) {
-		this.statusReceita = statusReceita;
+	public void setStatusReceita(List<StatusReceita> listaStatusReceita) {
+		this.listaStatusReceita = listaStatusReceita;
 	}
 
 	public Atendente getAtendente() {
@@ -131,7 +135,7 @@ public class Receita {
 	}
 
 	public Receita(Integer idReceita, Calendar dataGeracao, Calendar prazo, List<Medicamento> listaMedicamentos,
-			Medico medico, Paciente paciente, Doenca doenca, StatusReceita statusReceita, Atendente atendente) {
+			Medico medico, Paciente paciente, Doenca doenca, List<StatusReceita> listaStatusReceita, Atendente atendente) {
 		super();
 		this.idReceita = idReceita;
 		this.dataGeracao = dataGeracao;
@@ -140,7 +144,7 @@ public class Receita {
 		this.medico = medico;
 		this.paciente = paciente;
 		this.doenca = doenca;
-		this.statusReceita = statusReceita;
+		this.listaStatusReceita = listaStatusReceita;
 		this.atendente = atendente;
 	}
 
