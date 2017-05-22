@@ -25,7 +25,7 @@ public class Usuario extends Pessoa{
 
 	@OneToMany(mappedBy="usuarioAlteracao", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<EstadoReceita> listaEstadoReceita;
+	private List<StatusReceita> listaStatusReceita;
 
 	public String getLogin() {
 		return login;
@@ -43,23 +43,23 @@ public class Usuario extends Pessoa{
 		this.senha = senha;
 	}
 
-	public List<EstadoReceita> getListaEstadoReceita() {
-		return listaEstadoReceita;
+	public List<StatusReceita> getListaStatusReceita() {
+		return listaStatusReceita;
 	}
 
-	public void setListaEstadoReceita(List<EstadoReceita> listaEstadoReceita) {
-		this.listaEstadoReceita = listaEstadoReceita;
+	public void setListaStatusReceita(List<StatusReceita> listaStatusReceita) {
+		this.listaStatusReceita = listaStatusReceita;
 	}
 
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String login, String senha, List<EstadoReceita> listaEstadoReceita) {
+	public Usuario(String login, String senha, List<StatusReceita> listaStatusReceita) {
 		super();
 		this.login = login;
 		this.senha = senha;
-		this.listaEstadoReceita = listaEstadoReceita;
+		this.listaStatusReceita = listaStatusReceita;
 	}
 
 	@Override

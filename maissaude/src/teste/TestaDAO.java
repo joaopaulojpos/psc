@@ -10,9 +10,9 @@ import javax.persistence.Persistence;
 
 import basicas.Atendente;
 import basicas.Doenca;
-import basicas.EnumEstado;
+import basicas.EnumStatus;
 import basicas.EnumGravidade;
-import basicas.EstadoReceita;
+import basicas.StatusReceita;
 import basicas.Medicamento;
 import basicas.Medico;
 import basicas.Paciente;
@@ -20,7 +20,7 @@ import basicas.Receita;
 import basicas.Usuario;
 import dao.DAOAtendente;
 import dao.DAODoenca;
-import dao.DAOEstadoReceita;
+import dao.DAOStatusReceita;
 import dao.DAOMedicamento;
 import dao.DAOMedico;
 import dao.DAOPaciente;
@@ -95,28 +95,28 @@ public class TestaDAO {
 		receita.setPaciente(paciente);				
 		receita.setPrazo(GregorianCalendar.getInstance());
 		
-		EstadoReceita estadoReceitaGerada = new EstadoReceita();
-		estadoReceitaGerada.setDataAlteracao(GregorianCalendar.getInstance());		
-		estadoReceitaGerada.setUsuarioAlteracao(medico);
-		estadoReceitaGerada.setEstado(EnumEstado.ABERTA.toString());
+		StatusReceita statusReceitaGerada = new StatusReceita();
+		statusReceitaGerada.setDataAlteracao(GregorianCalendar.getInstance());		
+		statusReceitaGerada.setUsuarioAlteracao(medico);
+		statusReceitaGerada.setStatus(EnumStatus.ABERTA.toString());
 				
-		EstadoReceita estadoReceitaFechada = new EstadoReceita();
-		estadoReceitaFechada.setDataAlteracao(GregorianCalendar.getInstance());		
-		estadoReceitaFechada.setUsuarioAlteracao(atendente);
-		estadoReceitaFechada.setEstado(EnumEstado.FECHADA.toString());
+		StatusReceita statusReceitaFechada = new StatusReceita();
+		statusReceitaFechada.setDataAlteracao(GregorianCalendar.getInstance());		
+		statusReceitaFechada.setUsuarioAlteracao(atendente);
+		statusReceitaFechada.setStatus(EnumStatus.FECHADA.toString());
 		
 		
 //		Adicionando Receita nos 2 estados
-		estadoReceitaGerada.setReceita(receita);
-		estadoReceitaFechada.setReceita(receita);
+		statusReceitaGerada.setReceita(receita);
+		statusReceitaFechada.setReceita(receita);
 		
 		
 ////		Adicionando os 2 estados na lista de estados da Receita
-//		List<EstadoReceita> listaStatusReceita = new ArrayList<EstadoReceita>();
-//		listaStatusReceita.add(estadoReceitaGerada);
-//		listaStatusReceita.add(estadoReceitaFechada);
+//		List<StatusReceita> listaStatusReceita = new ArrayList<StatusReceita>();
+//		listaStatusReceita.add(statusReceitaGerada);
+//		listaStatusReceita.add(statusReceitaFechada);
 ////		Adicionando a lista de estados na Receita
-//		receita.setListaEstadoReceita(listaStatusReceita);	
+//		receita.setListaStatusReceita(listaStatusReceita);	
 //		//Adicionando os 2 Medicamentos na lista de Medicamentos da Receita
 //		List<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
 //		listaMedicamentos.add(tylenol);
@@ -134,13 +134,13 @@ public class TestaDAO {
 //		atendente.setListaReceitas(listaReceitas);
 //		medico.setListaReceitas(listaReceitas);		
 //		
-//		List<EstadoReceita> listaEstadoReceitaMedico = new ArrayList<EstadoReceita>();
-//		listaEstadoReceitaMedico.add(estadoReceitaGerada);
-//		medico.setListaEstadoReceita(listaEstadoReceitaMedico);//Método vindo da superclasse Usuario
+//		List<StatusReceita> listaStatusReceitaMedico = new ArrayList<StatusReceita>();
+//		listaStatusReceitaMedico.add(statusReceitaGerada);
+//		medico.setListaStatusReceita(listaStatusReceitaMedico);//Método vindo da superclasse Usuario
 //		
-//		List<EstadoReceita> listaEstadoReceitaAtendente = new ArrayList<EstadoReceita>();
-//		listaEstadoReceitaAtendente.add(estadoReceitaFechada);
-//		atendente.setListaEstadoReceita(listaEstadoReceitaAtendente);//Método vindo da superclasse Usuario
+//		List<StatusReceita> listaStatusReceitaAtendente = new ArrayList<StatusReceita>();
+//		listaStatusReceitaAtendente.add(statusReceitaFechada);
+//		atendente.setListaStatusReceita(listaStatusReceitaAtendente);//Método vindo da superclasse Usuario
 						
 		//Persistindo
 		
@@ -172,11 +172,11 @@ public class TestaDAO {
 		DAOReceita daoReceita = new DAOReceita(emf);
 		daoReceita.inserir(receita);
 		
-		DAOEstadoReceita daoEstadoReceitaGerada = new DAOEstadoReceita(emf);		
-		daoEstadoReceitaGerada.inserir(estadoReceitaGerada);
+		DAOStatusReceita daoStatusReceitaGerada = new DAOStatusReceita(emf);		
+		daoStatusReceitaGerada.inserir(statusReceitaGerada);
 
-		DAOEstadoReceita daoEstadoReceitaFechada = new DAOEstadoReceita(emf);		
-		daoEstadoReceitaFechada.inserir(estadoReceitaFechada);
+		DAOStatusReceita daoStatusReceitaFechada = new DAOStatusReceita(emf);		
+		daoStatusReceitaFechada.inserir(statusReceitaFechada);
 		
 
 		
