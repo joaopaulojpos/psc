@@ -78,6 +78,5 @@ public class Paciente extends Pessoa{
 		} else if (!cns.equals(other.cns))
 			return false;
 		return true;
-	}		
-
+	}
 }

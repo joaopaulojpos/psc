@@ -98,7 +98,7 @@ public class Doenca {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cnd == null) ? 0 : cnd.hashCode());
+		result = prime * result + ((idDoenca == null) ? 0 : idDoenca.hashCode());
 		return result;
 	}
 
@@ -111,12 +111,11 @@ public class Doenca {
 		if (getClass() != obj.getClass())
 			return false;
 		Doenca other = (Doenca) obj;
-		if (cnd == null) {
-			if (other.cnd != null)
+		if (idDoenca == null) {
+			if (other.idDoenca != null)
 				return false;
-		} else if (!cnd.equals(other.cnd))
+		} else if (!idDoenca.equals(other.idDoenca))
 			return false;
 		return true;
-	}	
-	
+	}
 }

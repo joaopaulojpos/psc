@@ -52,7 +52,7 @@ public class Receita {
 	
 	@OneToMany(mappedBy="receita", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<StatusReceita> listaStatusReceita;
+	private List<EstadoReceita> listaEstadoReceita;
 	
 	@ManyToOne
 	@JoinColumn(name="id_Atendente", nullable=false)
@@ -114,12 +114,12 @@ public class Receita {
 		this.doenca = doenca;
 	}
 
-	public List<StatusReceita> getStatusReceita() {
-		return listaStatusReceita;
+	public List<EstadoReceita> getListaEstadoReceita() {
+		return listaEstadoReceita;
 	}
 
-	public void setStatusReceita(List<StatusReceita> listaStatusReceita) {
-		this.listaStatusReceita = listaStatusReceita;
+	public void setListaEstadoReceita(List<EstadoReceita> listaEstadoReceita) {
+		this.listaEstadoReceita = listaEstadoReceita;
 	}
 
 	public Atendente getAtendente() {
@@ -135,7 +135,8 @@ public class Receita {
 	}
 
 	public Receita(Integer idReceita, Calendar dataGeracao, Calendar prazo, List<Medicamento> listaMedicamentos,
-			Medico medico, Paciente paciente, Doenca doenca, List<StatusReceita> listaStatusReceita, Atendente atendente) {
+			Medico medico, Paciente paciente, Doenca doenca, List<EstadoReceita> listaEstadoReceita,
+			Atendente atendente) {
 		super();
 		this.idReceita = idReceita;
 		this.dataGeracao = dataGeracao;
@@ -144,7 +145,7 @@ public class Receita {
 		this.medico = medico;
 		this.paciente = paciente;
 		this.doenca = doenca;
-		this.listaStatusReceita = listaStatusReceita;
+		this.listaEstadoReceita = listaEstadoReceita;
 		this.atendente = atendente;
 	}
 
@@ -171,5 +172,5 @@ public class Receita {
 		} else if (!idReceita.equals(other.idReceita))
 			return false;
 		return true;
-	}			
+	}
 }

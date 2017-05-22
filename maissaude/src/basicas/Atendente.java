@@ -22,7 +22,7 @@ public class Atendente extends Usuario{
 	
 	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;		
+	private List<Receita> listaReceitas;
 
 	public String getCrf() {
 		return crf;
@@ -48,8 +48,6 @@ public class Atendente extends Usuario{
 		this.listaReceitas = listaReceitas;
 	}
 
-
-	
 	public Atendente() {
 		super();
 	}
@@ -84,6 +82,5 @@ public class Atendente extends Usuario{
 		} else if (!crf.equals(other.crf))
 			return false;
 		return true;
-	}
-	
+	}		
 }

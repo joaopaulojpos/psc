@@ -52,10 +52,10 @@ public abstract class Pessoa {
 	public String getRg() {
 		return rg;
 	}
-	
+
 	public void setRg(String rg) {
 		this.rg = rg;
-	}	
+	}
 
 	public Pessoa() {
 		super();
@@ -68,12 +68,12 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 		this.rg = rg;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((idPessoa == null) ? 0 : idPessoa.hashCode());
 		return result;
 	}
 
@@ -86,12 +86,11 @@ public abstract class Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
+		if (idPessoa == null) {
+			if (other.idPessoa != null)
 				return false;
-		} else if (!cpf.equals(other.cpf))
+		} else if (!idPessoa.equals(other.idPessoa))
 			return false;
 		return true;
 	}
-	
 }

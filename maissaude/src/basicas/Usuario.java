@@ -1,9 +1,17 @@
 package basicas;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -14,6 +22,10 @@ public class Usuario extends Pessoa{
 	
 	@Column(name="senha", nullable=false)
 	private String senha;		
+
+	@OneToMany(mappedBy="usuarioAlteracao", fetch=FetchType.LAZY)	
+	@Cascade(CascadeType.ALL)
+	private List<EstadoReceita> listaEstadoReceita;
 
 	public String getLogin() {
 		return login;
@@ -31,16 +43,25 @@ public class Usuario extends Pessoa{
 		this.senha = senha;
 	}
 
+	public List<EstadoReceita> getListaEstadoReceita() {
+		return listaEstadoReceita;
+	}
+
+	public void setListaEstadoReceita(List<EstadoReceita> listaEstadoReceita) {
+		this.listaEstadoReceita = listaEstadoReceita;
+	}
+
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String login, String senha) {
+	public Usuario(String login, String senha, List<EstadoReceita> listaEstadoReceita) {
 		super();
 		this.login = login;
-		this.senha = senha;		
+		this.senha = senha;
+		this.listaEstadoReceita = listaEstadoReceita;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -74,9 +74,5 @@ public class Medico extends Usuario{
 		} else if (!crm.equals(other.crm))
 			return false;
 		return true;
-	}	
-	
-
-	
-	
+	}
 }
