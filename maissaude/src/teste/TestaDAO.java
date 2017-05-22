@@ -109,45 +109,48 @@ public class TestaDAO {
 //		Adicionando Receita nos 2 estados
 		estadoReceitaGerada.setReceita(receita);
 		estadoReceitaFechada.setReceita(receita);
-//		Adicionando os 2 estados na lista de estados da Receita
-		List<EstadoReceita> listaStatusReceita = new ArrayList<EstadoReceita>();
-		listaStatusReceita.add(estadoReceitaGerada);
-		listaStatusReceita.add(estadoReceitaFechada);
-//		Adicionando a lista de estados na Receita
-		receita.setListaEstadoReceita(listaStatusReceita);	
+		
+		
+////		Adicionando os 2 estados na lista de estados da Receita
+//		List<EstadoReceita> listaStatusReceita = new ArrayList<EstadoReceita>();
+//		listaStatusReceita.add(estadoReceitaGerada);
+//		listaStatusReceita.add(estadoReceitaFechada);
+////		Adicionando a lista de estados na Receita
+//		receita.setListaEstadoReceita(listaStatusReceita);	
 //		//Adicionando os 2 Medicamentos na lista de Medicamentos da Receita
-		List<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
-		listaMedicamentos.add(tylenol);
-		listaMedicamentos.add(benegripe);
+//		List<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
+//		listaMedicamentos.add(tylenol);
+//		listaMedicamentos.add(benegripe);
 //		//Adicionando a lista de Medicamentos na Receita
-		receita.setListaMedicamentos(listaMedicamentos);
+//		receita.setListaMedicamentos(listaMedicamentos);
 //		
 //		//Adicionando Receita na lista de Receitas das classes
-		List<Receita> listaReceitas = new ArrayList<Receita>();
-		listaReceitas.add(receita);		
-		tylenol.setListaReceitas(listaReceitas);
-		benegripe.setListaReceitas(listaReceitas);
-		doenca.setListaReceitas(listaReceitas);
-		paciente.setListaReceitas(listaReceitas);
-		atendente.setListaReceitas(listaReceitas);
-		medico.setListaReceitas(listaReceitas);		
-		
-		List<EstadoReceita> listaEstadoReceitaMedico = new ArrayList<EstadoReceita>();
-		listaEstadoReceitaMedico.add(estadoReceitaGerada);
-		medico.setListaEstadoReceita(listaEstadoReceitaMedico);//Método vindo da superclasse Usuario
-		
-		List<EstadoReceita> listaEstadoReceitaAtendente = new ArrayList<EstadoReceita>();
-		listaEstadoReceitaAtendente.add(estadoReceitaFechada);
-		atendente.setListaEstadoReceita(listaEstadoReceitaAtendente);//Método vindo da superclasse Usuario
+//		List<Receita> listaReceitas = new ArrayList<Receita>();
+//		listaReceitas.add(receita);		
+//		tylenol.setListaReceitas(listaReceitas);
+//		benegripe.setListaReceitas(listaReceitas);
+//		doenca.setListaReceitas(listaReceitas);
+//		paciente.setListaReceitas(listaReceitas);
+//		atendente.setListaReceitas(listaReceitas);
+//		medico.setListaReceitas(listaReceitas);		
+//		
+//		List<EstadoReceita> listaEstadoReceitaMedico = new ArrayList<EstadoReceita>();
+//		listaEstadoReceitaMedico.add(estadoReceitaGerada);
+//		medico.setListaEstadoReceita(listaEstadoReceitaMedico);//Método vindo da superclasse Usuario
+//		
+//		List<EstadoReceita> listaEstadoReceitaAtendente = new ArrayList<EstadoReceita>();
+//		listaEstadoReceitaAtendente.add(estadoReceitaFechada);
+//		atendente.setListaEstadoReceita(listaEstadoReceitaAtendente);//Método vindo da superclasse Usuario
 						
 		//Persistindo
 		
 
-//		DANDO ERROS AQUI
+
+
 		DAOMedicamento daoMedicamento = new DAOMedicamento(emf);
 		daoMedicamento.inserir(tylenol);		
 		daoMedicamento.inserir(benegripe);
-	
+		
 		DAOPaciente daoPaciente = new DAOPaciente(emf);
 		daoPaciente.inserir(paciente);
 	
@@ -163,16 +166,19 @@ public class TestaDAO {
 		
 		DAODoenca daoDoenca = new DAODoenca(emf);		
 		daoDoenca.inserir(doenca);
-		
-		DAOEstadoReceita daoEstadoReceitaGerada = new DAOEstadoReceita(emf);		
-		daoEstadoReceitaGerada.inserir(estadoReceitaGerada);
+			
+
 		
 		DAOReceita daoReceita = new DAOReceita(emf);
 		daoReceita.inserir(receita);
 		
+		DAOEstadoReceita daoEstadoReceitaGerada = new DAOEstadoReceita(emf);		
+		daoEstadoReceitaGerada.inserir(estadoReceitaGerada);
 
 		DAOEstadoReceita daoEstadoReceitaFechada = new DAOEstadoReceita(emf);		
 		daoEstadoReceitaFechada.inserir(estadoReceitaFechada);
+		
+
 		
 
 		}catch(Exception e){
