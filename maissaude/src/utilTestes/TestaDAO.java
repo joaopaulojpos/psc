@@ -1,4 +1,4 @@
-package teste;
+package utilTestes;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

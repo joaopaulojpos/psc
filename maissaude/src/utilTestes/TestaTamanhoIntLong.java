@@ -1,4 +1,4 @@
-package teste;
+package utilTestes;
 
 public class TestaTamanhoIntLong {
 	public static void main(String args[]){
