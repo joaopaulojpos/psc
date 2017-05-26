@@ -33,7 +33,7 @@ public class Validacao {
 		}
 		
         if(!(cpf.matches(regex))){
-            throw new ValidacaoException("Nome inválido");
+            throw new ValidacaoException("CPF inválido");
         }
 	}
 	/**

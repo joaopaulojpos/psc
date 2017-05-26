@@ -13,32 +13,32 @@ public abstract class DAOFactory {
 		factory = Persistence.createEntityManagerFactory("maissaude");		
 	}
 	
-	public DAOMedico getDAOMedico(){
+	public static DAOMedico getDAOMedico(){
 		DAOMedico dao = new DAOMedico(factory);
 		return dao;
 	}
 	
-	public DAOPaciente getDAOPaciente(){
+	public static DAOPaciente getDAOPaciente(){
 		DAOPaciente dao = new DAOPaciente(factory);
 		return dao;
 	}
 
-	public DAOAtendente getDAOAtendente(){
+	public static DAOAtendente getDAOAtendente(){
 		DAOAtendente dao = new DAOAtendente(factory);
 		return dao;
 	}
 	
-	public DAOReceita getDAOReceita(){
+	public static DAOReceita getDAOReceita(){
 		DAOReceita dao = new DAOReceita(factory);
 		return dao;
 	}
 	
-	public DAOMedicamento getDAOMedicamento(){
+	public static DAOMedicamento getDAOMedicamento(){
 		DAOMedicamento dao = new DAOMedicamento(factory);
 		return dao;
 	}
 	
-	public DAODoenca getDAODoenca(){
+	public static DAODoenca getDAODoenca(){
 		DAODoenca dao = new DAODoenca(factory);
 		return dao;
 	}

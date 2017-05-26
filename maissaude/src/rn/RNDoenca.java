@@ -35,6 +35,10 @@ public class RNDoenca {
 		return listarDoencas();
 	}
 	
+	public Doenca listarDoencaCND(String cnd){
+		return listarCND(cnd);
+	}
+	
 	public void remover(Doenca doenca){
 		removerDoenca(doenca);
 	}
@@ -58,5 +62,9 @@ public class RNDoenca {
 	
 	private List<Doenca> listarDoencas(){
 		return dao.getDAODoenca().listar();
+	}
+	
+	private Doenca listarCND(String cnd){
+		return dao.getDAODoenca().pesquisarCND(cnd);
 	}
 }

@@ -7,6 +7,7 @@ import basicas.Doenca;
 import basicas.Medicamento;
 import basicas.Medico;
 import basicas.Paciente;
+import basicas.Receita;
 import util.exceptions.ValidacaoException;
 
 public class Fachada {
@@ -17,6 +18,7 @@ public class Fachada {
 	private RNAtendente rnAtendente;
 	private RNMedicamento rnMedicamento;
 	private RNDoenca rnDoenca;
+	private RNReceita rnReceita;
 	
 	private Fachada(){
 		rnMedico = new RNMedico();
@@ -24,6 +26,7 @@ public class Fachada {
 		rnAtendente = new RNAtendente();
 		rnMedicamento = new RNMedicamento();
 		rnDoenca = new RNDoenca();
+		rnReceita = new RNReceita();
 	}
 	
 	/**
@@ -48,6 +51,10 @@ public class Fachada {
 		return rnMedico.listar();
 	}
 	
+	public Medico listarMedicoCRM(String crm){
+		return rnMedico.listarMedicoCRM(crm);
+	}
+	
 	public void removerMedico(Medico medico){
 		rnMedico.remover(medico);
 	}
@@ -64,6 +71,14 @@ public class Fachada {
 	
 	public List<Paciente> listarPacientes(){
 		return rnPaciente.listar();
+	}
+	
+	public Paciente listarPacienteporCPF(String cpf){
+		return rnPaciente.listarPacienteCPF(cpf);
+	}
+	
+	public Paciente listarPacienteporCNS(String cns){
+		return rnPaciente.listarPacienteCNS(cns);
 	}
 	
 	public void removerPaciente(Paciente paciente){
@@ -120,9 +135,27 @@ public class Fachada {
 		return rnDoenca.listar();
 	}
 	
+	public Doenca listarDoencaporCND(String cnd){
+		return rnDoenca.listarDoencaCND(cnd);
+	}
+	
 	public void removerDoenca(Doenca doenca){
 		rnDoenca.remover(doenca);
 	}
 	//-------Doenca
 	
+	//-----Receita
+		public void inserirReceita(Receita receita) throws ValidacaoException{
+			rnReceita.inserir(receita);
+		}
+		
+		public void editarReceita(Receita receita){
+			rnReceita.editar(receita);
+		}
+		
+		public List<Receita> listarReceita(){
+			return rnReceita.listar();
+		}
+		
+		//-------Receita
 }

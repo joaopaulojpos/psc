@@ -19,7 +19,7 @@ public abstract class Pessoa {
 	@Column(name="nome", nullable=false, length=50)
 	private String nome;
 	
-	@Column(name="cpf", unique=true, nullable=false, length=11)
+	@Column(name="cpf", unique=true, nullable=false, length=14)
 	private String cpf;
 	
 	@Column(name="rg", nullable=false, length=15)

@@ -35,6 +35,14 @@ public class RNPaciente {
 		return listarPacientes();
 	}
 	
+	public Paciente listarPacienteCPF(String cpf){
+		return listarCPF(cpf);
+	}
+	
+	public Paciente listarPacienteCNS(String cns){
+		return listarCNS(cns);
+	}
+	
 	public void remover(Paciente paciente){
 		removerPaciente(paciente);
 	}
@@ -59,5 +67,13 @@ public class RNPaciente {
 	
 	private List<Paciente> listarPacientes(){
 		return dao.getDAOPaciente().listar();
+	}
+	
+	private Paciente listarCNS(String cns){
+		return dao.getDAOPaciente().pesquisarCNS(cns);
+	}
+	
+	private Paciente listarCPF(String cpf){
+		return dao.getDAOPaciente().pesquisarCPF(cpf);
 	}
 }

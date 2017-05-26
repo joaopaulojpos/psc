@@ -35,6 +35,10 @@ public class RNMedico {
 		return listarMedicos();
 	}
 	
+	public Medico listarMedicoCRM(String crm){
+		return listarCRM(crm);
+	}
+	
 	public void remover(Medico medico){
 		removerMedico(medico);
 	}
@@ -61,5 +65,9 @@ public class RNMedico {
 	
 	private List<Medico> listarMedicos(){
 		return dao.getDAOMedico().listar();
+	}
+	
+	private Medico listarCRM(String crm){
+		return dao.getDAOMedico().pesquisarCRM(crm);
 	}
 }
