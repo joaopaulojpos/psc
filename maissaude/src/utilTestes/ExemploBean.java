@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
-public class LeandroBean implements Serializable{
+public class ExemploBean implements Serializable{
 
     /**
 	 * 
