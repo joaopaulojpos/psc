@@ -1,0 +1,8 @@
+http://www.guj.com.br/t/resolvido-ajuda-pacote-javax-servlet/83993/2
+
+Clique com o botão invertido em cima do nome do projeto e vá em:
+Propriedades -> Targeted Runtime
+Nesta opção, basta ticar o servidor que vc deseja utilizar.
+
+ass: Leandro Oliveira
+-----------------------------------------------------------------
