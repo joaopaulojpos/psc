@@ -1,4 +1,4 @@
-package utilTestes;
+package beans;
 
 import java.io.Serializable;
 

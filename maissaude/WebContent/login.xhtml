@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<style>	
+	
+		body{
+			background-color: lightblue;
+		}	
+		
+		#centralizado {	  
+			position: absolute;
+			width: 400px;
+			height: 200px;
+			z-index: 15;
+			top: 50%;
+			left: 50%;
+			margin: -100px 0 0 -200px;					
+		}
+		
+		
+		div.botao{			
+			position: absolute;
+			left: 0%;	
+		}	  
+	  		
+	</style>
+	
+</h:head>
+
+<h:body >
+		
+	<p:layoutUnit position="north" size="245" style="font-size: 12pt;max-height:250px">
+		<h:graphicImage url="asdf.jpg" width="100%" />
+	</p:layoutUnit>
+
+	
+	<img src="asdf.jpg" alt="Smiley face" height="100%" width="100%"/>
+	
+				
+	
+	<div id="centralizado">
+	
+
+	
+
+		
+	<h:form>
+	    <h:panelGrid columns="2" cellpadding="5">	    	    
+	    <p:outputLabel for="inputLogin" value="Login:"/>
+	    <p:inputText id="inputLogin" value="" style="width: 116%;"/>	    
+        <p:outputLabel for="inputSenha" value="Senha: " />
+        <p:password id="inputSenha" value="#{beanUsuario.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
+	    </h:panelGrid>
+	 		 	
+	 	<p:spacer height="10" />
+	 			 	
+	 	<div class="botao">
+	 		<p:commandButton update="labelSenha" value="Logar" style="width: 400%;"/>
+	 	</div> 	 		 			 		 	
+ 				 			    
+	    <h:outputText id="labelSenha" value="#{beanUsuario.senhaDigitada}"/>
+	</h:form>	
+	</div>
+	
+</h:body>
+</html>
