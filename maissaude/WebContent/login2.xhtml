@@ -7,54 +7,67 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<h:head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<style>	
 	
-	<style>
+		body{
+			background-color: lightblue;
+		}	
+		
+		#centralizado {	  
+			position: absolute;
+			width: 400px;
+			height: 200px;
+			z-index: 15;
+			top: 60%;
+			left: 50%;
+			margin: -100px 0 0 -200px;					
+		}
+		
+		div.logo{
+			position: absolute;
+			left: 20%;
+			top: -120%;
+		}
+		
+		div.botao{			
+			position: absolute;
+			left: 0%;	
+		}	  
+	  		
+	</style>
 	
-  #outPopUp {
-  position: absolute;
-  width: 300px;
-  height: 200px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -150px;
-  background: lightblue;
-}
-  .espacoentretexto {
-  
-  margin: 10px;
-  }
-  
-  .botao{
-  background: ;
-  }
-  </style>
-  
-  </h:head>
-  
-  <body>
-  
+</h:head>
 
-  
-  <div id="outPopUp">
-  
-  <div style="text-align:center; margin:10px;">
+<body >				
+	
+	<div id="centralizado">
+	
+				
+	<div class="logo">
+		<h:graphicImage url="/imagens/logo.png" width="200" height="200" style="position: absolute; left: 50%;"/>
+	</div>
+	
 
-  <div class="espacoentretexto">
-  	Login:
-  </div>
-
-  <div class="espacoentretexto">
-  	<p:inputText />
-  </div>
-  
-  <div class="botao">
-  	<p:button value="LOGIN SUCESSO"/>
-  </div>
-  
-  </div>
-  </div>
-  
-
-</body></html>
+		
+	<h:form>
+	    <h:panelGrid columns="2" cellpadding="5">	    	    
+	    <p:outputLabel for="inputLogin" value="Login:"/>
+	    <p:inputText id="inputLogin" value="" style="width: 116%;"/>	    
+        <p:outputLabel for="inputSenha" value="Senha: " />
+        <p:password id="inputSenha" value="#{beanUsuario.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
+	    </h:panelGrid>
+	 		 	
+	 	<p:spacer height="10" />
+	 			 	
+	 	<div class="botao">
+	 		<p:commandButton update="labelSenha" value="Logar" style="width: 400%;"/>
+	 	</div> 	 		 			 		 	
+ 				 			    
+	    <h:outputText id="labelSenha" value="#{beanUsuario.senhaDigitada}"/>
+	</h:form>	
+	</div>
+	
+</body>
+</html>

@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<style>	
 	
 		body{
@@ -19,11 +20,16 @@
 			width: 400px;
 			height: 200px;
 			z-index: 15;
-			top: 50%;
+			top: 60%;
 			left: 50%;
 			margin: -100px 0 0 -200px;					
 		}
 		
+		div.logo{
+			position: absolute;
+			left: 20%;
+			top: -120%;
+		}
 		
 		div.botao{			
 			position: absolute;
@@ -34,20 +40,14 @@
 	
 </h:head>
 
-<h:body >
-		
-	<p:layoutUnit position="north" size="245" style="font-size: 12pt;max-height:250px">
-		<h:graphicImage url="asdf.jpg" width="100%" />
-	</p:layoutUnit>
-
-	
-	<img src="asdf.jpg" alt="Smiley face" height="100%" width="100%"/>
-	
-				
+<body >				
 	
 	<div id="centralizado">
 	
-
+				
+	<div class="logo">
+		<h:graphicImage url="/imagens/logo.png" width="200" height="200" style="position: absolute; left: 50%;"/>
+	</div>
 	
 
 		
@@ -69,5 +69,5 @@
 	</h:form>	
 	</div>
 	
-</h:body>
+</body>
 </html>
