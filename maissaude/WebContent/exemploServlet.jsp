@@ -5,6 +5,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<%
+System.out.println("Teste Scriptlet");
+%>
+
 	<form action="exemploServlet" method="POST">
 		Nome: <input type="text" name="nome"  /><br />
 		E-mail: <input type="text" name="email" /><br />
