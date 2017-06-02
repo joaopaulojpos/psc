@@ -50,3 +50,11 @@
 192.168.0.164 - - [02/Jun/2017:18:18:00 -0300] "GET /maissaude/javax.faces.resource/spacer/dot_clear.gif.xhtml?ln=primefaces&v=4.0 HTTP/1.1" 200 42
 192.168.0.164 - - [02/Jun/2017:18:18:06 -0300] "GET /maissaude/primefaces.xhtml HTTP/1.1" 200 1814
 192.168.0.164 - - [02/Jun/2017:18:18:09 -0300] "POST /maissaude/primefaces.xhtml HTTP/1.1" 200 293
+127.0.0.1 - - [02/Jun/2017:20:06:44 -0300] "GET / HTTP/1.1" 200 11418
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:07:02 -0300] "GET /maissaude/exemploServlet.jsp HTTP/1.1" 200 469
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:07:16 -0300] "POST /maissaude/exemploServlet HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:07:55 -0300] "GET /maissaude/primefaces.xhtml HTTP/1.1" 200 1816
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:07:55 -0300] "GET /maissaude/javax.faces.resource/jquery/jquery.js.xhtml?ln=primefaces&v=4.0 HTTP/1.1" 200 105493
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:07:57 -0300] "GET /maissaude/javax.faces.resource/primefaces.js.xhtml?ln=primefaces&v=4.0 HTTP/1.1" 200 277201
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:08:04 -0300] "GET /maissaude/javax.faces.resource/images/ui-icons_38667f_256x240.png.xhtml?ln=primefaces-aristo HTTP/1.1" 200 4369
+0:0:0:0:0:0:0:1 - - [02/Jun/2017:20:08:04 -0300] "POST /maissaude/primefaces.xhtml HTTP/1.1" 200 295
