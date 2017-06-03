@@ -24,6 +24,7 @@ public class CRUDAtendenteTeste {
 		atendente.setRg("2.333.222");
 		atendente.setLogin("rhuan");
 		atendente.setSenha("12345");
+		atendente.setFarmaceutico(true);
 		
 		rnatendente.inserir(atendente);
 		

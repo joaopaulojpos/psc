@@ -15,9 +15,10 @@ public class Validacao {
     }
 	
 	public void checkId(Integer id)throws ValidacaoException{
-		if(id<=0 || id==null){
+		if(id<=0){
 			throw new ValidacaoException("Identificador inválido");
 		}
+		
 	}
 	/**
 	 * Verifica se um cpf está preenchido corretamente.

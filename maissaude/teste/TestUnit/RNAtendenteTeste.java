@@ -1,12 +1,10 @@
 package TestUnit;
 
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import basicas.Atendente;
-import rn.Fachada;
 import rn.RNAtendente;
 import util.Validacao;
 import util.exceptions.ValidacaoException;

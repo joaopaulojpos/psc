@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.media.jfxmediaimpl.MediaDisposer;
 
 import basicas.Medico;
 import rn.Fachada;
@@ -40,7 +39,7 @@ public class CRUDMedicoTeste {
 	}
 
 	@Test
-	public void alterarTest(){
+	public void alterarTest() throws ValidacaoException{
 		Medico medico1 = new Medico();
 		medico1 = Fachada.getInstance().listarMedicoCRM("CRM/PE 11122");
 		medico1.setNome("Charles");

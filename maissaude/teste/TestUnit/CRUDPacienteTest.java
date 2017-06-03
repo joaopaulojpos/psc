@@ -52,7 +52,7 @@ public class CRUDPacienteTest {
 	public void pesquisarCNS(){
 		Paciente p = new Paciente();
 		
-		p =rnpaciente.listarPacienteCNS("");
-		assertEquals(p.getNome(),"Rhuan Dantas");
+		p =rnpaciente.listarPacienteCNS("222.3333.4444.5555");
+		assertEquals(p.getNome(),"Rhuan Nixon");
 	}
 }
