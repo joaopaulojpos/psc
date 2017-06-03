@@ -13,6 +13,7 @@ public class BeanUsuario  implements Serializable{
 	
 
     private String senhaDigitada;
+    private String login;
 
 
 	public String getSenhaDigitada() {
@@ -22,6 +23,16 @@ public class BeanUsuario  implements Serializable{
 
 	public void setSenhaDigitada(String senhaDigitada) {
 		this.senhaDigitada = senhaDigitada;
+	}
+
+
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
 	} 
 
 }

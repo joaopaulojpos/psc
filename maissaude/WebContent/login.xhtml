@@ -54,18 +54,27 @@
 	<h:form>
 	    <h:panelGrid columns="2" cellpadding="5">	    	    
 	    <p:outputLabel for="inputLogin" value="Login:"/>
-	    <p:inputText id="inputLogin" value="" style="width: 116%;"/>	    
+	    <p:inputText id="inputLogin" value="#{beanUsuario.login}" style="width: 116%;"/>	    
         <p:outputLabel for="inputSenha" value="Senha: " />
         <p:password id="inputSenha" value="#{beanUsuario.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
 	    </h:panelGrid>
-	 		 	
-	 	<p:spacer height="10" />
+	 		 		 		 	
+	 	<p:spacer height="50" />
+
 	 			 	
 	 	<div class="botao">
 	 		<p:commandButton update="labelSenha" value="Logar" style="width: 400%;"/>
 	 	</div> 	 		 			 		 	
- 				 			    
-	    <h:outputText id="labelSenha" value="#{beanUsuario.senhaDigitada}"/>
+ 		
+ 			 			    
+	    <h:outputText id="labelSenha" value="#{beanUsuario.login}"/>
+	    
+	    <p:spacer height="50" />
+	    
+	    <h:outputText id="labelSenha" value="#{beanUsuario.login}"/>
+	 
+	 
+
 	</h:form>	
 	</div>
 	
