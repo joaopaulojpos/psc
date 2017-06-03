@@ -52,4 +52,5 @@ public class CRUDDoencaTeste {
 		d =rndoenca.listarDoencaCND("A-02");
 		assertEquals(d.getNome(),"Cachumba");
 
-}
+		}
+	}
