@@ -55,6 +55,27 @@ public class RNPaciente {
 	
 	private void validar(Paciente paciente)throws ValidacaoException{
 		VALIDA.cpf(paciente.getCpf().toString());
+		validaCNS(paciente.getCns());
+	}
+	
+	public void validaCNS(String cns) throws ValidacaoException{
+		//Ex.: 111.2222.3333.4444
+
+		String regex = "^\\d{3}.\\d{4}.\\d{4}.\\d{4}$";
+		
+		if(cns==null){
+			throw new ValidacaoException("CNS inválido");
+		}
+		
+		if(cns.isEmpty()){
+			throw new ValidacaoException("CNS inválido");
+		}
+		if(cns.length()<=0){
+			throw new ValidacaoException("CNS inválido");
+		}
+		if(!cns.matches(regex)){
+			throw new ValidacaoException("CNS inválido");
+		}
 	}
 	
 	private void editarPaciente(Paciente paciente){

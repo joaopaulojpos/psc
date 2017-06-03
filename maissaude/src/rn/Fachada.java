@@ -99,6 +99,10 @@ public class Fachada {
 		return rnAtendente.listar();
 	}
 	
+	public Atendente listarAtendentesCRF(String crf){
+		return rnAtendente.listarAtendenteCRF(crf);
+	}
+	
 	public void removerAtendente(Atendente atendente){
 		rnAtendente.remover(atendente);
 	}

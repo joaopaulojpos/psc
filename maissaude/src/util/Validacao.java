@@ -15,9 +15,10 @@ public class Validacao {
     }
 	
 	public void checkId(Integer id)throws ValidacaoException{
-		if(id<=0 || id==null){
+		if(id<=0){
 			throw new ValidacaoException("Identificador inválido");
 		}
+		
 	}
 	/**
 	 * Verifica se um cpf está preenchido corretamente.
@@ -92,6 +93,23 @@ public class Validacao {
         }
         if (nome.isEmpty()) {
             throw new ValidacaoException("Nome inválido.");
+        }
+	}
+	
+	public void rg(String rg)throws ValidacaoException{
+		//variavel que contem a lógica da validacação do cpf.
+		String regex = "^\\d{1}.\\d{3}.\\d{3}$";
+		
+		if(rg==null){
+			throw new ValidacaoException("RG inválido!");
+		}
+		
+		if(rg.toString().length()==0){
+			throw new ValidacaoException("RG inválido!");
+		}
+		
+        if(!(rg.matches(regex))){
+            throw new ValidacaoException("RG inválido");
         }
 	}
 }

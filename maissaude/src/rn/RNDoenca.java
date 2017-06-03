@@ -50,6 +50,27 @@ public class RNDoenca {
 	}
 	
 	private void validar(Doenca doenca)throws ValidacaoException{
+		VALIDA.nome(doenca.getNome());
+//		validaCnd(doenca.getCnd());
+	}
+	
+	public void validaCnd(String cnd) throws ValidacaoException{
+		//Ex.: A00-B99
+		String regex = "^{3}[a-zA-Z0-9]-{3}[a-zA-Z0-9]$";
+		
+		if(cnd==null){
+			throw new ValidacaoException("CND inválido");
+		}
+		
+		if(cnd.isEmpty()){
+			throw new ValidacaoException("CND inválido");
+		}
+		if(cnd.length()<=0){
+			throw new ValidacaoException("CND inválido");
+		}
+		if(!cnd.matches(regex)){
+			throw new ValidacaoException("CND inválido");
+		}
 	}
 	
 	private void editarDoenca(Doenca doenca){
