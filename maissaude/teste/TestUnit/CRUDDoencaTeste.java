@@ -53,5 +53,5 @@ public class CRUDDoencaTeste {
 		assertEquals(d.getNome(),"Cachumba");
 
 
-		
+	}
 	}

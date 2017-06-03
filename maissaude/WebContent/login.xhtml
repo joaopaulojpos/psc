@@ -59,24 +59,18 @@
         <p:password id="inputSenha" value="#{beanUsuario.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
 	    </h:panelGrid>
 	 		 		 		 	
-	 	<p:spacer height="50" />
+	 	<p:spacer height="10" />
 
 	 			 	
 	 	<div class="botao">
-	 		<p:commandButton update="labelSenha" value="Logar" style="width: 400%;"/>
-	 	</div> 	 		 			 		 	
- 		
- 			 			    
-	    <h:outputText id="labelSenha" value="#{beanUsuario.login}"/>
-	    
-	    <p:spacer height="50" />
-	    
-	    <h:outputText id="labelSenha" value="#{beanUsuario.login}"/>
-	 
-	 
-
-	</h:form>	
-	</div>
+	 		<p:commandButton value="Logar" style="width: 400%;"/>
+	 	</div> 	 
+	 	
+	 	<p:spacer height="10" />
+	 				    
+	</h:form>
+	
+	</div>	
 	
 </body>
 </html>
