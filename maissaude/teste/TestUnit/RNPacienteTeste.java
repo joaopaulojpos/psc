@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import basicas.Medico;
 import basicas.Paciente;
 import rn.Fachada;
 import rn.RNPaciente;
@@ -248,7 +247,7 @@ public class RNPacienteTeste {
 			
 			rnpaciente.inserir(paciente);
 			
-			assertEquals(paciente,Fachada.getInstance().listarAtendentesCRF(paciente.getCns()));
+			assertEquals(paciente,Fachada.getInstance().listarPacienteporCNS(paciente.getCns()));
 			
 		}
 		

@@ -70,6 +70,7 @@ public class RNAtendente {
 	
 	private void validar(Atendente atendente)throws ValidacaoException{
 		VALIDA.cpf(atendente.getCpf().toString());
+		VALIDA.nome(atendente.getNome());
 		if(atendente.isFarmaceutico()==true)
 			validaCRF(atendente.getCrf());
 	}
