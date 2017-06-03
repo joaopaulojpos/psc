@@ -32,8 +32,7 @@ public class RNReceitaTestes {
 		medico = new Medico();
 		doenca = new Doenca();
 		
-		doenca.setCnd("A01-B01");
-		doenca.setGravidade("ALTA");
+		doenca.setCnd("A01-B01");		
 		doenca.setNome("Dengue");
 		
 		medico.setCpf("123.434.455-66");

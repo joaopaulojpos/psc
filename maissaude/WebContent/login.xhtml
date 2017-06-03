@@ -63,10 +63,17 @@
 
 	 			 	
 	 	<div class="botao">
-	 		<p:commandButton value="Logar" style="width: 400%;"/>
+	 		<p:commandButton update="testeLogin testeSenha" value="Logar" style="width: 400%;"/>
 	 	</div> 	 
 	 	
-	 	<p:spacer height="10" />
+	 	
+	 	
+	 	<div> 
+	 	<p:spacer height="75" />
+	 	<div>
+	 	<p:outputLabel  id="testeLogin" value="#{beanUsuario.login}" /> </div> 
+	 	<div> <p:outputLabel  id="testeSenha" value="#{beanUsuario.senhaDigitada}" /> </div>
+	 	</div>
 	 				    
 	</h:form>
 	

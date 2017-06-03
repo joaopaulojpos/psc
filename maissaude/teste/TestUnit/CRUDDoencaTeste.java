@@ -17,8 +17,7 @@ public class CRUDDoencaTeste {
 	public void inserirTest() throws ValidacaoException{
 		
 		Doenca doenca = new Doenca();
-		doenca.setNome("Hemorroidas");
-		doenca.setGravidade("Media");
+		doenca.setNome("Hemorroidas");		
 		doenca.setCnd("A-01");
 		doenca.setListaReceitas(null);
 		

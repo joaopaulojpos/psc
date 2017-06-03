@@ -30,9 +30,6 @@ public class Doenca {
 	@Column(length=200,unique=true,nullable=false)
 	private String nome;
 	
-	@Column(name="gravidade", nullable=false)
-	private String gravidade;
-	
 	//Um código que toda doença tem
 	@Column(name="cnd", unique=true,nullable=false)
 	private String cnd;
@@ -57,14 +54,6 @@ public class Doenca {
 		this.nome = nome;
 	}
 
-	public String getGravidade() {
-		return gravidade;
-	}
-
-	public void setGravidade(String gravidade) {
-		this.gravidade = gravidade;
-	}
-
 	public String getCnd() {
 		return cnd;
 	}
@@ -85,11 +74,10 @@ public class Doenca {
 		super();
 	}
 
-	public Doenca(Integer idDoenca, String nome, String gravidade, String cnd, List<Receita> listaReceitas) {
+	public Doenca(Integer idDoenca, String nome, String cnd, List<Receita> listaReceitas) {
 		super();
 		this.idDoenca = idDoenca;
-		this.nome = nome;
-		this.gravidade = gravidade;
+		this.nome = nome;		
 		this.cnd = cnd;
 		this.listaReceitas = listaReceitas;
 	}
