@@ -1,12 +1,10 @@
 package TestUnit;
 
 
-import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import basicas.Paciente;
-import rn.Fachada;
 import rn.RNPaciente;
 import util.Validacao;
 import util.exceptions.ValidacaoException;
@@ -235,26 +233,4 @@ public class RNPacienteTeste {
 			valid.rg(paciente.getRg());
 		}
 		
-//-----------------CRUD----------------\\		
-		@Test
-		public void inserirTest() throws ValidacaoException{
-			
-			Paciente paciente = new Paciente();
-			paciente.setCpf("123.434.455-64");
-			paciente.setCns("111.2222.5555.6666");
-			paciente.setNome("Nixon Dantas");
-			paciente.setRg("2.333.222");
-			
-			rnpaciente.inserir(paciente);
-			
-			assertEquals(paciente,Fachada.getInstance().listarPacienteporCNS(paciente.getCns()));
-			
-		}
-		
-		@Test
-		public void removerTest(){
-			Paciente paciente1 = new Paciente();
-			paciente1 = Fachada.getInstance().listarPacienteporCNS("111.2222.5555.6666");
-			Fachada.getInstance().removerPaciente(paciente1);
-		}
 }

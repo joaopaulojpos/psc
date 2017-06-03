@@ -37,4 +37,22 @@ public class CRUDAtendenteTeste {
 		Fachada.getInstance().removerAtendente(atendente1);
 	}
 
+	@Test
+	public void alterarTest(){
+		Atendente atendente1 = new Atendente();
+		atendente1 = Fachada.getInstance().listarAtendentesCRF("CRF/PE 22244");
+		atendente1.setNome("Pablo");
+		Fachada.getInstance().editarAtendente(atendente1);
+		atendente1 = new Atendente();
+		atendente1 = Fachada.getInstance().listarAtendentesCRF("CRF/PE 22244");
+		assertEquals(atendente1.getNome(),"Pablo");
+	}
+	
+	@Test
+	public void pesquisarCRF(){
+		Atendente a = new Atendente();
+		
+		a =rnatendente.listarAtendenteCRF("CR/PE 22266");
+		assertEquals(a.getNome(),"Rhuan Dantas");
+	}
 }

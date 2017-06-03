@@ -3,6 +3,8 @@ package Suite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import TestUnit.CRUDAtendenteTeste;
+import TestUnit.CRUDPacienteTest;
 import TestUnit.RNAtendenteTeste;
 import TestUnit.RNDoencaTeste;
 import TestUnit.RNMedicamentoTeste;
@@ -17,7 +19,9 @@ import TestUnit.RNReceitaTestes;
 	RNPacienteTeste.class,
 	RNDoencaTeste.class,
 	RNMedicamentoTeste.class,
-	RNReceitaTestes.class
+	RNReceitaTestes.class,
+	CRUDAtendenteTeste.class,
+	CRUDPacienteTest.class
 })
 public class TesteBasicas {
 
