@@ -47,35 +47,36 @@ public class TestaDAOOld {
 //			Receituario re = em.find(Receituario.class, 1);
 			*/
 			Fachada f = Fachada.getInstance();
-			List<Medicamento> m = new ArrayList<Medicamento>();
-			Medico me = new Medico();
+//			List<Medicamento> m = new ArrayList<Medicamento>();
+//			Atendente medico = new Atendente();
 			Paciente p = new Paciente();
-			Doenca d = new Doenca();
-			Receita r = new Receita();
-			m.add(f.listarMedicamentos().get(0));
-			
+//			Doenca doenca = new Doenca();
+//			Receita r = new Receita();
+//			m.add(f.listarMedicamentos().get(0));
+//			
 			Atendente a = new Atendente();
-			a.setIdPessoa(65536);
-			
-			r.setDoenca(f.listarDoencaporCND("123"));
-			r.setAtendente(a);
-			r.setListaMedicamentos(m);
-			r.setMedico(f.listarMedicoCRM("CRF/PE 5265"));
-			r.setPaciente(f.listarPacienteporCPF("111.111.222-00"));
-			try {
-				f.inserirReceita(r);
-			} catch (ValidacaoException e) {
+//			a.setIdPessoa(65536);
+//			
+//			r.setDoenca(f.listarDoencaporCND("123"));
+//			r.setAtendente(a);
+//			r.setListaMedicamentos(m);
+//			r.setMedico(f.listarMedicoCRM("CRF/PE 5265"));
+//			r.setPaciente(f.listarPacienteporCPF("111.111.222-00"));
+//			medico.setIdPessoa(32768);
+			a.setCrf("CRF/PE 22244");
+//			try {
+				f.listarAtendentesCRF(a.getCrf());
+				System.out.println(a.getNome());
+//			} catch (ValidacaoException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//				e.printStackTrace();
+//			}
 				// TODO Auto-generated catch block
 //			em.persist(d);
 //			et.commit();
 //			// Fechando o gerenciador.
 //			em.close(); 
 //			emf.close();
-
-
 		}
 	
 }

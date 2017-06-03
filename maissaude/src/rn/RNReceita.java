@@ -45,6 +45,16 @@ public class RNReceita {
 		VALIDA.checkNull(receita.getDoenca());
 		VALIDA.checkNull(receita.getMedico());
 		VALIDA.checkNull(receita.getPaciente());
+		validaMedicamentos(receita);
+	}
+	
+	public void validaMedicamentos(Receita receita) throws ValidacaoException{
+		if(receita.getListaMedicamentos()==null){
+			throw new ValidacaoException("Receita sem medicamento");
+		}
+		if(receita.getListaMedicamentos().size()<=0){
+			throw new ValidacaoException("Receita sem medicamento");
+		}
 	}
 	
 	private void editarReceita(Receita receita){

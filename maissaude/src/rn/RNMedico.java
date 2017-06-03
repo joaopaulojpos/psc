@@ -52,6 +52,28 @@ public class RNMedico {
 	private void validar(Medico medico)throws ValidacaoException{
 		VALIDA.cpf(medico.getCpf());
 		VALIDA.crm(medico.getCrm().toString());
+		VALIDA.nome(medico.getNome());
+		validaCRM(medico.getCrm());
+		
+	}
+	
+	public void validaCRM(String crm) throws ValidacaoException{
+		//Ex.: CRM/PE 82333
+		String regex = "^CRM/PE \\d{5}$";
+		
+		if(crm==null){
+			throw new ValidacaoException("CRM inválido");
+		}
+		
+		if(crm.isEmpty()){
+			throw new ValidacaoException("CRM inválido");
+		}
+		if(crm.length()<=0){
+			throw new ValidacaoException("CRM inválido");
+		}
+		if(!crm.matches(regex)){
+			throw new ValidacaoException("CRM inválido");
+		}
 	}
 	
 	private void editarMedico(Medico medico) throws ValidacaoException{
