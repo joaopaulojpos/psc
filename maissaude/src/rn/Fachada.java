@@ -8,6 +8,8 @@ import basicas.Medicamento;
 import basicas.Medico;
 import basicas.Paciente;
 import basicas.Receita;
+import basicas.Usuario;
+import util.exceptions.LoginInvalidoException;
 import util.exceptions.ValidacaoException;
 
 public class Fachada {
@@ -19,6 +21,7 @@ public class Fachada {
 	private RNMedicamento rnMedicamento;
 	private RNDoenca rnDoenca;
 	private RNReceita rnReceita;
+	private static Usuario usuario;
 	
 	private Fachada(){
 		rnMedico = new RNMedico();
@@ -27,6 +30,7 @@ public class Fachada {
 		rnMedicamento = new RNMedicamento();
 		rnDoenca = new RNDoenca();
 		rnReceita = new RNReceita();
+		usuario = new Usuario();
 	}
 	
 	/**
@@ -162,4 +166,14 @@ public class Fachada {
 		}
 		
 		//-------Receita
+		
+		//-------Login
+		public static Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
+			
+			/*if(login.equals("admin") && senha.equals("123456")){
+				return usuario;
+			}else{
+				throw new LoginInvalidoException("Login inválido!\n");
+			}*/			
+		}
 }

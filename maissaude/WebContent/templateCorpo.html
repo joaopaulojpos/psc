@@ -10,7 +10,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
-<body>
+<h:body>Conteúdo geral para todas as páginas
+	<h2><ui:insert name="title">Título default</ui:insert></h2>
+	Outro conteúdo geral para todas as páginas
+	<ui:insert name="body">Conteúdo default para o body</ui:insert>
+</h:body>
+home.xhtml
+<ui:composition template="/templates/template1.xhtml">
+<ui:define name="title“>Cadastro de Pessoas Inexistentes</ui:define>
+<ui:define name="body">
+Aqui serão listadas todas as pessoas que não estão cadastradas no sistema.
+</ui:define>
+</ui:composition>
 
-</body>
 </html>

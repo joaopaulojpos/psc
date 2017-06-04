@@ -54,9 +54,9 @@
 	<h:form>
 	    <h:panelGrid columns="2" cellpadding="5">	    	    
 	    <p:outputLabel for="inputLogin" value="Login:"/>
-	    <p:inputText id="inputLogin" value="#{beanUsuario.login}" style="width: 116%;"/>	    
+	    <p:inputText id="inputLogin" value="#{beanLogin.login}" style="width: 116%;"/>	    
         <p:outputLabel for="inputSenha" value="Senha: " />
-        <p:password id="inputSenha" value="#{beanUsuario.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
+        <p:password id="inputSenha" value="#{beanLogin.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
 	    </h:panelGrid>
 	 		 		 		 	
 	 	<p:spacer height="10" />
@@ -71,8 +71,10 @@
 	 	<div> 
 	 	<p:spacer height="75" />
 	 	<div>
-	 	<p:outputLabel  id="testeLogin" value="#{beanUsuario.login}" /> </div> 
-	 	<div> <p:outputLabel  id="testeSenha" value="#{beanUsuario.senhaDigitada}" /> </div>
+	 	<p:outputLabel  id="testeLogin" value="#{beanLogin.login}" /> </div> 
+	 	<div> <p:outputLabel  id="testeSenha" value="#{beanLogin.senhaDigitada}" /> </div>
+	 	
+	 	
 	 	</div>
 	 				    
 	</h:form>
