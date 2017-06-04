@@ -55,7 +55,15 @@ public class CRUDDoencaTeste {
 	public void pesquisarCnd(){
 		Doenca d = new Doenca();
 		
+<<<<<<< HEAD
 		d =rndoenca.listarDoencaCND("A02-B02");
 		assertEquals(d.getNome(),"AVC");
+=======
+		d =rndoenca.listarDoencaCND("A-02");
+		assertEquals(d.getNome(),"Cachumba");
+
+
+	}
+>>>>>>> 7d65577f95410ab0f0c520f623e53240860ae2e1
 	}
 }
