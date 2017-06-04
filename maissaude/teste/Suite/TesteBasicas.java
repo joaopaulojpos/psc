@@ -19,9 +19,7 @@ import TestUnit.RNReceitaTestes;
 	RNPacienteTeste.class,
 	RNDoencaTeste.class,
 	RNMedicamentoTeste.class,
-	RNReceitaTestes.class,
-	CRUDAtendenteTeste.class,
-	CRUDPacienteTest.class
+	RNReceitaTestes.class
 })
 public class TesteBasicas {
 

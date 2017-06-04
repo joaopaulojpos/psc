@@ -43,7 +43,11 @@ public class CRUDAtendenteTeste {
 		Atendente atendente1 = new Atendente();
 		atendente1 = Fachada.getInstance().listarAtendentesCRF("CRF/PE 22244");
 		atendente1.setNome("Pablo");
-		Fachada.getInstance().editarAtendente(atendente1);
+		try {
+			Fachada.getInstance().editarAtendente(atendente1);
+		} catch (ValidacaoException e) {
+			e.printStackTrace();
+		}
 		atendente1 = new Atendente();
 		atendente1 = Fachada.getInstance().listarAtendentesCRF("CRF/PE 22244");
 		assertEquals(atendente1.getNome(),"Pablo");

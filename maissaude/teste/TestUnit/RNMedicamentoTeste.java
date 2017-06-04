@@ -53,7 +53,6 @@ public class RNMedicamentoTeste {
 		@Test(expected=ValidacaoException.class)
 		public void testeNomeMenor3() throws ValidacaoException {
 			medicamento = new Medicamento();
-			//201 caracteres
 			medicamento.setNome("aa");
 			valid.nome(medicamento.getNome());
 		}
@@ -62,10 +61,9 @@ public class RNMedicamentoTeste {
 		 * Esperado: FALHA
 		 * @throws ValidacaoException
 		 */
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeNomeValido() throws ValidacaoException {
 			medicamento = new Medicamento();
-			//201 caracteres
 			medicamento.setNome("Benegripe");
 			valid.nome(medicamento.getNome());
 		}

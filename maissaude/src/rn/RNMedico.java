@@ -2,10 +2,10 @@ package rn;
 
 import java.util.List;
 
-
 import basicas.Medico;
 import dao.DAOFactory;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 /**
@@ -22,7 +22,7 @@ public class RNMedico {
 		VALIDA = new Validacao();
 	}
 	
-	public void inserir(Medico medico) throws ValidacaoException{
+	public void inserir(Medico medico) throws ValidacaoException, PersistenciaException{
 		validar(medico);
 		inserirMedico(medico);
 	}
@@ -39,13 +39,17 @@ public class RNMedico {
 		return listarCRM(crm);
 	}
 	
+	public Medico pesquisarMedicoID(Integer id) throws ValidacaoException{
+		return pesquisarMedico(id);
+	}
+	
 	public void remover(Medico medico){
 		removerMedico(medico);
 	}
 	
 //--------------Métodos auxiliares---------------\\
 	
-	private void inserirMedico(Medico medico){
+	private void inserirMedico(Medico medico) throws PersistenciaException{
 		dao.getDAOMedico().inserir(medico);
 	}
 	
@@ -78,7 +82,11 @@ public class RNMedico {
 	
 	private void editarMedico(Medico medico) throws ValidacaoException{
 		VALIDA.checkId(medico.getIdPessoa());
-		dao.getDAOMedico().editar(medico);
+		try {
+			dao.getDAOMedico().editar(medico);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void removerMedico(Medico medico){
@@ -87,6 +95,14 @@ public class RNMedico {
 	
 	private List<Medico> listarMedicos(){
 		return dao.getDAOMedico().listar();
+	}
+	
+	private Medico pesquisarMedico(Integer id) throws ValidacaoException{
+		try {
+			return dao.getDAOMedico().pesquisarId(id);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private Medico listarCRM(String crm){

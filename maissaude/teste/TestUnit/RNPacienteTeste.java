@@ -76,7 +76,7 @@ public class RNPacienteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCpfCorreto() throws ValidacaoException {
 		paciente = new Paciente();
 		paciente.setCpf("123.456.728-00");
@@ -128,7 +128,7 @@ public class RNPacienteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeNomeValido() throws ValidacaoException {
 		paciente = new Paciente();
 		//201 caracteres
@@ -178,7 +178,7 @@ public class RNPacienteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCNSCorreto() throws ValidacaoException {
 		paciente = new Paciente();
 		paciente.setCns("111.2222.3333.4444");
@@ -226,7 +226,7 @@ public class RNPacienteTeste {
 		 * Esperado: FALHA
 		 * @throws ValidacaoException
 		 */
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeRGCorreto() throws ValidacaoException {
 			paciente = new Paciente();
 			paciente.setRg("2.333.444");

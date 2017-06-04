@@ -6,6 +6,7 @@ import java.util.List;
 import basicas.Doenca;
 import dao.DAOFactory;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 /**
@@ -27,7 +28,7 @@ public class RNDoenca {
 		inserirDoenca(doenca);
 	}
 	
-	public void editar(Doenca doenca){
+	public void editar(Doenca doenca) throws ValidacaoException{
 		editarDoenca(doenca);
 	}
 	
@@ -45,8 +46,12 @@ public class RNDoenca {
 	
 //--------------Métodos auxiliares---------------\\
 	
-	private void inserirDoenca(Doenca doenca){
-		dao.getDAODoenca().inserir(doenca);
+	private void inserirDoenca(Doenca doenca) throws ValidacaoException{
+		try {
+			dao.getDAODoenca().inserir(doenca);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void validar(Doenca doenca)throws ValidacaoException{
@@ -65,16 +70,18 @@ public class RNDoenca {
 		if(cnd.isEmpty()){
 			throw new ValidacaoException("CND inválido");
 		}
-		if(cnd.length()<=0){
-			throw new ValidacaoException("CND inválido");
-		}
-		if(!cnd.matches(regex)){
-			throw new ValidacaoException("CND inválido");
-		}
+		
+//		if(!cnd.matches(regex)){
+//			throw new ValidacaoException("CND inválido");
+//		}
 	}
 	
-	private void editarDoenca(Doenca doenca){
-		dao.getDAODoenca().editar(doenca);
+	private void editarDoenca(Doenca doenca) throws ValidacaoException{
+		try {
+			dao.getDAODoenca().editar(doenca);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void removerDoenca(Doenca doenca){

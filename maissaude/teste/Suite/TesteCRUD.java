@@ -9,14 +9,16 @@ import TestUnit.CRUDDoencaTeste;
 import TestUnit.CRUDMedicamentoTeste;
 import TestUnit.CRUDMedicoTeste;
 import TestUnit.CRUDPacienteTest;
+import TestUnit.CRUDReceitaTeste;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
 CRUDAtendenteTeste.class,
 CRUDPacienteTest.class,
 CRUDMedicoTeste.class,
+CRUDDoencaTeste.class,
 CRUDMedicamentoTeste.class,
-CRUDDoencaTeste.class
+CRUDReceitaTeste.class
 })
 public class TesteCRUD {
 

@@ -9,6 +9,7 @@ import basicas.Medico;
 import rn.Fachada;
 import rn.RNMedico;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 public class RNMedicoTeste {
@@ -78,7 +79,7 @@ public class RNMedicoTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCpfCorreto() throws ValidacaoException {
 		medico = new Medico();
 		medico.setCpf("123.456.728-00");
@@ -130,7 +131,7 @@ public class RNMedicoTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeNomeValido() throws ValidacaoException {
 		medico = new Medico();
 		//201 caracteres
@@ -180,7 +181,7 @@ public class RNMedicoTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCRMCorreto() throws ValidacaoException {
 		medico = new Medico();
 		medico.setCrm("CRM/PE 22222");
@@ -228,7 +229,7 @@ public class RNMedicoTeste {
 		 * Esperado: FALHA
 		 * @throws ValidacaoException
 		 */
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeRGCorreto() throws ValidacaoException {
 			medico = new Medico();
 			medico.setRg("2.333.444");
@@ -249,7 +250,11 @@ public class RNMedicoTeste {
 			medico.setLogin("rhuan");
 			medico.setSenha("12345");
 			
-			rnmedico.inserir(medico);
+			try {
+				rnmedico.inserir(medico);
+			} catch (PersistenciaException e) {
+				e.printStackTrace();
+			}
 			
 			assertEquals(medico,Fachada.getInstance().listarMedicoCRM(medico.getCrm()));
 			

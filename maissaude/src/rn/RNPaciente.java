@@ -6,6 +6,7 @@ import java.util.List;
 import basicas.Paciente;
 import dao.DAOFactory;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 /**
@@ -27,7 +28,7 @@ public class RNPaciente {
 		inserirPaciente(paciente);
 	}
 	
-	public void editar(Paciente paciente){
+	public void editar(Paciente paciente) throws ValidacaoException{
 		editarPaciente(paciente);
 	}
 	
@@ -49,8 +50,12 @@ public class RNPaciente {
 	
 //--------------Métodos auxiliares---------------\\
 	
-	private void inserirPaciente(Paciente paciente){
-		dao.getDAOPaciente().inserir(paciente);
+	private void inserirPaciente(Paciente paciente) throws ValidacaoException{
+		try {
+			dao.getDAOPaciente().inserir(paciente);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void validar(Paciente paciente)throws ValidacaoException{
@@ -78,8 +83,12 @@ public class RNPaciente {
 		}
 	}
 	
-	private void editarPaciente(Paciente paciente){
-		dao.getDAOPaciente().editar(paciente);
+	private void editarPaciente(Paciente paciente) throws ValidacaoException{
+		try {
+			dao.getDAOPaciente().editar(paciente);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void removerPaciente(Paciente paciente){

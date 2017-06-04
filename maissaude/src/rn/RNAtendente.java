@@ -6,6 +6,7 @@ import java.util.List;
 import basicas.Atendente;
 import dao.DAOFactory;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 /**
@@ -27,6 +28,45 @@ public class RNAtendente {
 		inserirAtendente(atendente);
 	}
 	
+	
+	
+	public void editar(Atendente atendente) throws ValidacaoException{
+		editarAtendente(atendente);
+	}
+	
+	public List<Atendente> listar(){
+		return listarAtendentes();
+	}
+	
+	public Atendente listarAtendenteCRF(String crf){
+		return listarCRF(crf);
+	}
+	
+	public Atendente pesquisarAtendenteID(Integer id) throws ValidacaoException{
+		return pesquisarAtendente(id);
+	}
+	
+	public void remover(Atendente atendente){
+		removerAtendente(atendente);
+	}
+	
+//--------------Métodos auxiliares---------------\\
+	
+	private void inserirAtendente(Atendente atendente) throws ValidacaoException{
+		try {
+			dao.getDAOAtendente().inserir(atendente);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
+	}
+	
+	private void validar(Atendente atendente)throws ValidacaoException{
+		VALIDA.cpf(atendente.getCpf().toString());
+		VALIDA.nome(atendente.getNome());
+		if(atendente.isFarmaceutico()==true)
+			validaCRF(atendente.getCrf());
+	}
+	
 	public void validaCRF(String crf) throws ValidacaoException{
 		//Ex.: CRF/PE 82333
 		String regex = "^CRF/PE \\d{5}$";
@@ -46,37 +86,12 @@ public class RNAtendente {
 		}
 	}
 	
-	public void editar(Atendente atendente){
-		editarAtendente(atendente);
-	}
-	
-	public List<Atendente> listar(){
-		return listarAtendentes();
-	}
-	
-	public Atendente listarAtendenteCRF(String crf){
-		return listarCRF(crf);
-	}
-	
-	public void remover(Atendente atendente){
-		removerAtendente(atendente);
-	}
-	
-//--------------Métodos auxiliares---------------\\
-	
-	private void inserirAtendente(Atendente atendente){
-		dao.getDAOAtendente().inserir(atendente);
-	}
-	
-	private void validar(Atendente atendente)throws ValidacaoException{
-		VALIDA.cpf(atendente.getCpf().toString());
-		VALIDA.nome(atendente.getNome());
-		if(atendente.isFarmaceutico()==true)
-			validaCRF(atendente.getCrf());
-	}
-	
-	private void editarAtendente(Atendente atendente){
-		dao.getDAOAtendente().editar(atendente);
+	private void editarAtendente(Atendente atendente) throws ValidacaoException{
+		try {
+			dao.getDAOAtendente().editar(atendente);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void removerAtendente(Atendente atendente){
@@ -85,6 +100,14 @@ public class RNAtendente {
 	
 	private List<Atendente> listarAtendentes(){
 		return dao.getDAOAtendente().listar();
+	}
+	
+	private Atendente pesquisarAtendente(Integer id) throws ValidacaoException{
+		try {
+			return dao.getDAOAtendente().pesquisarId(id);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private Atendente listarCRF(String crf){

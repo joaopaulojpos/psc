@@ -42,7 +42,12 @@ public class CRUDPacienteTest {
 		Paciente paciente1 = new Paciente();
 		paciente1 = Fachada.getInstance().listarPacienteporCNS("111.2222.5555.6666");
 		paciente1.setNome("Pablo");
-		Fachada.getInstance().editarPaciente(paciente1);
+		try {
+			Fachada.getInstance().editarPaciente(paciente1);
+		} catch (ValidacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		paciente1 = new Paciente();
 		paciente1 = Fachada.getInstance().listarPacienteporCNS("111.2222.5555.6666");
 		assertEquals(paciente1.getNome(),"Pablo");

@@ -60,7 +60,7 @@ public class RNDoencaTeste {
 		 * Esperado: FALHA
 		 * @throws ValidacaoException
 		 */
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeNomeValido() throws ValidacaoException {
 			doenca = new Doenca();
 			//201 caracteres
@@ -85,7 +85,7 @@ public class RNDoencaTeste {
 		}
 		
 		
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeCNDInvalido() throws ValidacaoException {
 			doenca = new Doenca();
 			doenca.setCnd("ABBD-DDD");
@@ -93,7 +93,6 @@ public class RNDoencaTeste {
 		}
 		
 		@Ignore
-		@Test(expected=ValidacaoException.class)
 		public void testeCNDCorreto() throws ValidacaoException {
 			doenca = new Doenca();
 			doenca.setCnd("A00-DDD");

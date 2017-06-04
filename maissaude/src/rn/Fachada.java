@@ -8,6 +8,7 @@ import basicas.Medicamento;
 import basicas.Medico;
 import basicas.Paciente;
 import basicas.Receita;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 public class Fachada {
@@ -39,7 +40,7 @@ public class Fachada {
 	}
 	
 	//-----Medico
-	public void inserirMedico(Medico medico) throws ValidacaoException{
+	public void inserirMedico(Medico medico) throws ValidacaoException, PersistenciaException{
 		rnMedico.inserir(medico);
 	}
 	
@@ -55,6 +56,10 @@ public class Fachada {
 		return rnMedico.listarMedicoCRM(crm);
 	}
 	
+	public Medico pesquisarMedicoId(Integer id) throws ValidacaoException{
+		return rnMedico.pesquisarMedicoID(id);
+	}
+	
 	public void removerMedico(Medico medico){
 		rnMedico.remover(medico);
 	}
@@ -65,7 +70,7 @@ public class Fachada {
 		rnPaciente.inserir(paciente);
 	}
 	
-	public void editarPaciente(Paciente paciente){
+	public void editarPaciente(Paciente paciente) throws ValidacaoException{
 		rnPaciente.editar(paciente);
 	}
 	
@@ -91,7 +96,7 @@ public class Fachada {
 		rnAtendente.inserir(atendente);
 	}
 	
-	public void editarAtendente(Atendente atendente){
+	public void editarAtendente(Atendente atendente) throws ValidacaoException{
 		rnAtendente.editar(atendente);
 	}
 	
@@ -101,6 +106,10 @@ public class Fachada {
 	
 	public Atendente listarAtendentesCRF(String crf){
 		return rnAtendente.listarAtendenteCRF(crf);
+	}
+	
+	public Atendente pesquisarAtendenteId(Integer id) throws ValidacaoException{
+		return rnAtendente.pesquisarAtendenteID(id);
 	}
 	
 	public void removerAtendente(Atendente atendente){
@@ -113,12 +122,20 @@ public class Fachada {
 		rnMedicamento.inserir(medicamento);
 	}
 	
-	public void editarMedicamento(Medicamento medicamento){
+	public void editarMedicamento(Medicamento medicamento) throws ValidacaoException{
 		rnMedicamento.editar(medicamento);
 	}
 	
 	public List<Medicamento> listarMedicamentos(){
 		return rnMedicamento.listar();
+	}
+	
+	public Medicamento pesquisarMedicamentoId(Integer id) throws ValidacaoException{
+		return rnMedicamento.pesquisarMedicamentoId(id);
+	}
+	
+	public Medicamento pesquisarMedicamentoNome(String nome){
+		return rnMedicamento.pesquisarMedicamentoporNome(nome);
 	}
 	
 	public void removerMedicamento(Medicamento medicamento){
@@ -131,7 +148,7 @@ public class Fachada {
 		rnDoenca.inserir(doenca);
 	}
 	
-	public void editarDoenca(Doenca doenca){
+	public void editarDoenca(Doenca doenca) throws ValidacaoException{
 		rnDoenca.editar(doenca);
 	}
 	
@@ -149,17 +166,22 @@ public class Fachada {
 	//-------Doenca
 	
 	//-----Receita
-		public void inserirReceita(Receita receita) throws ValidacaoException{
-			rnReceita.inserir(receita);
-		}
-		
-		public void editarReceita(Receita receita){
-			rnReceita.editar(receita);
-		}
-		
-		public List<Receita> listarReceita(){
-			return rnReceita.listar();
-		}
+	
+	public void inserirReceita(Receita receita) throws ValidacaoException{
+		rnReceita.inserir(receita);
+	}
+	
+	public void editarReceita(Receita receita) throws ValidacaoException{
+		rnReceita.editar(receita);
+	}
+	
+	public Receita pesquisarReceitaId(Integer id) throws ValidacaoException{
+		return rnReceita.pesquisarReceitaID(id);
+	}
+	
+	public List<Receita> listarReceita(){
+		return rnReceita.listar();
+	}
 		
 		//-------Receita
 }

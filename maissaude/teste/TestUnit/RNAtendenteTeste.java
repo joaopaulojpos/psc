@@ -76,7 +76,7 @@ public class RNAtendenteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCpfCorreto() throws ValidacaoException {
 		atendente = new Atendente();
 		atendente.setCpf("123.456.728-00");
@@ -128,7 +128,7 @@ public class RNAtendenteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeNomeValido() throws ValidacaoException {
 		atendente = new Atendente();
 		//201 caracteres
@@ -178,7 +178,7 @@ public class RNAtendenteTeste {
 	 * Esperado: FALHA
 	 * @throws ValidacaoException
 	 */
-	@Test(expected=ValidacaoException.class)
+	@Test
 	public void testeCRFCorreto() throws ValidacaoException {
 		atendente = new Atendente();
 		atendente.setCrf("CRF/PE 22222");
@@ -226,7 +226,7 @@ public class RNAtendenteTeste {
 		 * Esperado: FALHA
 		 * @throws ValidacaoException
 		 */
-		@Test(expected=ValidacaoException.class)
+		@Test
 		public void testeRGCorreto() throws ValidacaoException {
 			atendente = new Atendente();
 			atendente.setRg("2.333.444");

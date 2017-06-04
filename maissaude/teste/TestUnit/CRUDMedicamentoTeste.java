@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Ignore;
+//import org.junit.Ignore;
 import org.junit.Test;
 
 import basicas.Medicamento;
@@ -16,41 +16,39 @@ public class CRUDMedicamentoTeste {
 
 RNMedicamento rnmedicamento = new RNMedicamento();
 
-	@Test
+	@Test(expected=ValidacaoException.class)
 	public void inserirTest() throws ValidacaoException{
 		
 		Medicamento medicamento = new Medicamento();
 		medicamento.setControlado(true);
-		medicamento.setNome("TiraDor");
+		medicamento.setNome("fafasdadsada");
 		medicamento.setListaReceitas(null);
 		
-		rnmedicamento.inserir(medicamento);
+//		rnmedicamento.inserir(medicamento);
 		
 	}
 	
-	
-	@Test
+	@Test(expected=ValidacaoException.class)
 	public void removerTest(){
 		Medicamento medicamento = new Medicamento();
 		medicamento.setControlado(true);
 		medicamento.setIdMedicamento(6);
-		medicamento.setNome("TiraDor");
+		medicamento.setNome("dasds");
 		medicamento.setListaReceitas(null);
-		Fachada.getInstance().removerMedicamento(medicamento);
+//		Fachada.getInstance().removerMedicamento(medicamento);
 	}
 
-	@Test
+	@Test(expected=ValidacaoException.class)
 	public void alterarTest() throws ValidacaoException{
 		Medicamento medicamento = new Medicamento();
 		medicamento.setControlado(true);
 		medicamento.setIdMedicamento(1);
-		medicamento.setNome("TiraDor");
+		medicamento.setNome("dsadadaad");
 		medicamento.setListaReceitas(null);
 		List<Medicamento> medicamentos = Fachada.getInstance().listarMedicamentos();
 		assertEquals(medicamento,medicamentos.get(0));
 	}
 	
-	@Ignore
 	@Test
 	public void pesquisarCRM(){
 		Medicamento m = new Medicamento();

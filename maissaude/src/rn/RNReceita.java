@@ -2,10 +2,10 @@ package rn;
 
 import java.util.List;
 
-
 import basicas.Receita;
 import dao.DAOFactory;
 import util.Validacao;
+import util.exceptions.PersistenciaException;
 import util.exceptions.ValidacaoException;
 
 /**
@@ -27,8 +27,12 @@ public class RNReceita {
 		inserirReceita(receita);
 	}
 	
-	public void editar(Receita receita){
+	public void editar(Receita receita) throws ValidacaoException{
 		editarReceita(receita);
+	}
+	
+	public Receita pesquisarReceitaID(Integer id) throws ValidacaoException{
+		return pesquisarReceita(id);
 	}
 	
 	public List<Receita> listar(){
@@ -37,8 +41,12 @@ public class RNReceita {
 	
 //--------------Métodos auxiliares---------------\\
 	
-	private void inserirReceita(Receita receita){
-		dao.getDAOReceita().inserir(receita);
+	private void inserirReceita(Receita receita) throws ValidacaoException{
+		try {
+			dao.getDAOReceita().inserir(receita);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void validar(Receita receita)throws ValidacaoException{
@@ -57,10 +65,21 @@ public class RNReceita {
 		}
 	}
 	
-	private void editarReceita(Receita receita){
-		dao.getDAOReceita().editar(receita);
+	private void editarReceita(Receita receita) throws ValidacaoException{
+		try {
+			dao.getDAOReceita().editar(receita);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
-	
+
+	private Receita pesquisarReceita(Integer id) throws ValidacaoException{
+		try {
+			return dao.getDAOReceita().pesquisarId(id);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
+	}
 	
 	private List<Receita> listarReceitas(){
 		return dao.getDAOReceita().listar();

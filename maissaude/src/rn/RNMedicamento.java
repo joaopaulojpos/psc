@@ -5,6 +5,8 @@ import java.util.List;
 
 import basicas.Medicamento;
 import dao.DAOFactory;
+import util.Validacao;
+import util.exceptions.PersistenciaException;
 //import util.Validacao;
 import util.exceptions.ValidacaoException;
 
@@ -16,10 +18,10 @@ import util.exceptions.ValidacaoException;
 public class RNMedicamento {
 
 	private DAOFactory dao;
-//	private final Validacao VALIDA;
+	private final Validacao VALIDA;
 	
 	public RNMedicamento(){
-//		VALIDA = new Validacao();
+		VALIDA = new Validacao();
 	}
 	
 	public void inserir(Medicamento medicamento) throws ValidacaoException{
@@ -27,12 +29,20 @@ public class RNMedicamento {
 		inserirMedicamento(medicamento);
 	}
 	
-	public void editar(Medicamento medicamento){
+	public void editar(Medicamento medicamento) throws ValidacaoException{
 		editarMedicamento(medicamento);
 	}
 	
 	public List<Medicamento> listar(){
 		return listarMedicamentos();
+	}
+	
+	public Medicamento pesquisarMedicamentoId(Integer id) throws ValidacaoException{
+		return pesquisarMedicamento(id);
+	}
+	
+	public Medicamento pesquisarMedicamentoporNome(String nome){
+		return pesquisarMedicamentoNome(nome);
 	}
 	
 	public void remover(Medicamento medicamento){
@@ -41,15 +51,24 @@ public class RNMedicamento {
 	
 //--------------Métodos auxiliares---------------\\
 	
-	private void inserirMedicamento(Medicamento medicamento){
-		dao.getDAOMedicamento().inserir(medicamento);
+	private void inserirMedicamento(Medicamento medicamento) throws ValidacaoException{
+		try {
+			dao.getDAOMedicamento().inserir(medicamento);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void validar(Medicamento medicamento)throws ValidacaoException{
+		VALIDA.nome(medicamento.getNome());
 	}
 	
-	private void editarMedicamento(Medicamento medicamento){
-		dao.getDAOMedicamento().editar(medicamento);
+	private void editarMedicamento(Medicamento medicamento) throws ValidacaoException{
+		try {
+			dao.getDAOMedicamento().editar(medicamento);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
 	}
 	
 	private void removerMedicamento(Medicamento medicamento){
@@ -59,4 +78,17 @@ public class RNMedicamento {
 	private List<Medicamento> listarMedicamentos(){
 		return dao.getDAOMedicamento().listar();
 	}
+	
+	private Medicamento pesquisarMedicamento(Integer id) throws ValidacaoException{
+		try {
+			return dao.getDAOMedicamento().pesquisarId(id);
+		} catch (PersistenciaException e) {
+			throw new ValidacaoException("Erro na conexão com o Banco de dados.");
+		}
+	}
+	
+	private Medicamento pesquisarMedicamentoNome(String nome){
+			return dao.getDAOMedicamento().pesquisarNome(nome);
+	}
 }
+ 

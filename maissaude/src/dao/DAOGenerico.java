@@ -1,14 +1,14 @@
 package dao;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
+
+import util.exceptions.PersistenciaException;
 
 
 public abstract class DAOGenerico<Entity> {
@@ -31,8 +31,9 @@ public abstract class DAOGenerico<Entity> {
 	 * @param objeto
 	 *            a ser realizado o merge
 	 * @return objeto que foi executado o merge
+	 * @throws PersistenciaException 
 	 */
-	public Entity editar(Entity objeto) {
+	public Entity editar(Entity objeto) throws PersistenciaException {
 		
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		
@@ -45,7 +46,8 @@ public abstract class DAOGenerico<Entity> {
 		tx.commit();
 		
 		} catch (PersistenceException e) {
-		tx.rollback();      
+			tx.rollback();      
+			throw new PersistenciaException(e);
 		}
 
 		em.close();
@@ -71,8 +73,9 @@ public abstract class DAOGenerico<Entity> {
 	 * Salva o objeto atual na base de dados.
 	 * 
 	 * @param objeto a ser salvo
+	 * @throws PersistenciaException 
 	 */
-	public void inserir(Entity objeto) {
+	public void inserir(Entity objeto) throws PersistenciaException {
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		EntityTransaction tx = em.getTransaction();		
 		try {
@@ -82,6 +85,7 @@ public abstract class DAOGenerico<Entity> {
 			em.close();
 		} catch (PersistenceException e) {
 			tx.rollback();
+			throw new PersistenciaException();
 		}
 		
 	}
@@ -107,22 +111,22 @@ public abstract class DAOGenerico<Entity> {
 		em.close();
 	}
 
-	
-	
 	/**
 	 * Busca o objeto uma vez passado sua chave como par�metro.
 	 * 
 	 * @param chave
 	 *            identificador
 	 * @return Objeto do tipo T
+	 * @throws PersistenciaException 
 	 */
-	public final Entity searchByKey(Serializable chave) {
+	public final Entity pesquisarId(Integer chave) throws PersistenciaException {
 		Entity instance = null;
 		EntityManager em = this.entityManagerFactory.createEntityManager();
 		try {
 			instance = (Entity) em.find(getPersistentClass(), chave);
 		} catch (RuntimeException re) {
 			re.printStackTrace();
+			throw new PersistenciaException();
 		}
 		em.close();
 		return instance;
@@ -131,11 +135,9 @@ public abstract class DAOGenerico<Entity> {
 	/**
 	 * Atualiza o objeto que se 
 	 * 
+	 * encontra em memoria.
 	 * 
-	 * encontra em mem�ria.
-	 * 
-	 * @param object
-	 *            objeto a ser atualizado
+	 * @param object objeto a ser atualizado
 	 */
 	public final void refresh(Entity object) {
 		EntityManager em = this.entityManagerFactory.createEntityManager();

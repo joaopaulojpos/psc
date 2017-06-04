@@ -1,6 +1,8 @@
 package TestUnit;
 
 
+import java.util.Calendar;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -8,6 +10,7 @@ import org.junit.Test;
 import basicas.Atendente;
 import basicas.Doenca;
 import basicas.Medico;
+import basicas.Paciente;
 import basicas.Receita;
 import rn.Fachada;
 import rn.RNReceita;
@@ -46,15 +49,30 @@ public class RNReceitaTestes {
 		atendente.setNome("Nixon Dantas");
 		atendente.setRg("2.333.222");
 		
+		Paciente paciente = new Paciente();
+		paciente.setCpf("123.434.455-65");
+		paciente.setCns("111.2222.5555.6677");
+		paciente.setNome("Nixon Dantas");
+		paciente.setRg("2.333.221");
+		
 		receita.setListaMedicamentos(fachada.listarMedicamentos());
 		receita.setDoenca(fachada.listarDoencaporCND("A01-B01"));
+		receita.setAtendente(atendente);
+		receita.setDataGeracao(Calendar.getInstance());
+		receita.setDoenca(doenca);
+		receita.setListaMedicamentos(Fachada.getInstance().listarMedicamentos());
+		receita.setMedico(medico);
+		receita.setPaciente(paciente);
+		receita.setPrazo(Calendar.getInstance());
+		
 	}
 //----------------------VALIDAÇÃO DA RECEITA-------------\\	
 	@Test
 	public void testaAtendenteNulo() throws ValidacaoException {
-		valida.checkNull(atendente);
-		valida.checkNull(medico);
-		valida.checkNull(doenca);
+		valida.checkNull(receita.getAtendente());
+		valida.checkNull(receita.getMedico());
+		valida.checkNull(receita.getDoenca());
+		valida.checkNull(receita.getPaciente());
 		rn.validaMedicamentos(receita);
 	}
 	
