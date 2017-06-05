@@ -39,15 +39,21 @@ public class LoginBean {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
+	
+	public LoginBean(){
+		this.usuarioLogado = new Usuario();
+	}
 
-	public String efetuarLogin(){
+	public void efetuarLogin(){
 		try {
 			usuarioLogado = Fachada.efetuarLogin(login, senha);
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
+								null,
+								"/home.xhtml?faces-redirect=true");		
 			// return para página de menu
 		} catch (LoginInvalidoException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login/Senha inexistente"));
-		} // return de volta ao index.xhtml
-		return "/index.xhtml?faces-redirect=true";
+		}		
 	}
 
 }

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(filterName = "LoginFilter", urlPatterns={"/*"})
+@WebFilter(filterName = "LoginFilter", urlPatterns={"*.xhtml"})
 public class LoginFilter implements Filter {
 
     /**
@@ -41,7 +41,7 @@ public class LoginFilter implements Filter {
 		HttpSession sessao = req.getSession();
 		if (sessao == null || sessao.getAttribute("loginBean") == null || 
 		     ((LoginBean) sessao.getAttribute("loginBean")).getUsuarioLogado().getIdPessoa() == null) {
-		    RequestDispatcher dis = request.getRequestDispatcher("/index.xhtml");
+		    RequestDispatcher dis = request.getRequestDispatcher("/login.xhtml");
 	  	    dis.forward(request, response);
 		} else {
 		    chain.doFilter(request, response);

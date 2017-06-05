@@ -44,40 +44,39 @@
 	
 	<div id="centralizado">
 	
-				
+	
+					
 	<div class="logo">
 		<h:graphicImage url="/imagens/logo.png" width="200" height="200" style="position: absolute; left: 50%;"/>
 	</div>
 	
-
+	<p:tooltip />
 		
 	<h:form>
-	    <h:panelGrid columns="2" cellpadding="5">	    	    
+	    <h:panelGrid id="grid" columns="2" cellpadding="5">	    	    
 	    <p:outputLabel for="inputLogin" value="Login:"/>
-	    <p:inputText id="inputLogin" value="#{beanLogin.login}" style="width: 116%;"/>	    
+	    <p:inputText id="inputLogin" value="#{loginBean.login}" required="true" style="width: 116%;"/>	    
         <p:outputLabel for="inputSenha" value="Senha: " />
-        <p:password id="inputSenha" value="#{beanLogin.senhaDigitada}" feedback="true" inline="true" style="width: 116%;"/>
+        <p:password id="inputSenha" value="#{loginBean.senha}" feedback="true" inline="true" required="true" style="width: 116%;"/>
+         
 	    </h:panelGrid>
 	 		 		 		 	
 	 	<p:spacer height="10" />
 
 	 			 	
 	 	<div class="botao">
-	 		<p:commandButton update="testeLogin testeSenha" value="Logar" style="width: 400%;"/>
-	 	</div> 	 
+	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" style="width: 400%;"/>	 					 			 		
+	 	</div>
 	 	
-	 	
+	 	<div class="botao" style="top: 100%;"> 
+	 		<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" /> 
+ 		</div> 	 
 	 	
 	 	<div> 
-	 	<p:spacer height="75" />
-	 	<div>
-	 	<p:outputLabel  id="testeLogin" value="#{beanLogin.login}" /> </div> 
-	 	<div> <p:outputLabel  id="testeSenha" value="#{beanLogin.senhaDigitada}" /> </div>
-	 	
-	 	
+	 	<p:spacer height="75" />	 		 	
 	 	</div>
-	 				    
-	</h:form>
+	 	
+	 	</h:form>
 	
 	</div>	
 	
