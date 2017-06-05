@@ -169,8 +169,14 @@ public class Fachada {
 		
 		//-------Login
 		public static Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
-			
-			if(login.equals("admin") && senha.equals("123456")){
+			usuario = new Usuario();
+			usuario.setCpf("111.111.111-11");
+			usuario.setIdPessoa(1);
+			usuario.setLogin("leandro.atendente");
+			usuario.setNome("Leandro Oliveira");
+			usuario.setRg("1.111.111");
+			usuario.setSenha("123456");
+			if(login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())){
 				return usuario;
 			}else{
 				throw new LoginInvalidoException("Login inválido!\n");

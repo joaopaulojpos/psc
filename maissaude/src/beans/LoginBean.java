@@ -46,10 +46,24 @@ public class LoginBean {
 
 	public void efetuarLogin(){
 		try {
+
 			usuarioLogado = Fachada.efetuarLogin(login, senha);
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
-								null,
-								"/home.xhtml?faces-redirect=true");		
+			if(usuarioLogado.getLogin().equals("leandro.atendente")){
+				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
+						null,
+						"/homeAtendente.xhtml?faces-redirect=true");
+			}else
+			if(usuarioLogado.getLogin().equals("leandro.medico")){
+				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
+						null,
+						"/homeMedico.xhtml?faces-redirect=true");
+			}else
+				if(usuarioLogado.getLogin().equals("leandro.ministerio")){
+					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
+							null,
+							"/homeMinisterio.xhtml?faces-redirect=true");
+				}
+					
 			// return para página de menu
 		} catch (LoginInvalidoException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login/Senha inexistente"));
