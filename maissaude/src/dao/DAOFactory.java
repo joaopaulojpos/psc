@@ -10,6 +10,11 @@ public abstract class DAOFactory {
 	private static final EntityManagerFactory factory;
 
 	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		factory = Persistence.createEntityManagerFactory("maissaude");		
 	}
 	
@@ -40,6 +45,11 @@ public abstract class DAOFactory {
 	
 	public static DAODoenca getDAODoenca(){
 		DAODoenca dao = new DAODoenca(factory);
+		return dao;
+	}
+	
+	public static DAOUsuario getDAOUsuario(){
+		DAOUsuario dao = new DAOUsuario(factory);
 		return dao;
 	}
 }

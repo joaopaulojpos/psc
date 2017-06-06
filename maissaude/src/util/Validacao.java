@@ -98,6 +98,7 @@ public class Validacao {
 	
 	public void rg(String rg)throws ValidacaoException{
 		//variavel que contem a lógica da validacação do cpf.
+		//9.999.999
 		String regex = "^\\d{1}.\\d{3}.\\d{3}$";
 		
 		if(rg==null){

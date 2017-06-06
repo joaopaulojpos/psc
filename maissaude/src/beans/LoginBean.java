@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import basicas.EnumPerfil;
 import basicas.Usuario;
 import rn.Fachada;
 import util.exceptions.LoginInvalidoException;
@@ -15,7 +16,7 @@ public class LoginBean {
 	private String login;
 	private String senha;
 	private Usuario usuarioLogado;
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -39,35 +40,36 @@ public class LoginBean {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
-	
-	public LoginBean(){
-		this.usuarioLogado = new Usuario();
+
+	public LoginBean() {
+		setUsuarioLogado(new Usuario());		
 	}
+	
+
 
 	public void efetuarLogin(){
 		try {
-
-			usuarioLogado = Fachada.efetuarLogin(login, senha);
-			if(usuarioLogado.getLogin().equals("leandro.atendente")){
+			setUsuarioLogado(Fachada.getInstance().efetuarLogin(login, senha));
+			
+			
+			if(getUsuarioLogado().getPerfil().equals(EnumPerfil.ATENDENTE)){
 				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 						null,
-						"/homeAtendente.xhtml?faces-redirect=true");
-			}else
-			if(usuarioLogado.getLogin().equals("leandro.medico")){
+						"/homeAtendente.xhtml?faces-redirect=true");				
+			} else if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MEDICO)){
 				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 						null,
 						"/homeMedico.xhtml?faces-redirect=true");
-			}else
-				if(usuarioLogado.getLogin().equals("leandro.ministerio")){
+			} else
+			if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MINISTERIO)){				
 					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 							null,
 							"/homeMinisterio.xhtml?faces-redirect=true");
-				}
-					
-			// return para página de menu
-		} catch (LoginInvalidoException e) {
+			}else{
+				throw new LoginInvalidoException("Login inválido!\n");
+			}									
+		}catch (LoginInvalidoException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login/Senha inexistente"));
-		}		
+		}
 	}
-
 }

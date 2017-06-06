@@ -22,6 +22,9 @@ public class Usuario extends Pessoa{
 	
 	@Column(name="senha", nullable=false)
 	private String senha;		
+	
+	@Column(name="perfil", nullable=false)
+	private String perfil;
 
 	@OneToMany(mappedBy="usuarioAlteracao", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
@@ -43,6 +46,14 @@ public class Usuario extends Pessoa{
 		this.senha = senha;
 	}
 
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
 	public List<StatusReceita> getListaStatusReceita() {
 		return listaStatusReceita;
 	}
@@ -55,10 +66,11 @@ public class Usuario extends Pessoa{
 		super();
 	}
 
-	public Usuario(String login, String senha, List<StatusReceita> listaStatusReceita) {
+	public Usuario(String login, String senha, String perfil, List<StatusReceita> listaStatusReceita) {
 		super();
 		this.login = login;
 		this.senha = senha;
+		this.perfil = perfil;
 		this.listaStatusReceita = listaStatusReceita;
 	}
 

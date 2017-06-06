@@ -21,7 +21,7 @@ public class Fachada {
 	private RNMedicamento rnMedicamento;
 	private RNDoenca rnDoenca;
 	private RNReceita rnReceita;
-	private static Usuario usuario;
+	private RNUsuario rnUsuario;
 	
 	private Fachada(){
 		rnMedico = new RNMedico();
@@ -29,8 +29,8 @@ public class Fachada {
 		rnAtendente = new RNAtendente();
 		rnMedicamento = new RNMedicamento();
 		rnDoenca = new RNDoenca();
-		rnReceita = new RNReceita();
-		usuario = new Usuario();
+		rnReceita = new RNReceita();	
+		rnUsuario = new RNUsuario();
 	}
 	
 	/**
@@ -168,18 +168,7 @@ public class Fachada {
 		//-------Receita
 		
 		//-------Login
-		public static Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
-			usuario = new Usuario();
-			usuario.setCpf("111.111.111-11");
-			usuario.setIdPessoa(1);
-			usuario.setLogin("leandro.atendente");
-			usuario.setNome("Leandro Oliveira");
-			usuario.setRg("1.111.111");
-			usuario.setSenha("123456");
-			if(login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())){
-				return usuario;
-			}else{
-				throw new LoginInvalidoException("Login inválido!\n");
-			}		
+		public Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
+			return rnUsuario.efetuarLogin(login, senha);	
 		}
 }
