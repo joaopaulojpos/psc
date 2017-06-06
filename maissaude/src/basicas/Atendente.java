@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -13,12 +15,16 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="Atendente")
-public class Atendente extends Usuario{
+public class Atendente extends Pessoa{
 	@Column(name="crf",unique=true, nullable=true)
 	private String crf;
 	
 	@Column(name="isFarmaceutico", nullable=false)
 	private boolean isFarmaceutico;	
+	
+	@OneToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
 	
 	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
@@ -40,6 +46,14 @@ public class Atendente extends Usuario{
 		this.isFarmaceutico = isFarmaceutico;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public List<Receita> getListaReceitas() {
 		return listaReceitas;
 	}
@@ -52,11 +66,12 @@ public class Atendente extends Usuario{
 		super();
 	}
 
-	public Atendente(String crf, boolean isFarmaceutico, List<Receita> listaReceitas) {
+	public Atendente(String crf, boolean isFarmaceutico, List<Receita> listaReceitas, Usuario usuario) {
 		super();
 		this.crf = crf;
 		this.isFarmaceutico = isFarmaceutico;
 		this.listaReceitas = listaReceitas;
+		this.usuario = usuario;
 	}
 
 	@Override

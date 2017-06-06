@@ -167,7 +167,12 @@ public class Fachada {
 		
 		//-------Receita
 		
-		//-------Login
+		//-------Usuario
+		
+		public void inserirUsuario(Usuario usuario) throws ValidacaoException{
+			rnUsuario.inserir(usuario);
+		}
+		
 		public Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
 			return rnUsuario.efetuarLogin(login, senha);	
 		}

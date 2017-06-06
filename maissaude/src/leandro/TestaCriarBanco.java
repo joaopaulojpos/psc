@@ -8,10 +8,8 @@ public class TestaCriarBanco {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			EntityManagerFactory factory = Persistence.createEntityManagerFactory("maissaude");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException e) {			
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 }

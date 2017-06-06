@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -16,10 +18,14 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="Medico")
-public class Medico extends Usuario{	
+public class Medico extends Pessoa{	
 	
 	@Column(unique=true, nullable=false)
 	private String crm;
+	
+	@OneToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
 	
 	@OneToMany(mappedBy="medico", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
@@ -31,6 +37,14 @@ public class Medico extends Usuario{
 
 	public void setCrm(String crm) {
 		this.crm = crm;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public List<Receita> getListaReceitas() {
@@ -45,10 +59,11 @@ public class Medico extends Usuario{
 		super();
 	}
 
-	public Medico(String crm, List<Receita> listaReceitas) {
+	public Medico(String crm, List<Receita> listaReceitas, Usuario usuario) {
 		super();
 		this.crm = crm;
 		this.listaReceitas = listaReceitas;
+		this.usuario = usuario;
 	}
 
 	@Override

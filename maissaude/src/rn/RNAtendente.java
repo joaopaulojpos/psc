@@ -8,11 +8,6 @@ import dao.DAOFactory;
 import util.Validacao;
 import util.exceptions.ValidacaoException;
 
-/**
- * 
- * @author Rhuan
- *
- */
 public class RNAtendente {
 
 	private DAOFactory dao;
