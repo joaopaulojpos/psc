@@ -55,9 +55,9 @@
 	<h:form>
 	    <h:panelGrid id="grid" columns="2" cellpadding="5">	    	    
 	    <p:outputLabel for="inputLogin" value="Login:"/>
-	    <p:inputText id="inputLogin" value="#{loginBean.login}" required="true" style="width: 116%;"/>	    
+	    <p:inputText id="inputLogin" value="#{loginBean.login}" required="true" requiredMessage="Digite seu Login." style="width: 116%;"/>	    
         <p:outputLabel for="inputSenha" value="Senha: " />
-        <p:password id="inputSenha" value="#{loginBean.senha}" feedback="true" inline="true" required="true" style="width: 116%;"/>
+        <p:password id="inputSenha" value="#{loginBean.senha}" feedback="true" inline="true" required="true" requiredMessage="Digite sua senha." style="width: 116%;"/>
          
 	    </h:panelGrid>
 	 		 		 		 	

@@ -13,6 +13,10 @@
 	<h:form>
 	       
 		<h:outputLabel for="name" value="Bem vindo Médico!" style="font-weight:bold" />
+		
+		<div>  
+			<p:commandButton value="Sair" id="sair" action="#{loginBean.logout}" ajax="false" /> 
+		</div>
 			    	 	    
 	</h:form>	
 </h:body>

@@ -52,4 +52,9 @@ public abstract class DAOFactory {
 		DAOUsuario dao = new DAOUsuario(factory);
 		return dao;
 	}
+	
+	public static DAOMinisterio getDAOMinisterio(){
+		DAOMinisterio dao = new DAOMinisterio(factory);
+		return dao;
+	}	
 }

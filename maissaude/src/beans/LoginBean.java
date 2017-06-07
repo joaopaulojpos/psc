@@ -75,4 +75,9 @@ public class LoginBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Login/Senha inexistente"));
 		}
 	}
+	
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/login.xhtml?faces-redirect=true";
+    }	
 }

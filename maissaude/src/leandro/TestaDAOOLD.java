@@ -27,7 +27,7 @@ import dao.DAOReceita;
 import dao.DAOUsuario;
 
 @SuppressWarnings("deprecation")
-public class TestaDAO {
+public class TestaDAOOLD {
 	public static void main(String args[]){
 		EntityManagerFactory emf = null;
 		//		EntityManager em = null;

@@ -6,6 +6,7 @@ import basicas.Atendente;
 import basicas.Doenca;
 import basicas.Medicamento;
 import basicas.Medico;
+import basicas.Ministerio;
 import basicas.Paciente;
 import basicas.Receita;
 import basicas.Usuario;
@@ -22,6 +23,7 @@ public class Fachada {
 	private RNDoenca rnDoenca;
 	private RNReceita rnReceita;
 	private RNUsuario rnUsuario;
+	private RNMinisterio rnMinisterio;
 	
 	private Fachada(){
 		rnMedico = new RNMedico();
@@ -31,6 +33,7 @@ public class Fachada {
 		rnDoenca = new RNDoenca();
 		rnReceita = new RNReceita();	
 		rnUsuario = new RNUsuario();
+		rnMinisterio = new RNMinisterio();
 	}
 	
 	/**
@@ -176,4 +179,9 @@ public class Fachada {
 		public Usuario efetuarLogin(String login, String senha) throws LoginInvalidoException{
 			return rnUsuario.efetuarLogin(login, senha);	
 		}
+		
+		//-------Ministerio
+		public void inserirMinisterio(Ministerio ministerio) throws ValidacaoException{
+			rnMinisterio.inserir(ministerio);
+		}		
 }
