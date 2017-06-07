@@ -10,6 +10,16 @@
 <h:head>
 </h:head>
 <h:body>	
+
+<ui:composition template="/template/template1.xhtml">
+<ui:define name="title">
+	Cadastro de Pessoas Inexistentes
+</ui:define>
+<ui:define name="body">
+	Aqui serão listadas todas as pessoas que não estão cadastradas no sistema.
+</ui:define>
+</ui:composition>
+
 	<h:form>
 	       
 		<h:outputLabel for="name" value="Bem vindo Atendente!" style="font-weight:bold" />
