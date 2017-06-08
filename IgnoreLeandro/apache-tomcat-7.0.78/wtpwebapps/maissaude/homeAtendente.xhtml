@@ -11,22 +11,21 @@
 </h:head>
 <h:body>	
 
-<ui:composition template="/template/template1.xhtml">
-<ui:define name="title">
-	Cadastro de Pessoas Inexistentes
-</ui:define>
-<ui:define name="body">
-	Aqui serão listadas todas as pessoas que não estão cadastradas no sistema.
-</ui:define>
-</ui:composition>
+   	<ui:composition template="/template/layout.xhtml">
 
-	<h:form>
-	       
-		<h:outputLabel for="name" value="Bem vindo Atendente!" style="font-weight:bold" />
-		<div>  
-			<p:commandButton value="Sair" id="sair" action="#{loginBean.logout}" ajax="false" /> 
-		</div>
-			    	 	    
-	</h:form>	
+   		<ui:define name="content">
+			<h:form>
+			       
+				<h:outputLabel for="name" value="Bem vindo Atendente!" style="font-weight:bold" />
+				<div>  
+					<p:commandButton value="Sair" id="sair" action="#{loginBean.logout}" ajax="false" /> 
+				</div>
+					    	 	    
+			</h:form>	   			
+   		</ui:define>
+
+   	</ui:composition>
+    	
+
 </h:body>
 </html>

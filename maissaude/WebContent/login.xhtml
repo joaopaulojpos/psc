@@ -9,16 +9,15 @@
 	
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<style>	
-	
+
+	<style>
 		body{
 			background-color: lightblue;
 		}	
 		
 		#centralizado {	  
 			position: absolute;
-			width: 400px;
-			height: 200px;
+			align="center"			
 			z-index: 15;
 			top: 60%;
 			left: 50%;
@@ -26,29 +25,27 @@
 		}
 		
 		div.logo{
-			position: absolute;
-			left: 20%;
-			top: -120%;
+			position: absolute;			
+			left: -30%;
+			top: -100%;
 		}
 		
 		div.botao{			
 			position: absolute;
 			left: 0%;	
-		}	  
-	  		
-	</style>
+		}		
+	</style>	
 	
 </h:head>
 
 <body >				
 	
 	<div id="centralizado">
-	
-	
-					
-	<div class="logo">
-		<h:graphicImage url="/imagens/logo.png" width="200" height="200" style="position: absolute; left: 50%;"/>
+						
+	<div class="logo">		
+		<h:graphicImage url="/imagens/logo.png"  width="120%" />
 	</div>
+	<p:spacer height="20" />
 	
 	<p:tooltip />
 		
@@ -65,7 +62,7 @@
 
 	 			 	
 	 	<div class="botao">
-	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" style="width: 400%;"/>	 					 			 		
+	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" style="width: 420%;"/>	 					 			 		
 	 	</div>
 	 	
 	 	<div class="botao" style="top: 100%;"> 
@@ -80,5 +77,6 @@
 	
 	</div>	
 	
+
 </body>
 </html>
