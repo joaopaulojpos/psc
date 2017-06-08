@@ -1,2 +1,0 @@
-INSERT INTO `usuario`(`cpf`, `nome`, `rg`, `login`, `perfil`, `senha`) VALUES ('111.111.111.11','Celio Maranhao','1.111.111','celio.maranhao','MEDICO','celio123')
-
