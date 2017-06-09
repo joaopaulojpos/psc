@@ -32,8 +32,16 @@
 		
 		div.botao{			
 			position: absolute;
-			left: 0%;	
-		}		
+			left: 0%;
+		}	
+		.botaoAzul{
+	 		width: 420%;
+	 		height:90px;
+	 		color: white;
+	 		background: darkblue; 
+	 		border-color: black;
+	 	}			
+		
 	</style>	
 	
 </h:head>
@@ -62,7 +70,7 @@
 
 	 			 	
 	 	<div class="botao">
-	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" style="width: 420%;"/>	 					 			 		
+	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" styleClass="botaoAzul"/>	 					 			 		
 	 	</div>
 	 	
 	 	<div class="botao" style="top: 100%;"> 

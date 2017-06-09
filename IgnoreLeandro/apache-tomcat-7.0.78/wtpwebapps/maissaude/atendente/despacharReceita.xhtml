@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+ 
+    <h:head>
+		<style>
+			body{
+				background-color: lightblue;
+			} 
+			
+			div.abaixo{ 
+			position: absolute;			
+			left: 0%;
+			top: 32%;
+			width: 100%;
+			
+												
+			}
+			
+			div.abaixo2{
+				position: absolute;			
+				left: 0%;
+				top: 32%;
+				width: 100%;				
+			}
+			
+	
+	 	
+		.ui-button.regCommandButton { 
+		    color: white;
+		    background: darkblue;
+		    border-color: black;		
+		    width: 100%; 
+		    height: 50px; 				    
+		    font-size:1.4em;    
+		}	 	
+	
+		.ui-panelgrid td, .ui-panelgrid tr
+		{
+		    border-style: none !important		
+		    
+		}	
+		</style>		   
+    </h:head>
+ 
+    <h:body>
+        
+        
+		<div>
+			<h:graphicImage url="/imagens/header.png" width="100%" style="position: absolute; left: 0%;"/>
+		</div>
+		
+		<div class="abaixo">
+		<p:panelGrid id="gridReceitas" columns="4" cellpadding="5">			
+			<p:outputLabel for="inputFiltro" value="Filtro: "/>
+			<p:inputText id="inputFiltro" style="width: 410%; height: 35px;"/>
+			
+			
+				<p:commandButton id="botaoFiltrar" value="Pesquisar" styleClass="regCommandButton" style="left:410%;"/>												 
+				 	
+				<h:form>
+					<p:commandButton value="Sair" id="sair" action="#{loginBean.logout}" ajax="false" styleClass="regCommandButton" style="left:690%;"/>
+				</h:form>
+															
+		</p:panelGrid>
+		
+		<div> <p:spacer height="10"/> </div>
+		
+		<div id="porra"> <h:form id="formLista">
+		    <p:growl id="msgs" showDetail="true" />
+		    <p:dataTable id="tableReceitas" var="receita" value="#{receitaBean.receitas}" rowKey="#{receita.idReceita}"
+		                 selection="#{receitaBean.receitaSelecionada}" selectionMode="single">          
+		        <f:facet name="header">
+		            Receitas
+		        </f:facet>
+		        <p:column headerText="Id">
+		            <h:outputText value="#{receita.idReceita}" />
+		        </p:column>
+		        <p:column headerText="Status">
+		            <h:outputText value="#{receita.ultimoStatus}" />
+		        </p:column>
+		        <p:column headerText="Paciente">
+		            <h:outputText value="#{receita.paciente.nome}" />
+		        </p:column>
+		        <p:column headerText="Médico">
+		            <h:outputText value="#{receita.medico.nome}" />
+		        </p:column>
+		        <p:column headerText="Data de Geração">
+		            <h:outputText 
+		            	value="#{receita.dataGeracao}">  
+		            	<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" /> 
+		            </h:outputText>
+	        	</p:column>		        		        
+		        <p:column headerText="Prazo">
+		            <h:outputText 
+		            value="#{receita.prazo}"> 
+		            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/> 
+		            </h:outputText>
+		        </p:column>
+		        <p:column headerText="Doença">
+		            <h:outputText value="#{receita.doenca.nome}" /> 
+		        </p:column>	
+		        	        		        
+		        <f:facet name="footer">
+		        	<p:growl id="growl" life="2000" />	
+						<p:commandButton value="Despachar Receita" id="botaoDespachar" update="tableReceitas" actionListener="#{receitaBean.despacharReceita}" styleClass="ui-priority-primary, regCommandButton" style="position: absolute; left: 0%; width: 100%"/> 						
+		        </f:facet>
+		    </p:dataTable>
+		 
+		  
+		</h:form>
+		</div>
+					
+		<div> <p:spacer height="10"/> </div>	
+				
+		</div>			
+    </h:body>
+</html>

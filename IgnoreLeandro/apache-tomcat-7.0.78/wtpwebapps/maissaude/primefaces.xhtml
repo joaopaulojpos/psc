@@ -10,12 +10,11 @@
 <h:head>
 </h:head>
 <h:body>	
-	<h:form>
-	       
-		<h:outputLabel for="name" value="Name:" style="font-weight:bold" />
-		<p:inputText id="name" value="#{exemploBean.nome}" />
-		<p:commandButton value="Executar" update="mostra" icon="ui-icon-check" />
-		<h:outputText id="mostra" value="#{exemploBean.nome}" />		    	 	    
-	</h:form>	
+<h:form>
+    <p:remoteCommand name="rc" update="msgs" actionListener="#{remoteCommandView.execute}" />
+ 
+    <p:growl id="msgs" showDetail="true" />
+    <p:commandButton type="button" onclick="rc()" value="Execute" icon="ui-icon-refresh" />
+</h:form>
 </h:body>
 </html>

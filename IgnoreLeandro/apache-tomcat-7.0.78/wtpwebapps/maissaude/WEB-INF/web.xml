@@ -26,4 +26,23 @@
     <param-name>primefaces.THEME</param-name>
     <param-value>aristo</param-value>
   </context-param>
+  
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>beans.LoginFilter</filter-class>
+  </filter>  
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/atendente/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/medico/*</url-pattern>
+  </filter-mapping>    
+
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/ministerio/*</url-pattern>
+  </filter-mapping>  
 </web-app>
