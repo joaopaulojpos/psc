@@ -22,7 +22,11 @@ public class DAOMedico extends DAOGenerico<Medico> implements IMedico{
 		Query q = em.createQuery(consulta, Medico.class);
 		q.setParameter("filtro", crm);
 		List<Medico> medicos = q.getResultList();
-		return medicos.get(0);
+		if(medicos == null || medicos.isEmpty()){
+			return null;
+		}else{
+			return medicos.get(0);
+		}	
 	}
 
 }

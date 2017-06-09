@@ -23,7 +23,11 @@ public class DAOPaciente extends DAOGenerico<Paciente> implements IPaciente{
 		Query q = em.createQuery(consulta, Paciente.class);
 		q.setParameter("filtro", cpf);
 		List<Paciente> pacientes = q.getResultList();
-		return pacientes.get(0);
+		if(!pacientes.isEmpty()){
+			return pacientes.get(0);
+		}else{
+			return null;
+		}	
 	}
 	
 	@Override
@@ -33,6 +37,10 @@ public class DAOPaciente extends DAOGenerico<Paciente> implements IPaciente{
 		Query q = em.createQuery(consulta, Paciente.class);
 		q.setParameter("filtro", cns);
 		List<Paciente> pacientes = q.getResultList();
-		return pacientes.get(0);
+		if(pacientes == null || pacientes.isEmpty()){
+			return null;
+		}else{
+			return pacientes.get(0);
+		}	
 	}
 }

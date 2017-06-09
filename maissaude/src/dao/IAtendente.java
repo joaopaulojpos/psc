@@ -11,4 +11,5 @@ import basicas.Atendente;
 public interface IAtendente {
 	
 	public Atendente pesquisarCRF(String crf);
+	public Atendente pesquisarCpf(String cpf);
 }

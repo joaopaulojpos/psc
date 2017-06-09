@@ -4,7 +4,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class TestaCriarBanco {
-	public static void main(String args[]){
+	
+	public TestaCriarBanco(){
+		criarBanco();
+	}
+	public void criarBanco(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			EntityManagerFactory factory = Persistence.createEntityManagerFactory("maissaude");
@@ -12,4 +16,7 @@ public class TestaCriarBanco {
 			e.printStackTrace();
 		}		
 	}
+	
+	
+	
 }

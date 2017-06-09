@@ -23,7 +23,11 @@ public class DAODoenca extends DAOGenerico<Doenca> implements IDoenca{
 		Query q = em.createQuery(consulta, Doenca.class);
 		q.setParameter("filtro", cnd);
 		List<Doenca> doencas = q.getResultList();
-		return doencas.get(0);
+		if(doencas == null || doencas.isEmpty()){
+			return null;
+		}else{
+			return doencas.get(0);
+		}	
 	}
 
 }

@@ -35,8 +35,14 @@ public class RNReceita {
 		return listarReceitas();
 	}
 	
+	public Receita pesquisarID(String id){
+		return pesquisarReceitaId(id);
+	}
+	
+	
 //--------------Métodos auxiliares---------------\\
 	
+
 	private void inserirReceita(Receita receita){
 		dao.getDAOReceita().inserir(receita);
 	}
@@ -65,4 +71,28 @@ public class RNReceita {
 	private List<Receita> listarReceitas(){
 		return dao.getDAOReceita().listar();
 	}
+	
+	private Receita pesquisarReceitaId(String id){
+		Integer idReceita = validarInteiro(id);		
+		return dao.getDAOReceita().pesquisarID(idReceita);
+	}
+	
+	private Integer validarInteiro(String idReceita){
+		try{
+			Integer id = Integer.parseInt(idReceita);	
+			return id;
+		}catch(NumberFormatException nfe){
+			throw new NumberFormatException("Digite apenas números.\n" +  nfe.getMessage());
+		}
+	}
+	
+	private void validarStatus(Receita receita) throws ValidacaoException{
+		try{
+		VALIDA.checkNull(receita);
+		VALIDA.checkNull(receita.getUltimoStatus());
+		}catch(ValidacaoException e){
+			throw new ValidacaoException("Receita com Status inválido.\n");
+		}
+	}
+			
 }

@@ -53,6 +53,10 @@ public class RNAtendente {
 		return listarCRF(crf);
 	}
 	
+	public Atendente listarAtendenteCPF(String cpf){
+		return listarCpf(cpf);
+	}
+	
 	public void remover(Atendente atendente){
 		removerAtendente(atendente);
 	}
@@ -84,5 +88,9 @@ public class RNAtendente {
 	
 	private Atendente listarCRF(String crf){
 		return dao.getDAOAtendente().pesquisarCRF(crf);
+	}
+	
+	private Atendente listarCpf(String cpf){
+		return dao.getDAOAtendente().pesquisarCpf(cpf);
 	}
 }

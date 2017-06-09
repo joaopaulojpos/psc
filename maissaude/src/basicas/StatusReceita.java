@@ -4,11 +4,14 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 //Pra auditoria
 @Entity
@@ -24,12 +27,13 @@ public class StatusReceita {
 	private Usuario usuarioAlteracao;
 	
 	@Column(name="data_alteracao", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataAlteracao;
 	
 	@Column(name="status", nullable=false)
 	private String status;	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_receita", nullable=false)
 	private Receita receita;
 

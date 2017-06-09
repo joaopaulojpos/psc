@@ -26,9 +26,9 @@ public class Atendente extends Pessoa{
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
-	@Cascade(CascadeType.ALL)
-	private List<Receita> listaReceitas;
+//	@OneToMany(mappedBy="atendente", fetch=FetchType.LAZY)	
+//	@Cascade(CascadeType.ALL)
+//	private List<Receita> listaReceitas;
 
 	public String getCrf() {
 		return crf;
@@ -54,23 +54,22 @@ public class Atendente extends Pessoa{
 		this.usuario = usuario;
 	}
 
-	public List<Receita> getListaReceitas() {
-		return listaReceitas;
-	}
-
-	public void setListaReceitas(List<Receita> listaReceitas) {
-		this.listaReceitas = listaReceitas;
-	}
+//	public List<Receita> getListaReceitas() {
+//		return listaReceitas;
+//	}
+//
+//	public void setListaReceitas(List<Receita> listaReceitas) {
+//		this.listaReceitas = listaReceitas;
+//	}
 
 	public Atendente() {
 		super();
 	}
 
-	public Atendente(String crf, boolean isFarmaceutico, List<Receita> listaReceitas, Usuario usuario) {
+	public Atendente(String crf, boolean isFarmaceutico, Usuario usuario) {
 		super();
 		this.crf = crf;
-		this.isFarmaceutico = isFarmaceutico;
-		this.listaReceitas = listaReceitas;
+		this.isFarmaceutico = isFarmaceutico;		
 		this.usuario = usuario;
 	}
 

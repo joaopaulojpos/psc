@@ -20,7 +20,7 @@ import org.hibernate.annotations.CascadeType;
 @Table(name="Paciente")
 public class Paciente extends Pessoa{
 
-	//este campo possue 15 caracteres --> xxx xxxx xxxx xxxx
+	//este campo possue 15 caracteres --> 111.2222.3333.4444
 	//Cartão Nacional de Saúde
 	@Column(name="cns", unique=true, nullable=false)
 	private String cns;
@@ -33,6 +33,11 @@ public class Paciente extends Pessoa{
 		return cns;
 	}
 
+	/**
+	 * Cartão Nacional de Saúde
+	 * Este campo possue 15 caracteres --> 111.2222.3333.4444
+	 * @param cns
+	 */
 	public void setCns(String cns) {
 		this.cns = cns;
 	}

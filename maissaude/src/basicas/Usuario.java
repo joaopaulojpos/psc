@@ -105,16 +105,7 @@ public class Usuario{
 		super();
 	}
 
-	public Usuario(Integer idUsuario, String login, String senha, String perfil, List<StatusReceita> listaStatusReceita, Atendente atendente, Medico medico) {
-		super();
-		this.idUsuario = idUsuario;
-		this.login = login;
-		this.senha = senha;
-		this.perfil = perfil;
-		this.listaStatusReceita = listaStatusReceita;
-		this.atendente= atendente;
-		this.medico = medico;
-	}
+
 
 	@Override
 	public int hashCode() {
@@ -139,5 +130,17 @@ public class Usuario{
 		} else if (!login.equals(other.login))
 			return false;
 		return true;
+	}
+
+	public Usuario(Integer idUsuario, String login, String senha, String perfil, List<StatusReceita> listaStatusReceita,
+			Atendente atendente, Medico medico) {
+		super();
+		this.idUsuario = idUsuario;
+		this.login = login;
+		this.senha = senha;
+		this.perfil = perfil;
+		this.listaStatusReceita = listaStatusReceita;
+		this.atendente = atendente;
+		this.medico = medico;
 	}
 }

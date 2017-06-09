@@ -41,7 +41,11 @@ public class DAOUsuario extends DAOGenerico<Usuario>  implements IUsuario{
 		String consulta = "SELECT u FROM Usuario u WHERE u.login Like :filtro";
 		Query q = em.createQuery(consulta, Usuario.class);
 		q.setParameter("filtro", login);
-		List<Usuario> Usuarios = q.getResultList();
-		return Usuarios.get(0);
+		List<Usuario> usuarios = q.getResultList();
+		if(usuarios == null || usuarios.isEmpty()){
+			return null;
+		}else{
+			return usuarios.get(0);
+		}	
 	}
 }

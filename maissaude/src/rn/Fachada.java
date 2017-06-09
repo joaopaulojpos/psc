@@ -9,6 +9,7 @@ import basicas.Medico;
 import basicas.Ministerio;
 import basicas.Paciente;
 import basicas.Receita;
+import basicas.StatusReceita;
 import basicas.Usuario;
 import util.exceptions.LoginInvalidoException;
 import util.exceptions.ValidacaoException;
@@ -24,6 +25,7 @@ public class Fachada {
 	private RNReceita rnReceita;
 	private RNUsuario rnUsuario;
 	private RNMinisterio rnMinisterio;
+	private RNStatusReceita rnStatusReceita;
 	
 	private Fachada(){
 		rnMedico = new RNMedico();
@@ -34,6 +36,7 @@ public class Fachada {
 		rnReceita = new RNReceita();	
 		rnUsuario = new RNUsuario();
 		rnMinisterio = new RNMinisterio();
+		rnStatusReceita = new RNStatusReceita();
 	}
 	
 	/**
@@ -110,6 +113,10 @@ public class Fachada {
 		return rnAtendente.listarAtendenteCRF(crf);
 	}
 	
+	public Atendente listarAtendentesCPF(String cpf){
+		return rnAtendente.listarAtendenteCPF(cpf);
+	}
+	
 	public void removerAtendente(Atendente atendente){
 		rnAtendente.remover(atendente);
 	}
@@ -168,7 +175,10 @@ public class Fachada {
 			return rnReceita.listar();
 		}
 		
-		//-------Receita
+		public Receita pesquisarReceitaID(String id){
+			return rnReceita.pesquisarID(id);
+		}
+		
 		
 		//-------Usuario
 		
@@ -183,5 +193,14 @@ public class Fachada {
 		//-------Ministerio
 		public void inserirMinisterio(Ministerio ministerio) throws ValidacaoException{
 			rnMinisterio.inserir(ministerio);
-		}		
+		}	
+		
+		//-------StatusReceita
+		public void inserirStatusReceita(StatusReceita statusReceita) throws ValidacaoException{
+			rnStatusReceita.inserir(statusReceita);
+		}
+
+		public void despacharStatusReceita(Receita receita) throws ValidacaoException{
+			rnStatusReceita.despacharReceita(receita);
+		}
 }

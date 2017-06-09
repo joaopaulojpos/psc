@@ -20,7 +20,25 @@ public class DAOAtendente extends DAOGenerico<Atendente> implements IAtendente{
 		String consulta = "SELECT a FROM Atendente a WHERE a.crf = :filtro";
 		Query q = em.createQuery(consulta, Atendente.class);
 		q.setParameter("filtro", crf);
-		List<Atendente> Atendentes = q.getResultList();
-		return Atendentes.get(0);
+		List<Atendente> atendentes = q.getResultList();
+		if(atendentes == null || atendentes.isEmpty()){
+			return null;
+		}else{
+			return atendentes.get(0);
+		}	
+	}
+
+	@Override
+	public Atendente pesquisarCpf(String cpf) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		String consulta = "SELECT a FROM Atendente a WHERE a.cpf = :filtro";
+		Query q = em.createQuery(consulta, Atendente.class);
+		q.setParameter("filtro", cpf);
+		List<Atendente> Atendentes = q.getResultList();		
+		if(!Atendentes.isEmpty()){
+			return Atendentes.get(0);
+		}else{
+			return null;
+		}				
 	}
 }

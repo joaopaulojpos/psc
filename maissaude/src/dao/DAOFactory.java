@@ -57,4 +57,9 @@ public abstract class DAOFactory {
 		DAOMinisterio dao = new DAOMinisterio(factory);
 		return dao;
 	}	
+	
+	public static DAOStatusReceita getDAOStatusReceita(){
+		DAOStatusReceita dao = new DAOStatusReceita(factory);
+		return dao;
+	}	
 }

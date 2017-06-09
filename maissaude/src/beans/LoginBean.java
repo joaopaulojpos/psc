@@ -45,7 +45,7 @@ public class LoginBean {
 	}
 
 	public LoginBean() throws LoginInvalidoException {
-		setUsuarioLogado(new Usuario());		
+			
 	}
 	
 
@@ -58,16 +58,16 @@ public class LoginBean {
 			if(getUsuarioLogado().getPerfil().equals(EnumPerfil.ATENDENTE.toString())){
 				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 						null,
-						"/homeAtendente.xhtml?faces-redirect=true");				
+						"/atendente/despacharReceita.xhtml?faces-redirect=true");				
 			} else if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MEDICO.toString())){
 				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 						null,
-						"/homeMedico.xhtml?faces-redirect=true");
+						"/medico/homeMedico.xhtml?faces-redirect=true");
 			} else
 			if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MINISTERIO.toString())){				
 					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 							null,
-							"/homeMinisterio.xhtml?faces-redirect=true");
+							"/ministerio/homeMinisterio.xhtml?faces-redirect=true");
 			}else{
 				throw new LoginInvalidoException("Login inválido!\n");
 			}									

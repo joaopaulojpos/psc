@@ -1,6 +1,7 @@
 package basicas;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -27,9 +31,11 @@ public class Receita {
 	private Integer idReceita;
 	
 	@Column(name="data_geracao", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataGeracao;
 	
 	@Column(name="prazo", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar prazo;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -39,24 +45,28 @@ public class Receita {
 	private List<Medicamento> listaMedicamentos;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Medico", nullable=false)
+	@JoinColumn(name="id_medico", nullable=false)
 	private Medico medico;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Paciente", nullable=false)
+	@JoinColumn(name="id_paciente", nullable=false)
 	private Paciente paciente;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Doenca", nullable=false)
+	@JoinColumn(name="id_doenca", nullable=false)
 	private Doenca doenca;
 	
 	@OneToMany(mappedBy="receita", fetch=FetchType.LAZY)	
 	@Cascade(CascadeType.ALL)
 	private List<StatusReceita> listaStatusReceita;
 	
-	@ManyToOne
-	@JoinColumn(name="id_Atendente", nullable=false)
-	private Atendente atendente;
+	@Transient
+	private StatusReceita ultimoStatus;
+
+	//Atendente fica só no status, n tem pra q a receita guardar o atendente(e tá dando erro)
+//	@ManyToOne
+//	@JoinColumn(name="id_atendente", nullable=true)
+//	private Atendente atendente;
 
 	public Integer getIdReceita() {
 		return idReceita;
@@ -66,16 +76,18 @@ public class Receita {
 		this.idReceita = idReceita;
 	}
 
-	public Calendar getDataGeracao() {
-		return dataGeracao;
+	public Date getDataGeracao() {
+		Date dataFormatada = prazo.getTime();
+		return dataFormatada;
 	}
 
 	public void setDataGeracao(Calendar dataGeracao) {
 		this.dataGeracao = dataGeracao;
 	}
 
-	public Calendar getPrazo() {
-		return prazo;
+	public Date getPrazo() {				
+		Date dataFormatada = prazo.getTime();
+		return dataFormatada;
 	}
 
 	public void setPrazo(Calendar prazo) {
@@ -120,34 +132,22 @@ public class Receita {
 
 	public void setListaStatusReceita(List<StatusReceita> listaStatusReceita) {
 		this.listaStatusReceita = listaStatusReceita;
+		setUltimoStatus(listaStatusReceita.get(listaStatusReceita.size()));
 	}
 
-	public Atendente getAtendente() {
-		return atendente;
-	}
-
-	public void setAtendente(Atendente atendente) {
-		this.atendente = atendente;
-	}
+//	public Atendente getAtendente() {
+//		return atendente;
+//	}
+//
+//	public void setAtendente(Atendente atendente) {
+//		this.atendente = atendente;
+//	}
 
 	public Receita() {
-		super();
+		super();		
 	}
 
-	public Receita(Integer idReceita, Calendar dataGeracao, Calendar prazo, List<Medicamento> listaMedicamentos,
-			Medico medico, Paciente paciente, Doenca doenca, List<StatusReceita> listaStatusReceita,
-			Atendente atendente) {
-		super();
-		this.idReceita = idReceita;
-		this.dataGeracao = dataGeracao;
-		this.prazo = prazo;
-		this.listaMedicamentos = listaMedicamentos;
-		this.medico = medico;
-		this.paciente = paciente;
-		this.doenca = doenca;
-		this.listaStatusReceita = listaStatusReceita;
-		this.atendente = atendente;
-	}
+
 
 	@Override
 	public int hashCode() {
@@ -172,5 +172,28 @@ public class Receita {
 		} else if (!idReceita.equals(other.idReceita))
 			return false;
 		return true;
+	}
+
+	public StatusReceita getUltimoStatus() {
+		return ultimoStatus;
+	}
+
+	public void setUltimoStatus(StatusReceita ultimoStatus) {
+		this.ultimoStatus = ultimoStatus;
+	}
+
+	public Receita(Integer idReceita, Calendar dataGeracao, Calendar prazo, List<Medicamento> listaMedicamentos,
+			Medico medico, Paciente paciente, Doenca doenca, List<StatusReceita> listaStatusReceita,
+			StatusReceita ultimoStatus) {
+		super();
+		this.idReceita = idReceita;
+		this.dataGeracao = dataGeracao;
+		this.prazo = prazo;
+		this.listaMedicamentos = listaMedicamentos;
+		this.medico = medico;
+		this.paciente = paciente;
+		this.doenca = doenca;
+		this.listaStatusReceita = listaStatusReceita;
+		this.ultimoStatus = ultimoStatus;
 	}
 }

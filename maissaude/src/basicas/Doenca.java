@@ -58,6 +58,10 @@ public class Doenca {
 		return cnd;
 	}
 
+	/**
+	 * Codigo Nacional da Doença Ex: A00-B99
+	 * @param cnd 
+	 */
 	public void setCnd(String cnd) {
 		this.cnd = cnd;
 	}
