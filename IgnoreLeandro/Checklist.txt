@@ -1,0 +1,10 @@
+Testar login:
+Medico OK
+Atendente
+Ministério
+
+Home:
+Geral
+Médico
+Atendente
+Ministerio
