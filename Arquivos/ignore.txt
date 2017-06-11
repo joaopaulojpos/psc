@@ -1,0 +1,5 @@
+maissaude/.classpath
+IgnoreLeandro
+
+Dentro de maissaude:
+/.classpath

@@ -14,4 +14,4 @@ ass: Leandro Oliveira
 http://www.guj.com.br/t/faces-config-xml/206967/6
 
 Pra adicionar o JSF ao projeto
------------------------------------------------------------------
+----------------------------------------------------------------
