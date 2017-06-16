@@ -1,0 +1,27 @@
+body{
+	background-color: #eceff1 !important;
+}
+
+#centralizado {	  
+position: absolute;
+width: 400px;
+height: 200px;
+z-index: 15;
+top: 40%;
+left: 50%;
+margin: -100px 0 0 -200px;					
+}
+
+#alinhar{
+	text-align: center;
+	width:500px;
+}
+
+.input{
+	width:450px;
+}
+
+.botao{			
+position: absolute;
+left: 0%;	
+}	
