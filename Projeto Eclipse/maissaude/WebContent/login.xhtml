@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+	<style>
+		body{
+			background-color: lightblue;
+		}	
+		
+		#centralizado {	  
+			position: absolute;
+			align="center"			
+			z-index: 15;
+			top: 60%;
+			left: 50%;
+			margin: -100px 0 0 -200px;					
+		}
+		
+		div.logo{
+			position: absolute;			
+			left: -30%;
+			top: -100%;
+		}
+		
+		div.botao{			
+			position: absolute;
+			left: 0%;
+		}	
+		.botaoAzul{
+	 		width: 420%;
+	 		height:90px;
+	 		color: white;
+	 		background: darkblue; 
+	 		border-color: black;
+	 	}			
+		
+	</style>	
+	
+</h:head>
+
+<body >				
+	
+	<div id="centralizado">
+						
+	<div class="logo">		
+		<h:graphicImage url="/imagens/logo.png"  width="120%" />
+	</div>
+	<p:spacer height="20" />
+	
+	<p:tooltip />
+		
+	<h:form>
+	    <h:panelGrid id="grid" columns="2" cellpadding="5">	    	    
+	    <p:outputLabel for="inputLogin" value="Login:"/>
+	    <p:inputText id="inputLogin" value="#{loginBean.login}" required="true" requiredMessage="Digite seu Login." style="width: 116%;"/>	    
+        <p:outputLabel for="inputSenha" value="Senha: " />
+        <p:password id="inputSenha" value="#{loginBean.senha}" required="true" requiredMessage="Digite sua senha." style="width: 116%;"/>
+         
+	    </h:panelGrid>
+	 		 		 		 	
+	 	<p:spacer height="10" />
+
+	 			 	
+	 	<div class="botao">
+	 		<p:commandButton id="btnLogar" action="#{loginBean.efetuarLogin}" value="Logar" styleClass="botaoAzul"/>	 					 			 		
+	 	</div>
+	 	
+	 	<div class="botao" style="top: 100%;"> 
+	 		<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" /> 
+ 		</div> 	 
+	 	
+	 	<div> 
+	 	<p:spacer height="75" />	 		 	
+	 	</div>
+	 	
+	 	</h:form>
+	
+	</div>	
+	
+
+</body>
+</html>
