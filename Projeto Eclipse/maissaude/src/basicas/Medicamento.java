@@ -55,7 +55,7 @@ public class Medicamento {
 		this.nome = nome;
 	}
 
-	public boolean isControlado() {
+	public boolean getIsControlado() {
 		return isControlado;
 	}
 

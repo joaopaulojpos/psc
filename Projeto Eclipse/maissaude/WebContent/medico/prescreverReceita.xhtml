@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+ 
+    <h:head>
+		<style>
+			body{
+				background: lightblue;
+			}
+			div.topo{
+				position: absolute;
+				left: 45%;
+				top: 30%;
+			}
+			div.meio1{
+				position: absolute;				
+				top: 35%;
+			}
+			div.botoesInferiores{
+				position: absolute;
+				bottom: 5%;					
+				width: 90%;				
+			}
+			div.botoesInferiores2{
+				position: absolute;
+			}
+			.ui-button.estilo1 { 
+			    color: white;
+			    background: darkblue;
+			    border-color: black;		    
+			    font-size:1.4em;    	
+			}	
+			div.tabela{
+				position: absolute;
+				top: 36%;
+				left: 30%;
+				width: 60%;
+			} 
+		</style>
+		<title>Gerar Receita</title>													  
+    </h:head>
+ 
+    <h:body>
+		<div>
+			<h:graphicImage url="/imagens/header.png" width="100%" style="position: absolute; left: 0%; z-index: -1;"/>
+		</div>
+		<div class="topo">
+			<p:outputLabel value="Gerar Receita" style="" />
+		</div>
+		
+		<div class="meio1">
+			<h:form>		    		 
+			    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			        <p:outputLabel for="paciente" value="Paciente:" />
+			        <p:selectOneMenu id="paciente" value="#{gerarReceitaBean.pacienteSelecionado}" style="width:250px">
+			            <f:selectItem itemLabel="Selecione o Paciente" itemValue="" noSelectionOption="true"/>	
+			            <f:selectItems value="#{gerarReceitaBean.listaPacientes}" var="paciente"
+			            itemLabel="#{paciente.nome}" itemValue="#{paciente}" />		            
+			        </p:selectOneMenu>
+			        
+			        <p:outputLabel for="doenca" value="Doença:" />
+			        <p:selectOneMenu id="doenca" value="chamaBeanDoenca" style="width:250px">
+			            <f:selectItem itemLabel="Selecione a Doença" itemValue="" />			            
+			        </p:selectOneMenu>
+		        </h:panelGrid>
+	        </h:form>
+		</div>
+		
+		<div class="tabela">
+		<h:form>				
+		    <p:dataTable id="medicamentosDT" var="medicamento" value="#{gerarReceitaBean.listaMedicamento}" 
+		    selectionMode="single" selection="#{gerarReceitaBean.medicamentoSelecionado}" rowKey="#{medicamento.idMedicamento}">
+		        <f:facet name="header">
+		            Medicamentos
+		        </f:facet>
+		        <p:column headerText="Id">
+		            <h:outputText value="#{medicamento.idMedicamento}" />
+		        </p:column>
+		        <p:column headerText="Nome">
+		            <h:outputText value="#{medicamento.nome}" />
+		        </p:column>
+		        <p:column headerText="Controlado">
+		            <h:outputText value="#{medicamento.isControlado}" />
+		        </p:column>		        
+		        <f:facet name="footer">
+		            <p:commandButton process="medicamentosDT" icon="ui-icon-search" value="Adicionar Medicamento" oncomplete="" />
+		        </f:facet>
+		    </p:dataTable>
+	    </h:form>			
+		</div>
+		
+		<div class="botoesInferiores">
+		
+			<h:form>
+			<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+				 <p:commandButton value="Gerar Receita" id="gerarReceita" update="" styleClass="ui-priority-primary"  style="position: absolute; bottom:-5%"/>				
+			</h:panelGrid>
+			<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+				<p:commandButton value="Voltar" id="Voltar" update="" styleClass="ui-priority-primary" style="position: absolute; bottom:-5%; left: 100%"/>
+			</h:panelGrid>
+		</h:form>					
+		</div>
+		
+		
+    </h:body>
+</html>

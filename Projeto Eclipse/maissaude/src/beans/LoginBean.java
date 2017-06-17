@@ -68,7 +68,7 @@ public class LoginBean {
 			} else if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MEDICO.toString())){
 				FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
 						null,
-						"/medico/homeMedico.xhtml?faces-redirect=true");
+						"/medico/prescreverReceita.xhtml?faces-redirect=true");
 			} else
 			if(getUsuarioLogado().getPerfil().equals(EnumPerfil.MINISTERIO.toString())){				
 					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(),
