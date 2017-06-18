@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+ 
+    <h:head>
+    <title> + Saúde</title>
+	<style>
+		body{
+			background-color: lightblue;			
+		}	
+		
+		div.centralizado {			  
+			position: relative;
+			margin: 0 auto;
+			width: 50%;
+			margin-top: 10%;																	
+		}
+		
+	.botaoAzul{
+ 		width: 450%;
+ 		height:90px;
+ 		color: white;
+ 		background: darkblue; 
+ 		border-color: black;
+ 	}
+	</style>		   
+    </h:head>
+ 	
+ 	
+    <h:body>
+<div class="centralizado">
+						
+	<div style="position:absolute; margin-top: -10%;">		
+		<h:graphicImage url="/imagens/logo.png"  width="100%" />
+	</div>
+	
+	<p:spacer height="100" />
+	
+	<p:tooltip />
+		
+	<h:form>	    	    
+	    	    	 			    	    	  
+	    <p:outputLabel value="Bem Vindo ao + Saúde!" style="position: absolute; margin-top: 18%; margin-left: 37%; color: white;font-weight: bold;"/>	    	                            	   
+	 		 		 		 	
+	 	<p:spacer height="10" />
+
+	 			 	
+	 	<div style="position: absolute; top: 130%; left: 0%;">
+	 		<p:commandButton id="btnLogar" action="#{indexBean.chamarLogin}" value="Ir para Login" styleClass="botaoAzul"/>	 					 			 		
+	 	</div>
+	 	
+	 	<div style="top: 100%;"> 
+	 		<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" /> 
+ 		</div> 	 
+	 	
+	 	<div> 
+	 	<p:spacer height="75" />	 		 	
+	 	</div>
+	 	
+	 	</h:form>
+	
+	</div>	
+	
+    </h:body>
+</html>
