@@ -1,0 +1,17 @@
+http://www.guj.com.br/t/resolvido-ajuda-pacote-javax-servlet/83993/2
+
+Clique com o botão invertido em cima do nome do projeto e vá em:
+Propriedades -> Targeted Runtime
+Nesta opção, basta ticar o servidor que vc deseja utilizar.
+
+ass: Leandro Oliveira
+-----------------------------------------------------------------
+https://stackoverflow.com/questions/14791843/eclipse-add-tomcat-7-blank-server-name
+
+Se o Next ficar apagado na hora de tentar adicionar um novo Servidor Tomcat
+ass: Leandro Oliveira
+-----------------------------------------------------------------
+http://www.guj.com.br/t/faces-config-xml/206967/6
+
+Pra adicionar o JSF ao projeto
+----------------------------------------------------------------
