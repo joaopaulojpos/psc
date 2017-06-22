@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+ 
+    <h:head>
+		<style>
+ 			body{
+ 				background: lightblue;
+ 			}
+ 			div.form{
+ 				position: absolute;
+ 				top: 40%;
+ 				width: 99%;
+ 				height: 100%;
+ 			}
+ 			div.tabela{
+ 				position: absolute;
+ 				top: 10%;
+ 				width: 40%;
+			}
+			div.botoes{
+				position: absolute;
+			}
+			div.mensagens{
+				position: absolute;
+				left: 50%;
+			}
+		</style>	
+		<title> Cadastro de Doença</title>	   
+    </h:head>
+ 
+    <h:body>
+		<div>
+			<h:graphicImage url="/imagens/header.png" width="100%" style="position: absolute; left: 0%; z-index: -1;"/>
+		</div>   
+		
+		 
+		<div id="divGrowl">
+			<p:growl id="growl" for="mensagensGrowl" life="2000" />
+		</div>
+		
+		
+		<div id="divForm" class="form">
+		
+	 	<div id="divMsg" class="mensagens" > 
+	 		<p:messages id="messages" for="mensagens" showDetail="false" autoUpdate="true" closable="true" /> 
+ 		</div> 	 		
+		
+		<div id="divTabela" class="tabela">
+		<h:form>
+			 <p:dataTable id="idTabela" value="#{doencaBean.listaDoenca}" var="doenca"
+		    rowKey="#{doenca.idDoenca}" selection="#{doencaBean.doencaSelecionada}" selectionMode="single"
+		    paginator="true" rows="10">     
+	        <f:facet name="header">
+	            Doencas
+	        </f:facet>
+	        <p:column headerText="Id">
+	            <h:outputText value="#{doenca.idDoenca}" />
+	        </p:column>
+	        <p:column headerText="Nome">
+	            <h:outputText value="#{doenca.nome}" />
+	        </p:column>
+	        <p:column headerText="Código Nacional de Doença">
+	            <h:outputText value="#{doenca.cnd}" />
+	        </p:column>
+			<f:facet name="footer"> 
+    			<h:outputText value="" /> 	
+   			</f:facet>
+   			</p:dataTable>		        			    
+		</h:form>
+	</div>
+	
+	<div id="divBotoes" class="botoes">
+		<p:commandButton value="Nova" id="inserirButton" update="growl" actionListener="#{doencaBean.inserirDoenca}" />				
+		<p:commandButton value="Editar" id="editarButton" update="growl" actionListener="#{doencaBean.editarDoenca}" />
+		<p:commandButton value="Remover" id="removerButton" update=":divTabela:idTabela" actionListener="#{doencaBean.removerDoenca}"/>	
+	</div>
+	
+	</div>
+			
+    </h:body>
+</html>

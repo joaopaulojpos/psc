@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	>
+ 
+    <h:head>
+		<style>
+			body{
+				background: lightblue;
+			}
+			div.topo{
+				position: absolute;
+				left: 45%;
+				top: 30%;
+			}
+			div.campos1{
+				position: absolute;				
+				top: 40%;
+				left: 1%;
+			}
+
+			.ui-button.estilo1 { 
+			    color: white;
+			    background: darkblue;
+			    border-color: black;		    
+			    font-size:1.4em;    	
+			}	
+			div.tabelas{
+				position: absolute;
+				top: 65%;
+				left: 1%;
+				width: 100%;
+			} 
+			div.tabelaReceita{
+				position: absolute;
+				left: 55%;
+				top: 90%;
+				width: 43%;				
+			}
+			div.tabelaMedicamentos{
+				position: absolute;
+				width: 45%;
+			}
+
+		</style>
+		<title>Gerar Receita</title>													  
+    </h:head>
+ 
+    <h:body>
+		<div>
+			<h:graphicImage url="/imagens/header.png" width="100%" style="position: absolute; left: 0%; z-index: -1;"/>
+		</div>
+		
+		<div class="topo">
+			<p:outputLabel value="" style="" />
+		</div>
+		
+		<div class="campos1">
+		
+		    <h:form id="gerarReceitaForm">
+		    
+		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">	
+		    	<p:outputLabel for="paciente" value="Paciente:" />
+		        <p:selectOneMenu id="paciente" value="#{gerarReceitaBean.cpf}" filter="true" 
+		        style="width:250px">
+		            <f:selectItem itemLabel="Selecione o Paciente" itemValue="" noSelectionOption="true"/>	
+		            <f:selectItems value="#{gerarReceitaBean.listaPacientes}" var="paciente"
+		            itemLabel="#{paciente.nome}" itemValue="#{paciente.cpf}" />		            
+		        </p:selectOneMenu>
+		        
+		        <p:outputLabel for="doenca" value="Doença:" />
+		        <p:selectOneMenu id="doenca" value="#{gerarReceitaBean.nomeDoenca}" 
+		         converter="omnifaces.SelectItemsConverter" filter="true" 
+		         style="width:250px">
+		            <f:selectItem itemLabel="Selecione a Doença" noSelectionOption="true"/>
+		            <f:selectItems value="#{gerarReceitaBean.listaDoencas}" var="doenca"
+		            itemLabel="#{doenca.nome}" itemValue="#{doenca.nome}" />		            			            
+		        </p:selectOneMenu>
+		        
+				<ui:remove>	    		    				
+					<p:outputLabel for="pacienteInput" value="CPF do Paciente: "/>
+					<p:inputText id="pacienteInput" value="#{gerarReceitaBean.cpf}" 
+					style="width:250px"/>				
+					<p:outputLabel for="doencaInput" value="Doenca: "/>
+					<p:inputText id="doencaInput" value="#{gerarReceitaBean.nomeDoenca}" 
+					style="width:250px"/>
+				</ui:remove>	 
+			       
+		        </h:panelGrid>
+				<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">				
+			 	<p:commandButton id="gerarReceitaButton" value="Gerar Receita" actionListener="#{gerarReceitaBean.gerarReceita}" 
+			 	update="growl2 gerarReceitaForm :adicionarMedForm">
+			 	<p:resetInput target="gerarReceitaForm" />
+			 	</p:commandButton>														
+				<p:commandButton value="Sair" id="sair" action="#{loginBean.logout}" ajax="false" />
+				<p:growl id="growl2" life="2000" />	
+			</h:panelGrid>
+			</h:form>						
+						
+		</div>    
+		
+		<div class="tabelas">	
+
+	
+		<h:form id="adicionarMedForm">
+		
+		<div class="tabelaReceita">									
+		    <p:dataTable id="medReceitaDT" var="medicamento" value="#{gerarReceitaBean.listaMedicamentosReceita}" 
+		    selectionMode="single" selection="#{gerarReceitaBean.medicamentoRemover}" 
+		    rowKey="#{medicamento.idMedicamento}" paginator="true" rows="5">
+		        <f:facet name="header">
+		            Medicamentos da Receita
+		        </f:facet>
+		        <p:column headerText="Id">
+		            <h:outputText value="#{medicamento.idMedicamento}" />
+		        </p:column>
+		        <p:column headerText="Nome">
+		            <h:outputText value="#{medicamento.nome}" />
+		        </p:column>
+		        <p:column headerText="Controlado">
+		            <h:outputText value="Não" rendered="#{medicamento.isControlado==false}" />
+		            <h:outputText value="Sim" rendered="#{medicamento.isControlado==true}" />
+		        </p:column>		        
+		        <f:facet name="footer">	
+		        	<p:growl id="removerGrowl" life="2000" />
+		            <p:commandButton id="delMedBtn" value="Retirar da Receita" actionListener="#{gerarReceitaBean.delMedicamento}" 
+		            update="removerGrowl :adicionarMedForm" />            
+		        </f:facet>
+	        </p:dataTable>	        
+        </div>
+
+		<p:spacer width="10px"/>                    
+			
+		<div class="tabelaMedicamentos">											
+		    <p:dataTable id="medDT" var="medicamento" value="#{gerarReceitaBean.listaMedicamentos}" 
+		    selectionMode="single" selection="#{gerarReceitaBean.medicamentoAdd}" 
+		    rowKey="#{medicamento.idMedicamento}" paginator="true" rows="5">
+		        <f:facet name="header">
+		            Todos Medicamentos
+		        </f:facet>
+		        <p:column headerText="Id">
+		            <h:outputText value="#{medicamento.idMedicamento}" />
+		        </p:column>
+		        <p:column headerText="Nome">
+		            <h:outputText value="#{medicamento.nome}" />
+		        </p:column>
+		        <p:column headerText="Controlado">
+		            <h:outputText value="Não" rendered="#{medicamento.isControlado==false}" />
+		            <h:outputText value="Sim" rendered="#{medicamento.isControlado==true}" />
+		        </p:column>		        
+		        <f:facet name="footer">
+		        	<p:growl id="growl" life="2000" />
+		            <p:commandButton id="addMedBtn" value="Adicionar Medicamento" actionListener="#{gerarReceitaBean.addMedicamento}" 
+		            update="growl :adicionarMedForm" />
+		        </f:facet>
+	        </p:dataTable>
+        </div>
+        </h:form>                      					    		
+		</div>	    
+		
+							
+    </h:body>
+</html>
